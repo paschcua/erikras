@@ -6,11 +6,11 @@ export default class Hello extends Component {
   render() {
     return(
       <div className="container">
-        <h1>Hello, Dude!</h1>
+        <h1>Hello, Dude!!</h1>
         <Helmet title="Hello Dude"/>
         Have a wondeful day!
       </div>
     );
   }
-  
+
 }
