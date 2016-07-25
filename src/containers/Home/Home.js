@@ -21,6 +21,7 @@ export default class Home extends Component {
             </div>
             <h1>{config.app.title}</h1>
             <h2>{config.app.description}</h2>
+            <h2>{config.app.subdescription}</h2>
           </div>
         </div>
 
@@ -38,7 +39,7 @@ export default class Home extends Component {
           </h2>
           <p>Coming soon...</p>
           <p>Autor: Pascal Scheidegger</p>
-          
+
         </div>
       </div>
     );

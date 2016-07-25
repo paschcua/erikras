@@ -16,7 +16,7 @@ describe('InfoBar', () => {
       loaded: true,
       loading: false,
       data: {
-        message: 'This came from the api server',
+        message: 'Server-Anfrage erfolgreich',
         time: Date.now()
       }
     }

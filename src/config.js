@@ -16,7 +16,8 @@ module.exports = Object.assign({
   apiPort: process.env.APIPORT,
   app: {
     title: 'Swiss React.js Community',
-    description: 'Die erste Schweizer React.js Community <br /> Aktuelles, Tutorials, Community',
+    description: 'Die erste Schweizer React.js Community',
+    subdescription: 'Aktuelles, Tutorials, Community',
     head: {
       titleTemplate: 'Swiss React.js Community: %s',
       meta: [
