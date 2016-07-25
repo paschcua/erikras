@@ -18,11 +18,11 @@ export default class InfoBar extends Component {
     return (
       <div className={styles.infoBar + ' well'}>
         <div className="container">
-          Node.js Serverzeit: 
+          Node.js Serverzeit:
           {' '}
           <strong>{info ? info.message : 'no info!'}</strong>
           <span className={styles.time}>{info && new Date(info.time).toString()}</span>
-          <button className="btn btn-primary" onClick={load}>Reload from server</button>
+          <button className="btn btn-primary" onClick={load}>Reload vom Server</button>
         </div>
       </div>
     );

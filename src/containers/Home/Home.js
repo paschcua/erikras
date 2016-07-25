@@ -35,10 +35,9 @@ export default class Home extends Component {
           <h3>Neuste Blogeinträge</h3>
 
           <h2>
-            Deine React-Applikation produktiv auf AWS aufschalten (Node.js, Express.js, AWS, Elastic Beanstalk)
+            React-Applikation produktiv auf Heroku publizieren (Node.js, Express.js, Heroku)
           </h2>
           <p>Coming soon...</p>
-          <p>Autor: Pascal Scheidegger</p>
 
         </div>
       </div>
