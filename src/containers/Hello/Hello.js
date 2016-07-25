@@ -7,8 +7,8 @@ export default class Hello extends Component {
     return(
       <div className="container">
         <h1>Hello, Dude!!</h1>
-        <Helmet title="Hello Dude"/>
-        Have a wondeful day!!!!!!
+        <Helmet title="Hello Dude GO GO"/>
+        Have a wondeful day!!!!!! GO GO GO
       </div>
     );
   }
