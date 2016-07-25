@@ -21,6 +21,14 @@ const dest = document.getElementById('content');
 const store = createStore(_browserHistory, client, window.__data);
 const history = syncHistoryWithStore(_browserHistory, store);
 
+var ReactGA = require('react-ga');
+ReactGA.initialize('UA-6245869-16');
+
+function logPageView() {
+  ReactGA.set({ page: window.location.pathname });
+  ReactGA.pageview(window.location.pathname);
+}
+
 function initSocket() {
   const socket = io('', {path: '/ws'});
   socket.on('news', (data) => {
@@ -37,7 +45,7 @@ function initSocket() {
 global.socket = initSocket();
 
 const component = (
-  <Router render={(props) =>
+  <Router onUpdate={logPageView} render={(props) =>
         <ReduxAsyncConnect {...props} helpers={{client}} filter={item => !item.deferred} />
       } history={history}>
     {getRoutes(store)}
