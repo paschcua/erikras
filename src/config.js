@@ -22,6 +22,7 @@ module.exports = Object.assign({
       titleTemplate: 'Swiss React.js Community: %s',
       meta: [
         {name: 'description', content: 'Die erste Schweizer React.js Community!'},
+        {name: 'google-site-verification', content: 'n548XvPx40jKyDlkuYaz8t42CLWs5zfNFGexF1Deyl8'},
         {charset: 'utf-8'},
         {property: 'og:site_name', content: 'Die erste Schweizer React.js Community!'},
         {property: 'og:image', content: 'http://swiss-react.ch/logo.png'},
