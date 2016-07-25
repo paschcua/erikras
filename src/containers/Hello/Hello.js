@@ -8,7 +8,7 @@ export default class Hello extends Component {
       <div className="container">
         <h1>Hello, Dude!!</h1>
         <Helmet title="Hello Dude"/>
-        Have a wondeful day!
+        Have a wondeful day!!!!!!
       </div>
     );
   }
