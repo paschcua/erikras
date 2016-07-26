@@ -55,3 +55,14 @@
   text-align: center;
   margin: 20px;
 }
+
+
+@media screen and (max-device-width: 480px) {
+  h1 {
+    font-size: 2em;
+    margin-top: 0px;
+  }
+  h2 {
+    font-size: 1em;
+  }
+}
