@@ -37,7 +37,7 @@ export default class Home extends Component {
           <h2>
             React-Applikation produktiv auf Heroku publizieren (Node.js, Express.js, Heroku)
           </h2>
-          <p>Coming soon...</p>
+          <Link to="/hello">Mehr lesen</Link>
 
         </div>
       </div>
