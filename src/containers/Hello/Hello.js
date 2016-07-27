@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
+import fs from 'fs';
 
 export default class Hello extends Component {
 
