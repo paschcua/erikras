@@ -5,22 +5,19 @@ export default class Hello extends Component {
 
 
 componentDidMount() {
-  var mongoose = require('mongoose');
-  var Schema = mongoose.Schema;
-  var UserSchema = new Schema({
-      _id: String,
-      userid: String,
-      username: String
-  });
-  // Mongoose Model definition
-  var User = mongoose.model('users', UserSchema);
+  var Promise = require("bluebird")
+  var MongoDB = require("mongodb")
+  Promise.promisifyAll(MongoDB)
 
-  // Mongoose connection to MongoDB
-  mongoose.connect(process.env.MONGODB_URI, function (error) {
-      if (error)return console.log(error);
-      console.log("MongoDB: connection to database succesful!");
-  });
-}
+  return MongoDB.connectAsync(process.env.MONGODB_URI).then(function(db){
+    var collection = db.collection('queue')
+    return collection.find().toArrayAsync().then(function(docs){
+      console.log(docs)
+    })
+  }).catch(function(e){
+    console.log(e.message)
+    throw e
+  })
 
   render() {
     return (
