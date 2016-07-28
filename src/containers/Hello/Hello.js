@@ -1,23 +1,19 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
+var mongoose = require('mongoose');
+
 
 export default class Hello extends Component {
 
 
 componentDidMount() {
-  var Promise = require("bluebird")
-  var MongoDB = require("mongodb")
-  Promise.promisifyAll(MongoDB)
 
-  return MongoDB.connectAsync(process.env.MONGODB_URI).then(function(db){
-    var collection = db.collection('queue')
-    return collection.find().toArrayAsync().then(function(docs){
-      console.log(docs)
-    })
-  }).catch(function(e){
-    console.log(e.message)
-    throw e
+  // Mongoose connection to MongoDB
+  mongoose.connect(process.env.MONGODB_URI, function (error) {
+      if (error)return console.log(error);
+      console.log("MongoDB: connection to database succesful!");
   })
+}
 
   render() {
     return (
