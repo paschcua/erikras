@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
-var mongoose = require('mongoose');
 
 export default class Hello extends Component {
 
 
 componentDidMount() {
+  var mongoose = require('mongoose');
   var Schema = mongoose.Schema;
   var UserSchema = new Schema({
       _id: String,
