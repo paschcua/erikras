@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
-
+import mongoose from 'mongoose';
 
 export default class Hello extends Component {
 
@@ -16,7 +16,7 @@ componentDidMount() {
   var User = mongoose.model('users', UserSchema);
 
   // Mongoose connection to MongoDB
-  mongoose.connect('mongodb://makingsense:1qaz2wsx@ds037272.mongolab.com:37272/demo', function (error) {
+  mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm', function (error) {
       if (error)return console.log(error);
       console.log("MongoDB: connection to database succesful!");
   });
