@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Helmet from 'react-helmet';
+import mongoose from 'mongoose';
 
-var mongoose = require('mongoose');
 
 export default class Hello extends Component {
 
@@ -10,6 +10,8 @@ componentDidMount() {
   var db = mongoose.connection;
 
   db.on('error', console.error);
+
+
   db.once('open', function() {
 
     var movieSchema = new mongoose.Schema({
@@ -37,9 +39,6 @@ componentDidMount() {
 
 
 
-
-
-
     // Find a single movie by name.
     Movie.findOne({ title: 'Thor' }, function(err, thor) {
       if (err) return console.error(err);
@@ -59,6 +58,8 @@ componentDidMount() {
     });
 
   });
+
+
 
   mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm');
 }
