@@ -21,7 +21,7 @@ import getRoutes from './routes';
 
 
 var mongoose = require('mongoose');
-var Character = require('./models/character');
+var Character = require('./models/charactera');
 
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on('error', function() {
