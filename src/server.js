@@ -19,12 +19,11 @@ import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import getRoutes from './routes';
 
-
-var mongoose = require('mongoose');
-var Character = require('./models/charactera');
+//require mongoose model defines in model/blog.js (see Files)
+var BlogPost = require("./models/blog");
 
 //Find one blog post by this
-Character.findOne({author: "String1111"}, function(err, doc) {
+BlogPost.findOne({author: "Yash Kumar"}, function(err, doc) {
 	if (err) {
 		return err
 	}
@@ -33,12 +32,6 @@ Character.findOne({author: "String1111"}, function(err, doc) {
 	}
 });
 
-/*mongoose.connect(process.env.MONGODB_URI);
-mongoose.connection.on('error', function() {
-  console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?');
-});
-*/
-//charactera.update({characterId: 1}, {$set: {name: 'New name'}}, callback);
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
