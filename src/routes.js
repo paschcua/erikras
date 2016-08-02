@@ -7,9 +7,9 @@ import {
     Home,
     Widgets,
     About,
-    Register,
     Login,
     LoginSuccess,
+    Register,
     Survey,
     NotFound,
   } from 'containers';
