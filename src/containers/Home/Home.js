@@ -30,6 +30,7 @@ export default class Home extends Component {
             <CounterButton multireducerKey="counter1"/>
             <CounterButton multireducerKey="counter2"/>
             <CounterButton multireducerKey="counter3"/>
+            <button onClick="/register">Register</button>
           </div>
 
           <h3>Neuste Blogeinträge</h3>
@@ -37,7 +38,6 @@ export default class Home extends Component {
           <h2>
             React-Applikation produktiv auf Heroku publizieren (Node.js, Express.js, Heroku)
           </h2>
-          <Link to="/hello">Mehr lesen</Link>
 
         </div>
       </div>

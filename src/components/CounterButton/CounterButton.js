@@ -18,16 +18,13 @@ export default class CounterButton extends Component {
   }
 
   render() {
-    const {count, increment} = this.props; // eslint-disable-line no-shadow
+    const {count, increment} = Cthis.props; // eslint-disable-line no-shadow
     let {className} = this.props;
     className += ' btn btn-default';
     return (
-      <div>
         <button className={className} onClick={increment}>
           Redux Klick-Tester: {count}
         </button>
-        <button onClick="#">Register</button>
-      </div>
     );
   }
 }
