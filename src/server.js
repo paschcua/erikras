@@ -28,6 +28,8 @@ mongoose.connection.on('error', function() {
   console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?');
 });
 
+Charactera.update({characterId: 1}, {$set: {name: 'New name'}}, callback);
+
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
 const app = new Express();
