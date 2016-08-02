@@ -10,7 +10,7 @@ var db = mongoose.connect(process.env.MONGODB_URI);
 //create schema for blog post
 var blogSchema = new mongoose.Schema({
   title:  String,
-  author: "String111",
+  author: "String1111",
   body:   String,
   comments: [{ body: String, date: Date }],
   date: { type: Date, default: Date.now },
@@ -22,4 +22,4 @@ var blogSchema = new mongoose.Schema({
 });
 
 //compile schema to model
-module.exports = db.model('blog', blogSchema)
+module.exports = db.model('character', blogSchema)

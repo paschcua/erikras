@@ -24,7 +24,7 @@ var mongoose = require('mongoose');
 var Character = require('./models/charactera');
 
 //Find one blog post by this
-Character.findOne({author: "String111"}, function(err, doc) {
+Character.findOne({author: "String1111"}, function(err, doc) {
 	if (err) {
 		return err
 	}
