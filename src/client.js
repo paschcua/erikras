@@ -21,7 +21,7 @@ const dest = document.getElementById('content');
 const store = createStore(_browserHistory, client, window.__data);
 const history = syncHistoryWithStore(_browserHistory, store);
 
-var ReactGA = require('react-ga');
+const ReactGA = require('react-ga');
 ReactGA.initialize('UA-6245869-16');
 
 function logPageView() {

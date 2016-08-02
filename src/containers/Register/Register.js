@@ -10,7 +10,7 @@ export default class Register extends Component {
         <Helmet title="Register"/>
         <p>Registration will open soon...</p>
       </div>
-    )
+    );
   }
 
 }
