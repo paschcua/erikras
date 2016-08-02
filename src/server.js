@@ -20,16 +20,7 @@ import {Provider} from 'react-redux';
 import getRoutes from './routes';
 
 var mongoose = require("mongoose");
-
-var BlogPost = require("./models/blog");
-BlogPost.findOne({author: "Yash Kumar"}, function(err, doc) {
-	if (err) {
-    console.log("Error: "+err);
-	}
-	else {
-		console.log("Success: "+doc);
-	}
-});
+var Movie = require("./models/movie");
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
