@@ -26,12 +26,13 @@ export default class Home extends Component {
         </div>
 
         <div className="container">
+          /* {
           <div className={styles.counterContainer}>
             <CounterButton multireducerKey="counter1"/>
             <CounterButton multireducerKey="counter2"/>
             <CounterButton multireducerKey="counter3"/>
-            <button onClick="/register">Register</button>
           </div>
+          } */
 
           <h3>Neuste Blogeinträge</h3>
 

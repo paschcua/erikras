@@ -15,13 +15,13 @@ module.exports = Object.assign({
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
   app: {
-    title: 'Swiss React.js Community',
-    description: 'Die erste Schweizer React.js Community',
-    subdescription: 'Aktuelles, Tutorials, Community',
+    title: 'Swiss React Community',
+    description: 'Die erste Schweizer React Community',
+    subdescription: 'React.js, Flux/Redux, React Native',
     head: {
       titleTemplate: 'Swiss React.js Community: %s',
       meta: [
-        {name: 'description', content: 'Die erste Schweizer React.js Community!'},
+        {name: 'description', content: 'Die erste Schweizer React Community!'},
         {name: 'google-site-verification', content: 'n548XvPx40jKyDlkuYaz8t42CLWs5zfNFGexF1Deyl8'},
         {charset: 'utf-8'},
         {property: 'og:site_name', content: 'Die erste Schweizer React.js Community!'},

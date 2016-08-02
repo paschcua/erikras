@@ -14,6 +14,7 @@ import {
     NotFound,
   } from 'containers';
 
+
 export default (store) => {
   const requireLogin = (nextState, replace, cb) => {
     function checkAuth() {
@@ -48,8 +49,8 @@ export default (store) => {
 
       { /* Routes */ }
       <Route path="about" component={About}/>
-      <Route path="register" component={Register}/>
       <Route path="login" component={Login}/>
+      <Route path="register" component={Register}/>
       <Route path="survey" component={Survey}/>
       <Route path="widgets" component={Widgets}/>
 
