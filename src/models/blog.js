@@ -9,6 +9,7 @@ var blogSchema = new mongoose.Schema({
   comments: [{ body: String, date: Date }],
   date: { type: Date, default: Date.now },
   hidden: Boolean,
+  random: { type: [Number], index: '2d' },
   meta: {
     votes: Number,
     favs:  Number

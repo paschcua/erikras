@@ -19,14 +19,15 @@ import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import getRoutes from './routes';
 
+var mongoose = require("mongoose");
 
 var BlogPost = require("./models/blog");
 BlogPost.findOne({author: "Yash Kumar"}, function(err, doc) {
 	if (err) {
-		return err
+    console.log("Error: "+err);
 	}
 	else {
-		console.log(doc);
+		console.log("Success: "+doc);
 	}
 });
 
