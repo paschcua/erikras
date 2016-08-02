@@ -13,4 +13,11 @@ var characterSchemaa = new mongoose.Schema({
   voted: { type: Boolean, default: false }
 });
 
+characterSchemaa.update({characterId: 1}, {
+    race: "some new info",
+    bloodline: "uhu"
+}, function(err, affected, resp) {
+   console.log(resp);
+})
+
 module.exports = mongoose.model('Charactera', characterSchemaa);
