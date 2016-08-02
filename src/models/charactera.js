@@ -1,16 +1,25 @@
-var mongoose = require('mongoose');
+/*
+* More details here http://mongoosejs.com/docs/guide.html
+*/
 
-var characterSchemaa = new mongoose.Schema({
-  characterId: { type: String, unique: true, index: true },
-  name: String,
-  race: String,
-  gender: String,
-  bloodline: String,
-  wins: { type: Number, default: 0 },
-  losses: { type: Number, default: 0 },
-  reports: { type: Number, default: 0 },
-  random: { type: [Number], index: '2d' },
-  voted: { type: Boolean, default: false }
+var mongoose = require("mongoose");
+
+//connect to database
+var db = mongoose.connect(process.env.MONGODB_URI);
+
+//create schema for blog post
+var blogSchema = new mongoose.Schema({
+  title:  String,
+  author: "String111",
+  body:   String,
+  comments: [{ body: String, date: Date }],
+  date: { type: Date, default: Date.now },
+  hidden: Boolean,
+  meta: {
+    votes: Number,
+    favs:  Number
+  }
 });
 
-module.exports = mongoose.model('Charactera', characterSchemaa);
+//compile schema to model
+module.exports = db.model('blog', blogSchema)
