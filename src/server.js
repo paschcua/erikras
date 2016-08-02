@@ -19,10 +19,8 @@ import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import getRoutes from './routes';
 
-//require mongoose model defines in model/blog.js (see Files)
-var BlogPost = require("./models/blog");
 
-//Find one blog post by this
+var BlogPost = require("./models/blog");
 BlogPost.findOne({author: "Yash Kumar"}, function(err, doc) {
 	if (err) {
 		return err
@@ -31,7 +29,6 @@ BlogPost.findOne({author: "Yash Kumar"}, function(err, doc) {
 		console.log(doc);
 	}
 });
-
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
