@@ -13,6 +13,6 @@ var characterSchemaa = new mongoose.Schema({
   voted: { type: Boolean, default: false }
 });
 
-Model.update({characterId: 1}, {$set: {name: 'New name'}}, callback); 
+characterSchemaa.update({characterId: 1}, {$set: {name: 'New name'}}, callback); 
 
 module.exports = mongoose.model('Charactera', characterSchemaa);
