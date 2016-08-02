@@ -10,6 +10,8 @@ import {
     Login,
     LoginSuccess,
     Register,
+    Kontakt,
+    Community,
     Survey,
     NotFound,
   } from 'containers';
@@ -50,7 +52,9 @@ export default (store) => {
       { /* Routes */ }
       <Route path="about" component={About}/>
       <Route path="login" component={Login}/>
-      <Route path="register" component={Register}/>
+      <Route path="registrieren" component={Register}/>
+      <Route path="kontakt" component={Kontakt}/>
+      <Route path="community" component={Community}/>
       <Route path="survey" component={Survey}/>
       <Route path="widgets" component={Widgets}/>
 

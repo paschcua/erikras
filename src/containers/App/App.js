@@ -89,14 +89,14 @@ export default class App extends Component {
 
 
               <LinkContainer to="/login">
-                <NavItem eventKey={5}>Login</NavItem>
-              </LinkContainer>}
+                <NavItem eventKey={4}>Login</NavItem>
+              </LinkContainer>
               <LinkContainer to="/logout">
-                <NavItem eventKey={6} className="logout-link" onClick={this.handleLogout}>
+                <NavItem eventKey={5} className="logout-link" onClick={this.handleLogout}>
                   Logout
                 </NavItem>
-              </LinkContainer>}
-              { /* {
+              </LinkContainer>
+              { /*
               {user && <LinkContainer to="/chat">
                 <NavItem eventKey={1}>Chat</NavItem>
               </LinkContainer>}
@@ -125,10 +125,10 @@ export default class App extends Component {
                   Logout
                 </NavItem>
               </LinkContainer>}
-              } */ }
+              */ }
             </Nav>
-            {user &&
-            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.name}</strong>.</p>}
+            { /* user &&
+            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.name}</strong>.</p> */ }
           </Navbar.Collapse>
         </Navbar>
 
