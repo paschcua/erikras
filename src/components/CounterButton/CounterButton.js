@@ -22,9 +22,12 @@ export default class CounterButton extends Component {
     let {className} = this.props;
     className += ' btn btn-default';
     return (
-      <button className={className} onClick={increment}>
-        Redux Klick-Tester: {count}
-      </button>
+      <div>
+        <button className={className} onClick={increment}>
+          Redux Klick-Tester: {count}
+        </button>
+        <button onClick="#">Register</button>
+      </div>
     );
   }
 }
