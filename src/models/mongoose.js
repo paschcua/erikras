@@ -10,14 +10,13 @@ db.once('open', function() {
 mongoose.connect(process.env.MONGODB_URI);
 
 // CREATE
-var movieSchema = new mongoose.Schema({
-  title: { type: String }
-, rating: String
-, releaseYear: Number
-, hasCreditCookie: Boolean
+var userData = new mongoose.Schema({
+  userid: Number
+, username: String
+, password: String
 });
 
-var Movie = mongoose.model('Movie', movieSchema);
+var UserModel = mongoose.model('User', userData);
 
 
 
