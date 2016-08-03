@@ -18,18 +18,18 @@ export default class Register extends Component {
     });
     mongoose.connect(process.env.MONGODB_URI);
 
-    const userData = new mongoose.Schema({
-      userid: Number,
-      username: String,
-      password: String
+    var userData = new mongoose.Schema({
+      userid: Number
+    , username: String
+    , password: String
     });
 
-    const UserModel = mongoose.model('User', userData);
+    var UserModel = mongoose.model('User', userData);
   }
 
 
   mongoInsert(inputUsername, inputPassword) {
-    var userDataForm = new SwissUser({
+    var userDataForm = new User({
       userid: 1,
       username: inputUsername,
       password: inputPassword
