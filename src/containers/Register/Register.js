@@ -9,7 +9,7 @@ export default class Register extends Component {
     logout: PropTypes.func
   }
 
-  mongoInitial() {
+
     var mongoose = require("mongoose");
 
     var db = mongoose.connection;
@@ -26,7 +26,7 @@ export default class Register extends Component {
     });
 
     var UserModel = mongoose.model('User', userData);
-  }
+
 
 
   mongoInsert(inputUsername, inputPassword) {
@@ -44,7 +44,7 @@ export default class Register extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.mongoInitial();
+
     const inputUsername = this.refs.username.value;
     const inputPassword = this.refs.password.value;
 
