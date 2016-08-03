@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import mongoose from 'mongoose';
 
 export default class Register extends Component {
 
@@ -11,6 +10,8 @@ export default class Register extends Component {
   }
 
   mongoInitial() {
+    var mongoose = require("mongoose");
+
     var db = mongoose.connection;
 
     db.on('error', console.error);
