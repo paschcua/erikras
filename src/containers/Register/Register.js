@@ -10,20 +10,21 @@ export default class Register extends Component {
   }
 
 
-  let mongoose = require("mongoose");
-  let db = mongoose.connection;
+  var mongoose = require("mongoose");
+  var db = mongoose.connection;
 
   db.on('error', console.error);
   db.once('open', function() {
-    var userData = new mongoose.Schema({
-      userid: Number
-      , username: String
-      , password: String
-    });
-
-    var UserModel = mongoose.model('User', userData);
   });
   mongoose.connect(process.env.MONGODB_URI);
+
+  var userData = new mongoose.Schema({
+    userid: Number
+    , username: String
+    , password: String
+  });
+
+  var UserModel = mongoose.model('User', userData);
 
 
   mongoInsert(inputUsername, inputPassword){
