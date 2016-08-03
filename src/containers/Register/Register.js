@@ -9,38 +9,40 @@ export default class Register extends Component {
     logout: PropTypes.func
   }
 
+  mongoInitial() {
+    const mongoose = require('mongoose');
+    const db = mongoose.connection;
 
-  var mongoose = require("mongoose");
-  var db = mongoose.connection;
+    db.on('error', console.error);
+    db.once('open', function() {
+    });
+    mongoose.connect(process.env.MONGODB_URI);
 
-  db.on('error', console.error);
-  db.once('open', function() {
-  });
-  mongoose.connect(process.env.MONGODB_URI);
-
-  var userData = new mongoose.Schema({
-    userid: Number
-    , username: String
-    , password: String
-  });
-
-  var UserModel = mongoose.model('User', userData);
-
-
-  mongoInsert(inputUsername, inputPassword){
-    var userDataForm = new SwissUser({
-      userid: 1
-    , username: inputUsername
-    , releaseYear: inputPassword
+    const userData = new mongoose.Schema({
+      userid: Number,
+      username: String,
+      password: String
     });
 
-    userDataForm.save(function(err, userDataForm) {
+    const UserModel = mongoose.model('User', userData);
+  }
+
+
+  mongoInsert(inputUsername, inputPassword) {
+    var userDataForm = new SwissUser({
+      userid: 1,
+      username: inputUsername,
+      releaseYear: inputPassword
+    });
+
+    userDataForm.save(function(err, data) {
       if (err) return console.error(err);
-      console.dir(userDataForm);
+      console.dir(data);
     });
   }
 
   handleSubmit = (event) => {
+    this.mongoInitial();
     event.preventDefault();
     const inputUsername = this.refs.username.value;
     const inputPassword = this.refs.password.value;
