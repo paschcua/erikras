@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
+import mongoose from 'mongoose';
 
 export default class Register extends Component {
 
@@ -10,8 +11,7 @@ export default class Register extends Component {
   }
 
   mongoInitial() {
-    const mongoose = require('mongoose');
-    const db = mongoose.connection;
+    var db = mongoose.connection;
 
     db.on('error', console.error);
     db.once('open', function() {
@@ -19,9 +19,9 @@ export default class Register extends Component {
     mongoose.connect(process.env.MONGODB_URI);
 
     var userData = new mongoose.Schema({
-      userid: Number
-    , username: String
-    , password: String
+      userid: Number,
+      username: String,
+      password: String
     });
 
     var UserModel = mongoose.model('User', userData);
@@ -29,21 +29,21 @@ export default class Register extends Component {
 
 
   mongoInsert(inputUsername, inputPassword) {
-    var userDataForm = new User({
+    var thor = new Movie({
       userid: 1,
       username: inputUsername,
       password: inputPassword
     });
 
-    userDataForm.save(function(err, data) {
+    thor.save(function(err, thor) {
       if (err) return console.error(err);
-      console.dir(data);
+      console.dir(thor);
     });
   }
 
   handleSubmit = (event) => {
-    this.mongoInitial();
     event.preventDefault();
+    this.mongoInitial();
     const inputUsername = this.refs.username.value;
     const inputPassword = this.refs.password.value;
 
