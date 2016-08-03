@@ -32,7 +32,7 @@ export default class Register extends Component {
     var userDataForm = new SwissUser({
       userid: 1,
       username: inputUsername,
-      releaseYear: inputPassword
+      password: inputPassword
     });
 
     userDataForm.save(function(err, data) {
