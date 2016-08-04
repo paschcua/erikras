@@ -19,21 +19,36 @@ import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import getRoutes from './routes';
 
+
+
 var mongoose = require('mongoose');
-const db = mongoose.connection;
+var db = mongoose.connection;
 
 db.on('error', console.error);
 db.once('open', function() {
 });
 mongoose.connect(process.env.MONGODB_URI);
 
-const userData = new mongoose.Schema({
+var userSchema = new mongoose.Schema({
   userid: Number,
   username: String,
   password: String
 });
 
-const UserModel = mongoose.model('User', userData);
+var Movie = mongoose.model('Movie', userSchema);
+
+/*mongoInsert(inputUsername, inputPassword) { */
+var thor = new Movie({
+  userid: 1,
+  username: "inputUsername",
+  password: "inputPassword"
+});
+
+thor.save(function (err) {
+  if (err) return console.log(err);
+})
+/*}*/
+
 
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
