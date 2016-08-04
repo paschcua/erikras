@@ -9,6 +9,8 @@ export default class Register extends Component {
     logout: PropTypes.func
   }
 
+  mongoCaller();
+
   handleSubmit = (event) => {
     event.preventDefault();
     /* {
