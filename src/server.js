@@ -19,7 +19,22 @@ import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import getRoutes from './routes';
 
-//var Movie = require("./models/movie");
+var mongoose = require('mongoose');
+const db = mongoose.connection;
+
+db.on('error', console.error);
+db.once('open', function() {
+});
+mongoose.connect(process.env.MONGODB_URI);
+
+const userData = new mongoose.Schema({
+  userid: Number,
+  username: String,
+  password: String
+});
+
+const UserModel = mongoose.model('User', userData);
+
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
