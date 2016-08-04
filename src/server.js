@@ -35,20 +35,17 @@ var userSchema = new mongoose.Schema({
   password: String
 });
 
-var Movie = mongoose.model('Movie', userSchema);
+var UserModel = mongoose.model('User', userSchema);
 
-/*mongoInsert(inputUsername, inputPassword) { */
-var thor = new Movie({
+var userdata = new UserModel({
   userid: 1,
-  username: "inputUsername",
-  password: "inputPassword"
+  username: "inputUsername2",
+  password: "inputPassword2"
 });
 
-thor.save(function (err) {
+userdata.save(function (err) {
   if (err) return console.log(err);
 })
-/*}*/
-
 
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
