@@ -19,12 +19,7 @@ import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import getRoutes from './routes';
 
-import MongoCall from './models/MongoCall';
-
-
-
-
-
+import {MongoCall} from './models/MongoCall';
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();

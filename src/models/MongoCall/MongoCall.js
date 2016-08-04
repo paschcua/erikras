@@ -1,31 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Helmet from 'react-helmet';
 
-export default function MongoCall() {
+export default class MongoCall extends Component {
 
-  var mongoose = require('mongoose');
-  var db = mongoose.connection;
+  render() {
+    var mongoose = require('mongoose');
+    var db = mongoose.connection;
 
-  db.on('error', console.error);
-  db.once('open', function() {
-  });
-  mongoose.connect(process.env.MONGODB_URI);
+    db.on('error', console.error);
+    db.once('open', function() {
+    });
+    mongoose.connect(process.env.MONGODB_URI);
 
-  var userSchema = new mongoose.Schema({
-    userid: Number,
-    username: String,
-    password: String
-  });
+    var userSchema = new mongoose.Schema({
+      userid: Number,
+      username: String,
+      password: String
+    });
 
-  var UserModel = mongoose.model('User', userSchema);
+    var UserModel = mongoose.model('User', userSchema);
 
-  var userdata = new UserModel({
-    userid: 2,
-    username: "inputUsername4",
-    password: "inputPassword4"
-  });
+    var userdata = new UserModel({
+      userid: 2,
+      username: "inputUsername4",
+      password: "inputPassword4"
+    });
 
-  userdata.save(function (err) {
-    if (err) return console.log(err);
-  })
+    userdata.save(function (err) {
+      if (err) return console.log(err);
+    });
+
+
+    return (
+      <div className='container'>
+        MongoCall
+      </div>
+    );
+  }
+
 
 }
