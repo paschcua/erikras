@@ -9,7 +9,31 @@ export default class Register extends Component {
     logout: PropTypes.func
   }
 
-  mongoCaller();
+  var mongoose = require('mongoose');
+  var db = mongoose.connection;
+
+  db.on('error', console.error);
+  db.once('open', function() {
+  });
+  mongoose.connect(process.env.MONGODB_URI);
+
+  var userSchema = new mongoose.Schema({
+    userid: Number,
+    username: String,
+    password: String
+  });
+
+  var UserModel = mongoose.model('User', userSchema);
+
+  var userdata = new UserModel({
+    userid: 2,
+    username: "inputUsername455",
+    password: "inputPassword455"
+  });
+
+  userdata.save(function (err) {
+    if (err) return console.log(err);
+  });
 
   handleSubmit = (event) => {
     event.preventDefault();
