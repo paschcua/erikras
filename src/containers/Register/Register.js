@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
+import mongoose from 'mongoose';
 
 export default class Register extends Component {
 
@@ -9,31 +10,32 @@ export default class Register extends Component {
     logout: PropTypes.func
   }
 
-  var mongoose = require('mongoose');
-  var db = mongoose.connection;
+  mongoInsert() {
+    var mongoose = require('mongoose');
+    var db = mongoose.connection;
 
-  db.on('error', console.error);
-  db.once('open', function() {
-  });
-  mongoose.connect(process.env.MONGODB_URI);
+    db.on('error', console.error);
+    db.once('open', function() {
+    });
+    mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm');
 
-  var userSchema = new mongoose.Schema({
-    userid: Number,
-    username: String,
-    password: String
-  });
+    var userSchema = new mongoose.Schema({
+      userid: Number,
+      username: String,
+      password: String
+    });
 
-  var UserModel = mongoose.model('User', userSchema);
+    var UserModel = mongoose.model('User', userSchema);
+    var UserData = new UserModel({
+      userid: 2,
+      username: "inputUsername455",
+      password: "inputPassword455"
+    });
 
-  var userdata = new UserModel({
-    userid: 2,
-    username: "inputUsername455",
-    password: "inputPassword455"
-  });
-
-  userdata.save(function (err) {
-    if (err) return console.log(err);
-  });
+    UserData.save(function (err) {
+      if (err) return console.log(err);
+    });
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -41,9 +43,8 @@ export default class Register extends Component {
     this.mongoInitial();
     const inputUsername = this.refs.username.value;
     const inputPassword = this.refs.password.value;
-
-    this.mongoInsert(inputUsername, inputPassword);
-    } */
+} */
+    this.mongoInsert();
   }
 
   render() {

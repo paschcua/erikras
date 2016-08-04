@@ -28,6 +28,12 @@ db.once('open', function() {
 });
 mongoose.connect(process.env.MONGODB_URI);
 
+var userSchema = new mongoose.Schema({
+  userid: Number,
+  username: String,
+  password: String
+});
+
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
