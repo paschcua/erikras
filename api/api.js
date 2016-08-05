@@ -7,7 +7,6 @@ import {mapUrl} from 'utils/url.js';
 import PrettyError from 'pretty-error';
 import http from 'http';
 import SocketIo from 'socket.io';
-import mongoose from 'mongoose';
 
 const pretty = new PrettyError();
 const app = express();
@@ -16,18 +15,6 @@ const server = new http.Server(app);
 
 const io = new SocketIo(server);
 io.path('/ws');
-
-mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm');
-mongoose.connection
-  .on('error', function (err) {
-    console.error('Error connecting to mongodb: ' + err)
-  })
-  .once('open', function () {
-    console.log('Connected to mongodb!');
-  });
-console.log("aha");
-
-
 
 app.use(session({
   secret: 'react and redux rule!!!!',

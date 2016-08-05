@@ -1,8 +1,7 @@
-import mongoose from 'mongoose';
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 /* { import MongoCall from '../../models/MongoCall/MongoCall'; } */
-
+var mongoose = require('mongoose');
 mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm');
 
 mongoose.connection
