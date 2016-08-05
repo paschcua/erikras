@@ -12,25 +12,19 @@ export default class Register extends Component {
   }
 
   handleMongoCall = (data1, data2) => {
+
+        mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm');
+
+        mongoose.connection
+          .on('error', function (err) {
+            console.error('Error connecting to mongodb: ' + err)
+          })
+          .once('open', function () {
+            console.log('Connected to mongodb!');
+          });
+
     console.log(data1 + data2);
-    mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm');
-    var userSchema = new mongoose.Schema({
-      userid: Number,
-      username: String,
-      password: String
-    });
 
-    var UserModel = mongoose.model('User', userSchema);
-
-    var UserData = new UserModel({
-      userid: 5,
-      username: data1,
-      password: data2
-    });
-
-    UserData.save(function (err) {
-      if (err) return console.log(err);
-    });
   }
 
   handleSubmit = (event) => {
