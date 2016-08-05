@@ -35,7 +35,6 @@ export default class Register extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.mongoInitial();
     const inputUsername = this.refs.username.value;
     const inputPassword = this.refs.password.value;
     this.mongoSave(inputUsername, inputPassword);
