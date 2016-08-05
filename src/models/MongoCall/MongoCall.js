@@ -1,4 +1,4 @@
-export default function MongoCaller() {
+export function addit() {
   var mongoose = require('mongoose');
   var db = mongoose.connection;
 

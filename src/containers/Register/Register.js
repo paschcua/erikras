@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import mongoCaller from '../../models/MongoCall/MongoCall';
+import {addit} from '../../models/MongoCall/MongoCall';
 
 export default class Register extends Component {
 
@@ -12,7 +12,7 @@ export default class Register extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    mongoCaller();
+    addit();
     /* {
     this.mongoInitial();
     const inputUsername = this.refs.username.value;
