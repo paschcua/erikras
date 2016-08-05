@@ -10,18 +10,13 @@ export default class Register extends Component {
     logout: PropTypes.func
   }
 
-  handleMongoCall = (data1, data2) => {
-
-    console.log(data1 + data2);
-
-  }
-
   handleSubmit = (event) => {
-    console.log("handleSubmit");
     event.preventDefault();
-    var inputUsername = this.refs.username.value;
-    var inputPassword = this.refs.password.value;
+    /* {
+    const inputUsername = this.refs.username.value;
+    const inputPassword = this.refs.password.value;
     this.handleMongoCall(inputUsername, inputPassword);
+    } */
   }
 
   render() {
