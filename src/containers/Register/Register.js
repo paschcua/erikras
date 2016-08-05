@@ -24,9 +24,7 @@ import Helmet from 'react-helmet';
     if (err) return console.log(err);
   });
 
-handleMongoCall(aa, bb){
-  console.log("DEBUG: "+aa+bb);
-}
+
 
 
 export default class Register extends Component {
@@ -37,11 +35,15 @@ export default class Register extends Component {
     logout: PropTypes.func
   }
 
+  handleMongoCall(aa, bb){
+    console.log("DEBUG: "+aa+bb);
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     const inputUsername = this.refs.username.value;
     const inputPassword = this.refs.password.value;
-    handleMongoCall(inputUsername, inputPassword);
+    this.handleMongoCall(inputUsername, inputPassword);
   }
 
   render() {
