@@ -12,7 +12,7 @@ export default class Register extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    mongoCaller();
+    mongoCaller.mongoCaller();
     /* {
     this.mongoInitial();
     const inputUsername = this.refs.username.value;
