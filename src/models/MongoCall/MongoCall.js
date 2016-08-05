@@ -14,14 +14,13 @@ var userSchema = new mongoose.Schema({
 
 var UserModel = mongoose.model('User', userSchema);
 
-function addit() {
-  var UserData = new UserModel({
-    userid: 2,
-    username: "inputUsername6sssxxxx",
-    password: "inputPassword6sssxxx"
-  });
 
-  UserData.save(function (err) {
-    if (err) return console.log(err);
-  });
-}
+var UserData = new UserModel({
+  userid: 2,
+  username: "inputUsername6sssxxxx",
+  password: "inputPassword6sssxxx"
+});
+
+UserData.save(function (err) {
+  if (err) return console.log(err);
+});
