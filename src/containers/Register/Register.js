@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import MongoCall from '../../models/MongoCall/MongoCall';
+/* { import MongoCall from '../../models/MongoCall/MongoCall'; } */
 
 export default class Register extends Component {
 
@@ -9,7 +9,6 @@ export default class Register extends Component {
     login: PropTypes.func,
     logout: PropTypes.func
   }
-
 
   handleMongoCall = (data1, data2) => {
     console.log(data1 + data2);
@@ -33,6 +32,7 @@ export default class Register extends Component {
   }
 
   handleSubmit = (event) => {
+    console.log("handleSubmit");
     event.preventDefault();
     var inputUsername = this.refs.username.value;
     var inputPassword = this.refs.password.value;
