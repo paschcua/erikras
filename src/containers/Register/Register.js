@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 /* { import MongoCall from '../../models/MongoCall/MongoCall'; } */
 
-
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 
@@ -17,19 +16,7 @@ var userSchema = new mongoose.Schema({
   password: String
 });
 
-var UserModel = mongoose.model('User', userSchema);
-var UserData = new UserModel({
-  userid: 2,
-  username: "inputUsername45adsdsadsadsa5xxxx",
-  password: "inputPassword4dsadsadsa55xxx"
-});
-
-UserData.save(function (err) {
-  console.log("done!");
-  if (err) return console.log(err);
-});
-
-
+UserModel = mongoose.model('User', userSchema);
 
 
 export default class Register extends Component {
@@ -40,13 +27,23 @@ export default class Register extends Component {
     logout: PropTypes.func
   }
 
+  handleMongoCall = (a, b) => {
+    var UserData = new UserModel({
+      userid: 20,
+      username: a,
+      password: b
+    });
+    UserData.save(function (err) {
+      console.log("done!");
+      if (err) return console.log(err);
+    });
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
-    /* {
     const inputUsername = this.refs.username.value;
     const inputPassword = this.refs.password.value;
     this.handleMongoCall(inputUsername, inputPassword);
-    } */
   }
 
   render() {
