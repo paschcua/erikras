@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
+import mongoose from '../../models/MongoCall/MongoCall';
 
 export default class Register extends Component {
 
