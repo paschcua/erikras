@@ -1,4 +1,3 @@
-export function addit() {
   var mongoose = require('mongoose');
   var db = mongoose.connection;
 
@@ -14,6 +13,8 @@ export function addit() {
   });
 
   var UserModel = mongoose.model('User', userSchema);
+
+export function addit() {
   var UserData = new UserModel({
     userid: 2,
     username: "inputUsername6xxxx",
