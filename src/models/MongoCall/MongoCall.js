@@ -1,26 +1,2 @@
 var mongoose = require('mongoose');
-var db = mongoose.connection;
-
-function ala(){
-  alert("dsadsadsdsa");
-}
-
 mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm');
-
-var userSchema = new mongoose.Schema({
-  userid: Number,
-  username: String,
-  password: String
-});
-
-var UserModel = mongoose.model('User', userSchema);
-
-var UserData = new UserModel({
-  userid: 2,
-  username: "inputUsername6sssxxxx",
-  password: "inputPassword6sssxxx"
-});
-
-UserData.save(function (err) {
-  if (err) return console.log(err);
-});
