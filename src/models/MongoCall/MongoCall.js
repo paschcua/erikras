@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 
+function ala(){
+  alert("dsadsadsdsa");
+}
+
 mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm');
 
 var userSchema = new mongoose.Schema({
@@ -10,7 +14,6 @@ var userSchema = new mongoose.Schema({
 });
 
 var UserModel = mongoose.model('User', userSchema);
-
 
 var UserData = new UserModel({
   userid: 2,

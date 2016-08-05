@@ -9,9 +9,10 @@ export default class Register extends Component {
     login: PropTypes.func,
     logout: PropTypes.func
   }
-
+  ala();
   handleSubmit = (event) => {
     event.preventDefault();
+    MongoCall.ala();
     /* {
     this.mongoInitial();
     const inputUsername = this.refs.username.value;
