@@ -15,8 +15,8 @@ var UserModel = mongoose.model('User', userSchema);
 
 var UserData = new UserModel({
   userid: 4,
-  username: aa,
-  password: bb
+  username: "aa",
+  password: "bb"
 });
 
 UserData.save(function (err) {
@@ -32,8 +32,9 @@ export default class Register extends Component {
     logout: PropTypes.func
   }
 
-  handleMongoCall(aa, bb) {
-    console.log("DEBUG: " + aa + bb);
+
+  handleMongoCall = (data1, data2) => {
+    console.log(data1+data2);
   }
 
   handleSubmit = (event) => {
