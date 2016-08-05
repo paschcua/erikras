@@ -2,36 +2,39 @@ import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 /* { import MongoCall from '../../models/MongoCall/MongoCall'; } */
 
-var mongoose = require('mongoose');
-var db = mongoose.connection;
-
-db.on('error', console.error);
-db.once('open', function() {
-});
-mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm');
-
-var userSchema = new mongoose.Schema({
-  userid: Number,
-  username: String,
-  password: String
-});
-
-UserModel = mongoose.model('User', userSchema);
-
-
 export default class Register extends Component {
-
   static propTypes = {
     user: PropTypes.object,
     login: PropTypes.func,
     logout: PropTypes.func
   }
 
-  handleMongoCall = (a, b) => {
-    var UserData = new UserModel({
+  constructor(props) {
+    super(props);
+
+    var mongoose = require('mongoose');
+    var db = mongoose.connection;
+
+    db.on('error', console.error);
+    db.once('open', function() {
+    });
+    mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm');
+
+    var userSchema = new mongoose.Schema({
+      userid: Number,
+      username: String,
+      password: String
+    });
+
+    var UserModel = mongoose.model('User', userSchema);
+
+  }
+
+  handleMongoCall = (aaa, bbb) => {
+    var UserData = new this.UserModel({
       userid: 20,
-      username: a,
-      password: b
+      username: aaa,
+      password: bbb
     });
     UserData.save(function (err) {
       console.log("done!");
