@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import mongoose from 'mongoose';
-/* { import MongoCall from '../../models/MongoCall/MongoCall'; } */
+import superagent from 'superagent';
 
 export default class Register extends Component {
   static propTypes = {
@@ -15,17 +14,14 @@ export default class Register extends Component {
 
     const inputUsername = this.refs.username.value;
     const inputPassword = this.refs.password.value;
-
-    $.ajax({
-      url: '/registrieren',
-      type: 'post',
-      data: { username: inputUsername, password: inputPassword },
-      success: function(data){
-        console.log(data);
-      },
-      error: function(){
-        console.log('err form');
-      }
+    
+    superagent
+    .post('/registrieren')
+    .type('form')
+    .send({ username: inputUsername, password: inputPassword })
+    .set('Accept', 'application/json')
+    .end(function(err, res){
+      console.log(res);
     });
   }
 
@@ -39,13 +35,13 @@ export default class Register extends Component {
       {!user &&
         <div>
         <form className="login-form form-inline" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <input type="text" ref="username" name="username" id="username" placeholder="Username" className="form-control"/>
-          </div>
-          <div className="form-group">
-            <input type="password" ref="password" name="password" id="password" placeholder="Passwort" className="form-control"/>
-          </div>
-          <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/>Registrieren</button>
+        <div className="form-group">
+        <input type="text" ref="username" name="username" id="username" placeholder="Username" className="form-control"/>
+        </div>
+        <div className="form-group">
+        <input type="password" ref="password" name="password" id="password" placeholder="Passwort" className="form-control"/>
+        </div>
+        <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/>Registrieren</button>
         </form>
         </div>
       }
