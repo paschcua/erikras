@@ -2,7 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
 import mongoose from 'mongoose';
 /* { import MongoCall from '../../models/MongoCall/MongoCall'; } */
-console.log('START');
 
 export default class Register extends Component {
   static propTypes = {
@@ -11,50 +10,14 @@ export default class Register extends Component {
     logout: PropTypes.func
   }
 
-  handleMongoCall = (aaa, bbb) => {
-    console.log('ehm ok: ' + aaa + bbb);
-
-    /* {
-    var db = mongoose.connection;
-    console.log('db: ' + db);
-
-    db.on('error', function() {
-      console.log('nonono error.');
-    });
-    db.once('open', function() {
-      console.log('yes open conn.');
-    });
-    } */
-    console.log('mongoose object: ' + JSON.stringify(mongoose));
-
-    var userSchema = new mongoose.Schema({
-      userid: Number,
-      username: String,
-      password: String
-    });
-
-    console.log('mongoose.Schema: ' + JSON.stringify(userSchema));
-
-    var UserModel = mongoose.model('User', userSchema);
-
-    console.log('UserModel: ' + UserModel);
-    var UserData = new UserModel({
-      userid: 20,
-      username: aaa,
-      password: bbb
-    });
-    UserData.save(function (err) {
-      console.log('done SAVE:'+ UserData);
-      if (err) return console.log(err);
-    });
-  }
-
   handleSubmit = (event) => {
     event.preventDefault();
     console.log('ehm ok handle submit!');
+    /* {
     let inputUsername = this.refs.username.value;
     let inputPassword = this.refs.password.value;
     this.handleMongoCall(inputUsername, inputPassword);
+    } */
   }
 
   render() {
@@ -66,12 +29,12 @@ export default class Register extends Component {
       <h1>Registrieren</h1>
       {!user &&
         <div>
-        <form className="login-form form-inline" onSubmit={this.handleSubmit}>
+        <form className="login-form form-inline" method='post' action="/" onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <input type="text" ref="username" placeholder="Username" className="form-control"/>
+            <input type="text" ref="username" name="username" id="username" placeholder="Username" className="form-control"/>
           </div>
           <div className="form-group">
-            <input type="password" ref="password" placeholder="Passwort" className="form-control"/>
+            <input type="password" ref="password" name="password" id="password" placeholder="Passwort" className="form-control"/>
           </div>
           <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/>Registrieren</button>
         </form>

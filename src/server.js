@@ -19,9 +19,6 @@ import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import getRoutes from './routes';
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm');
-
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
 const app = new Express();
@@ -30,6 +27,31 @@ const proxy = httpProxy.createProxyServer({
   target: targetUrl,
   ws: true
 });
+
+/* **** Mongoose */
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm');
+mongoose.set('debug', true);
+var userSchema = new mongoose.Schema({
+  userid: Number,
+  username: String,
+  password: String
+});
+var UserModel = mongoose.model('User', userSchema);
+
+/* **** Body Parser */
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+/* **** Get POST Form data */
+app.post('/registrieren', function(req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+
+    res.send(username + ' ' + password);
+});
+
 
 app.use(compression());
 app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
