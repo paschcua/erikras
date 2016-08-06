@@ -55,19 +55,17 @@ app.post('/registrieren', function(req, res) {
       password: password
     });
 
-    UserModel.findOne({ username: username }, function(error, person){
+    UserModel.findOne({ username: username }, 'username', function(error, result){
         if(error){
             res.json(error);
         }
-        else if(person == null){
+        else if(result == null){
             UserData.save(function (err) {
               if (err) return console.log(err);
             });
-            res.json('no such user!' + person);
-            res.send('1: ' + username + ' ' + password);
         }
         else{
-            res.json('user exists already!' + person);
+            res.json('user exists already!' + result);
             res.send('2: ' + username + ' ' + password);
         }
     });
