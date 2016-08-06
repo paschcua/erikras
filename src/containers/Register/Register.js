@@ -23,7 +23,7 @@ export default class Register extends Component {
     .end(function(err, res){
       console.log(JSON.stringify(res.body));
       console.log("aha 1"+res.text.second);
-      console.log(res.body[0].first));
+      console.log(res.body[0].first);
       console.log("aha 2"+res.text.first);
     });
   }
