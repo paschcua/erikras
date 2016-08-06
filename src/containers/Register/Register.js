@@ -25,13 +25,15 @@ export default class Register extends Component {
       console.log('yes open conn.');
     });
     } */
-    console.log('mongoose object: ' + mongoose);
+    console.log('mongoose object: ' + JSON.stringify(mongoose));
 
     var userSchema = new mongoose.Schema({
       userid: Number,
       username: String,
       password: String
     });
+
+    console.log('mongoose.Schema: ' + JSON.stringify(userSchema));
 
     var UserModel = mongoose.model('User', userSchema);
 
