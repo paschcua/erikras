@@ -49,24 +49,25 @@ app.post('/registrieren', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
 
+    var UserData = new UserModel({
+      userid: 99,
+      username: username,
+      password: password
+    });
+
     UserModel.findOne({ username: username }, function(error, person){
         if(error){
             res.json(error);
         }
         else if(person == null){
-            var UserData = new UserModel({
-              userid: 99,
-              username: username,
-              password: password
-            });
             UserData.save(function (err) {
               if (err) return console.log(err);
             });
-            res.json('no such user!');
+            res.json('no such user!' + person);
             res.send('1: ' + username + ' ' + password);
         }
         else{
-            res.json('user exists already!');
+            res.json('user exists already!' + person);
             res.send('2: ' + username + ' ' + password);
         }
     });
