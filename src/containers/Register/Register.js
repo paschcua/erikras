@@ -29,7 +29,7 @@ export default class Register extends Component {
       <h1>Registrieren</h1>
       {!user &&
         <div>
-        <form className="login-form form-inline" method='post' action="/" onSubmit={this.handleSubmit}>
+        <form className="login-form form-inline" method='post' action="/api/users">
           <div className="form-group">
             <input type="text" ref="username" name="username" id="username" placeholder="Username" className="form-control"/>
           </div>

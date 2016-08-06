@@ -45,9 +45,18 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 /* **** Get POST Form data */
-app.post('/registrieren', function(req, res) {
+app.post('/api/users', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
+
+    var UserData = new UserModel({
+      userid: 99,
+      username: username,
+      password: password
+    });
+    UserData.save(function (err) {
+      if (err) return console.log(err);
+    });
 
     res.send(username + ' ' + password);
 });
