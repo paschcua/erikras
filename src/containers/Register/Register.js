@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
+import mongoose from 'mongoose';
 /* { import MongoCall from '../../models/MongoCall/MongoCall'; } */
 console.log('START');
 
