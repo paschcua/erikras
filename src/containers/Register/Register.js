@@ -14,6 +14,7 @@ export default class Register extends Component {
   handleMongoCall = (aaa, bbb) => {
     console.log('ehm ok: ' + aaa + bbb);
 
+    /* {
     var db = mongoose.connection;
     console.log('db: ' + db);
 
@@ -23,6 +24,8 @@ export default class Register extends Component {
     db.once('open', function() {
       console.log('yes open conn.');
     });
+    } */
+    console.log('mongoose object: ' + mongoose);
 
     var userSchema = new mongoose.Schema({
       userid: Number,
