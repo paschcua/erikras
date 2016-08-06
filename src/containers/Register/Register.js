@@ -1,23 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
-import mongoose from 'mongoose';
-/* { import MongoCall from '../../models/MongoCall/MongoCall'; } */
 
 export default class Register extends Component {
   static propTypes = {
     user: PropTypes.object,
     login: PropTypes.func,
     logout: PropTypes.func
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('ehm ok handle submit!');
-    /* {
-    let inputUsername = this.refs.username.value;
-    let inputPassword = this.refs.password.value;
-    this.handleMongoCall(inputUsername, inputPassword);
-    } */
   }
 
   render() {
@@ -29,7 +17,7 @@ export default class Register extends Component {
       <h1>Registrieren</h1>
       {!user &&
         <div>
-        <form className="login-form form-inline" method='post' action="/api/users">
+        <form className="login-form form-inline" method='post' action="/registrieren">
           <div className="form-group">
             <input type="text" ref="username" name="username" id="username" placeholder="Username" className="form-control"/>
           </div>

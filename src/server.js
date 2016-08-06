@@ -28,10 +28,10 @@ const proxy = httpProxy.createProxyServer({
   ws: true
 });
 
+
 /* **** Mongoose */
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm');
-mongoose.set('debug', true);
+mongoose.connect(process.env.MONGODB_URI);
 var userSchema = new mongoose.Schema({
   userid: Number,
   username: String,
@@ -45,21 +45,33 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 /* **** Get POST Form data */
-app.post('/api/users', function(req, res) {
+app.post('/registrieren', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
 
-    var UserData = new UserModel({
-      userid: 99,
-      username: username,
-      password: password
+    UserModel.findOne({ username: username }, function(error, person){
+        if(error){
+            res.json(error);
+        }
+        else if(person == null){
+            var UserData = new UserModel({
+              userid: 99,
+              username: username,
+              password: password
+            });
+            UserData.save(function (err) {
+              if (err) return console.log(err);
+            });
+            res.json('no such user!');
+            res.send('1: ' + username + ' ' + password);
+        }
+        else{
+            res.json('user exists already!');
+            res.send('2: ' + username + ' ' + password);
+        }
     });
-    UserData.save(function (err) {
-      if (err) return console.log(err);
-    });
-
-    res.send(username + ' ' + password);
 });
+
 
 
 app.use(compression());
