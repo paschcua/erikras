@@ -1,11 +1,32 @@
 import React, {Component, PropTypes} from 'react';
 import Helmet from 'react-helmet';
+import mongoose from 'mongoose';
+/* { import MongoCall from '../../models/MongoCall/MongoCall'; } */
 
 export default class Register extends Component {
   static propTypes = {
     user: PropTypes.object,
     login: PropTypes.func,
     logout: PropTypes.func
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    const inputUsername = this.refs.username.value;
+    const inputPassword = this.refs.password.value;
+
+    $.ajax({
+      url: '/registrieren',
+      type: 'post',
+      data: { username: inputUsername, password: inputPassword },
+      success: function(data){
+        console.log(data);
+      },
+      error: function(){
+        console.log('err form');
+      }
+    });
   }
 
   render() {
@@ -17,7 +38,7 @@ export default class Register extends Component {
       <h1>Registrieren</h1>
       {!user &&
         <div>
-        <form className="login-form form-inline" method='post' action="/registrieren">
+        <form className="login-form form-inline" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <input type="text" ref="username" name="username" id="username" placeholder="Username" className="form-control"/>
           </div>
