@@ -9,16 +9,24 @@ export default class Register extends Component {
     logout: PropTypes.func
   }
 
-  constructor(props) {
-    super(props);
+  handleMongoCall = (aaa, bbb) => {
+
+    console.log('ehm ok: ' + aaa + bbb);
+
+    console.log('proptypes: ' + this.propTypes.user + this.propTypes.login + this.propTypes.logout);
 
     var mongoose = require('mongoose');
+    mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm');
+    console.log('mongoose.connect established: ' + mongoose.connect);
+
     var db = mongoose.connection;
 
-    db.on('error', console.error);
-    db.once('open', function() {
+    db.on('error', function() {
+      console.log('nonono error.');
     });
-    mongoose.connect('mongodb://heroku_r06n6jtm:5jf50mgg9941u4sd42f655q4kb@ds031915.mlab.com:31915/heroku_r06n6jtm');
+    db.once('open', function() {
+      console.log('yes open conn.');
+    });
 
     var userSchema = new mongoose.Schema({
       userid: Number,
@@ -28,24 +36,23 @@ export default class Register extends Component {
 
     var UserModel = mongoose.model('User', userSchema);
 
-  }
-
-  handleMongoCall = (aaa, bbb) => {
-    var UserData = new this.UserModel({
+    console.log('UserModel: ' + UserModel);
+    var UserData = new UserModel({
       userid: 20,
       username: aaa,
       password: bbb
     });
     UserData.save(function (err) {
-      console.log("done!");
+      console.log('done SAVE:'+ UserData);
       if (err) return console.log(err);
     });
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const inputUsername = this.refs.username.value;
-    const inputPassword = this.refs.password.value;
+    console.log('ehm ok handle submit!');
+    let inputUsername = this.refs.username.value;
+    let inputPassword = this.refs.password.value;
     this.handleMongoCall(inputUsername, inputPassword);
   }
 
@@ -59,13 +66,13 @@ export default class Register extends Component {
       {!user &&
         <div>
         <form className="login-form form-inline" onSubmit={this.handleSubmit}>
-        <div className="form-group">
-        <input type="text" ref="username" placeholder="Username" className="form-control"/>
-        </div>
-        <div className="form-group">
-        <input type="password" ref="password" placeholder="Passwort" className="form-control"/>
-        </div>
-        <button className="btn btn-success" onClick={this.handleSubmit}><i className="fa fa-sign-in"/>{' '}Registrieren</button>
+          <div className="form-group">
+            <input type="text" ref="username" placeholder="Username" className="form-control"/>
+          </div>
+          <div className="form-group">
+            <input type="password" ref="password" placeholder="Passwort" className="form-control"/>
+          </div>
+          <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/>Registrieren</button>
         </form>
         </div>
       }
