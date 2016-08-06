@@ -21,9 +21,9 @@ export default class Register extends Component {
     .send({ username: inputUsername, password: inputPassword })
     .set('Accept', 'application/json')
     .end(function(err, res){
-      console.log("aha 1");
-      console.log(res);
-      console.log("aha 2");
+      console.log("aha 1"+res.data.second);
+      console.log(res.data.first);
+      console.log("aha 2"+res.data.text);
     });
   }
 
