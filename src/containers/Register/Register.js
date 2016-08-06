@@ -32,7 +32,7 @@ export default class Register extends Component {
     const styles = require('./Register.scss');
     return (
       <div className={styles.registerPage + ' container'}>
-      <Helmet title="Registrieren"/>
+        <Helmet title="Registrieren"/>
         <h1>Registrieren</h1>
         <div id="register-form">
           <form className="login-form form-inline" onSubmit={this.handleSubmit}>
@@ -45,12 +45,10 @@ export default class Register extends Component {
             <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/>Registrieren</button>
           </form>
         </div>
-
         <div id="register-success">
           <Label bsStyle="success">Erfolgreich registriert</Label>
           <Link to="/community">Zur Community</Link>
         </div>
-
       </div>
     );
   }

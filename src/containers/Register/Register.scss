@@ -1,8 +1,4 @@
-#register-success{
-  display: none;
-}
-
-#register-form {
+.registerPage {
   input {
     padding: 5px 10px;
     border-radius: 5px;
@@ -14,4 +10,8 @@
       margin-left: 10px;
     }
   }
+}
+
+#register-success{
+  display: none;
 }
