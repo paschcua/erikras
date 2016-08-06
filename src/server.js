@@ -63,7 +63,7 @@ app.post('/registrieren', function(req, res) {
             UserData.save(function (err) {
               if (err) return console.log(err);
             });
-            res.json(result);
+            res.json("resultok xxx");
         }
         else{
             res.json('user exists already!' + result);

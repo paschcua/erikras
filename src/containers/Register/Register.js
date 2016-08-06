@@ -14,14 +14,16 @@ export default class Register extends Component {
 
     const inputUsername = this.refs.username.value;
     const inputPassword = this.refs.password.value;
-    
+
     superagent
     .post('/registrieren')
     .type('form')
     .send({ username: inputUsername, password: inputPassword })
     .set('Accept', 'application/json')
     .end(function(err, res){
+      console.log("aha 1");
       console.log(res);
+      console.log("aha 2");
     });
   }
 
