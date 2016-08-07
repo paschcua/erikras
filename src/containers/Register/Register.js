@@ -22,8 +22,7 @@ export default class Register extends Component {
     .set('Accept', 'application/json')
     .end(function(err, res){
       console.log(res.body.first);
-      document.getElementById('register-form').style.display = 'none';
-      document.getElementById('register-success').style.display = 'block';
+      /* react state hide div element */
     });
   }
 
