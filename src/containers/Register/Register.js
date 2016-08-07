@@ -15,9 +15,12 @@ export default class Register extends Component {
 
     const inputUsername = this.refs.username.value;
     const inputPassword = this.refs.password.value;
+    console.log('1: ' + inputUsername.length + inputPassword.length);
 
-    if (inputUsername.length > 3 || inputUsername.length < 40) {
-      if (inputPassword.length > 3 || inputPassword.length < 40) {
+    if (inputUsername.length > 3 && inputUsername.length < 40) {
+      console.log('1: ' + inputUsername.length + inputPassword.length);
+      if (inputPassword.length > 3 && inputPassword.length < 40) {
+        console.log('2: ' + inputUsername.length + inputPassword.length);
         superagent
         .post('/registrieren')
         .type('form')
