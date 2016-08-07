@@ -66,7 +66,7 @@ export default class App extends Component {
   }
 
   render() {
-    const {user} = this.props;
+    const {user, navExpanded} = this.props;
     const styles = require('./App.scss');
 
     return (
@@ -83,8 +83,8 @@ export default class App extends Component {
             <Navbar.Toggle/>
           </Navbar.Header>
 
-          <Navbar.Collapse eventKey={0} className={this.state.navExpanded ? 'in' : ''}>
-            <Nav navbar className={this.state.navExpanded ? 'in' : ''}>
+          <Navbar.Collapse eventKey={0} expanded={navExpanded}>
+            <Nav navbar>
               <LinkContainer to="/community">
                 <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
               </LinkContainer>
