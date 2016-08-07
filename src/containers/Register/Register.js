@@ -77,6 +77,7 @@ export default class Register extends Component {
           <Label bsStyle="danger">Fehler</Label><br /><br />
           {formMsg}
         </div>
+        : null
         }
       </div>
     );
