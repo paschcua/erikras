@@ -1,12 +1,12 @@
 import React, {Component, PropTypes} from 'react';
+import Label from 'react-bootstrap/lib/Label';
+import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 import superagent from 'superagent';
 
 export default class Register extends Component {
   static propTypes = {
-    user: PropTypes.object,
-    login: PropTypes.func,
-    logout: PropTypes.func
+    login: PropTypes.func
   }
 
   handleSubmit = (event) => {
@@ -20,14 +20,12 @@ export default class Register extends Component {
     .type('form')
     .send({ username: inputUsername, password: inputPassword })
     .set('Accept', 'application/json')
-    .end(function(err, res){
+    .end(function(err, res) {
       console.log(res.body.first);
-      /* react state hide div element */
     });
   }
 
   render() {
-    const {user, logout} = this.props;
     const styles = require('./Register.scss');
     return (
       <div className={styles.registerPage + ' container'}>
