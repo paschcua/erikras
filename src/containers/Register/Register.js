@@ -6,7 +6,7 @@ import superagent from 'superagent';
 
 export default class Register extends Component {
   state = {
-    showFormMsg: false,
+    formStatus: 0,
     formMsg: ''
   }
 
@@ -16,23 +16,34 @@ export default class Register extends Component {
     const inputUsername = this.refs.username.value;
     const inputPassword = this.refs.password.value;
 
-    superagent
-    .post('/registrieren')
-    .type('form')
-    .send({ username: inputUsername, password: inputPassword })
-    .set('Accept', 'application/json')
-    .end((error, res) => {
-      if (res.body.status === 1) {
-        this.setState({formMsg: 'Registrierung erfolgreich ' + res.body.msg + '!'});
-        this.setState({showFormMsg: true});
-      }else {
-        this.setState({formMsg: 'Dieser Username exisitiert bereits, wählen Sie bitte einen anderen.'});
+    if (inputUsername.length > 3 || inputUsername.length < 40) {
+      if (inputPassword.length > 3 || inputPassword.length < 40) {
+        superagent
+        .post('/registrieren')
+        .type('form')
+        .send({ username: inputUsername, password: inputPassword })
+        .set('Accept', 'application/json')
+        .end((error, res) => {
+          if (res.body.status === 1) {
+            this.setState({formStatus: 1});
+            this.setState({formMsg: 'Registrierung erfolgreich ' + res.body.msg + '!'});
+          } else {
+            this.setState({formStatus: 2});
+            this.setState({formMsg: 'Dieser Username exisitiert bereits, wählen Sie bitte einen anderen.'});
+          }
+        });
+      } else {
+        this.setState({formStatus: 2});
+        this.setState({formMsg: 'Das Passwort darf min. 3 und max. 40 Zeichen enthalten!'});
       }
-    });
+    } else {
+      this.setState({formStatus: 2});
+      this.setState({formMsg: 'Der Username darf min. 3 und max. 40 Zeichen enthalten!'});
+    }
   }
 
   render() {
-    const {showFormMsg, formMsg} = this.state;
+    const {formStatus, formMsg} = this.state;
     const styles = require('./Register.scss');
     return (
       <div className={styles.registerPage + ' container'}>
@@ -49,15 +60,16 @@ export default class Register extends Component {
             <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/> Registrieren</button>
           </form>
         </div>
-        {showFormMsg ?
+        {formStatus === 1 ?
         <div className="register-success">
           <Label bsStyle="success">Erfolgreich registriert</Label>
           {formMsg}
+          <br />
           <Link to="/community">Zur Community</Link>
         </div>
         :
         <div className="register-success">
-          <Label bsStyle="error">Error</Label>
+          <Label bsStyle="danger">Fehler</Label>
           {formMsg}
         </div>
         }
