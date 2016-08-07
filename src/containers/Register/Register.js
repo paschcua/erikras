@@ -6,13 +6,18 @@ import superagent from 'superagent';
 
 export default class Register extends Component {
 
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   state = {
     showKitten: false
   }
 
-  handleToggleKitten = () => this.setState({showKitten: !this.state.showKitten});
+  { /* handleToggleKitten = () => this.setState({showKitten: !this.state.showKitten}); */ }
 
-  handleSubmit = (event) => () => {
+  handleSubmit = (event) => {
     event.preventDefault();
     console.log('1: ' + this.state.showKitten);
 
@@ -27,7 +32,7 @@ export default class Register extends Component {
     .end(function(err, res) {
       if (res.body.status === 1) {
         const requestMsg = 'Registrierung erfolgreich ' + res.body.msg + '!';
-        this.handleToggleKitten();
+        this.setState({showKitten: !this.state.showKitten});
         console.log('2: ' + this.state.showKitten);
       }else {
         const requestMsg = 'Dieser Username exisitiert bereits, wählen Sie bitte einen anderen.';
