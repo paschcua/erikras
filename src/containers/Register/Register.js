@@ -12,7 +12,7 @@ export default class Register extends Component {
 
   handleToggleKitten = () => this.setState({showKitten: !this.state.showKitten});
 
-  handleSubmit = (event) => {
+  handleSubmit = (event) => () => {
     event.preventDefault();
     console.log('1: ' + this.state.showKitten);
 
