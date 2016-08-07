@@ -32,7 +32,7 @@ export default class Register extends Component {
       }else {
         const requestMsg = 'Dieser Username exisitiert bereits, wählen Sie bitte einen anderen.';
       }
-    });
+    }.bind(this));
   }
 
   render() {
@@ -42,22 +42,22 @@ export default class Register extends Component {
         <Helmet title="Registrieren"/>
         <h1>Registrieren</h1>
         <div id="register-form">
-          <form className="login-form form-inline">
+          <form className="login-form form-inline" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <input type="text" ref="username" name="username" id="username" placeholder="Username" className="form-control"/>
             </div>
             <div className="form-group">
               <input type="password" ref="password" name="password" id="password" placeholder="Passwort" className="form-control"/>
             </div>
-            <button type="submit" onClick={() => this.handleSubmit} className="btn btn-success"><i className="fa fa-sign-in"/> Registrieren</button>
+            <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/> Registrieren</button>
           </form>
         </div>
-        /* { this.showSuccessMsg ?
+        { this.showSuccessMsg ?
         <div className="register-success">
           <Label bsStyle="success">Erfolgreich registriert</Label>
           <Link to="/community">Zur Community</Link>
         </div>
-        : null } */
+        : null }
       </div>
     );
   }
