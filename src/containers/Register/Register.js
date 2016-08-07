@@ -43,7 +43,7 @@ export default class Register extends Component {
         <Helmet title="Registrieren"/>
         <h1>Registrieren</h1>
         <div id="register-form">
-          <form className="login-form form-inline" onSubmit={this.handleSubmit}>
+          <form className="login-form form-inline" onSubmit={() => this.handleSubmit()}>
             <div className="form-group">
               <input type="text" ref="username" name="username" id="username" placeholder="Username" className="form-control"/>
             </div>
