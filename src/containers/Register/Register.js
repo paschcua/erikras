@@ -6,7 +6,7 @@ import superagent from 'superagent';
 
 export default class Register extends Component {
   state = {
-    formStatus: 0,
+    formStatus: null,
     formMsg: ''
   }
 
@@ -15,12 +15,9 @@ export default class Register extends Component {
 
     const inputUsername = this.refs.username.value;
     const inputPassword = this.refs.password.value;
-    console.log('1: ' + inputUsername.length + inputPassword.length);
 
     if (inputUsername.length > 3 && inputUsername.length < 40) {
-      console.log('1: ' + inputUsername.length + inputPassword.length);
       if (inputPassword.length > 3 && inputPassword.length < 40) {
-        console.log('2: ' + inputUsername.length + inputPassword.length);
         superagent
         .post('/registrieren')
         .type('form')
@@ -65,14 +62,14 @@ export default class Register extends Component {
         </div>
         {formStatus === 1 ?
         <div className="register-success">
-          <Label bsStyle="success">Erfolgreich registriert</Label><br />
+          <Label bsStyle="success">Erfolgreich registriert</Label><br /><br />
           {formMsg}
           <br />
           <Link to="/community">Zur Community</Link>
         </div>
         :
         <div className="register-success">
-          <Label bsStyle="danger">Fehler</Label><br />
+          <Label bsStyle="danger">Fehler</Label><br /><br />
           {formMsg}
         </div>
         }
