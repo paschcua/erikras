@@ -6,7 +6,7 @@ import superagent from 'superagent';
 
 export default class Register extends Component {
   state = {
-    formStatus: null,
+    formStatus: 0,
     formMsg: ''
   }
 
@@ -25,19 +25,19 @@ export default class Register extends Component {
         .set('Accept', 'application/json')
         .end((error, res) => {
           if (res.body.status === 1) {
-            this.setState({formStatus: 1});
+            this.setState({formStatus: 2});
             this.setState({formMsg: 'Registrierung erfolgreich ' + res.body.msg + '!'});
           } else {
-            this.setState({formStatus: 2});
+            this.setState({formStatus: 1});
             this.setState({formMsg: 'Dieser Username exisitiert bereits, wählen Sie bitte einen anderen.'});
           }
         });
       } else {
-        this.setState({formStatus: 2});
+        this.setState({formStatus: 1});
         this.setState({formMsg: 'Das Passwort muss min. 3 und max. 40 Zeichen enthalten!'});
       }
     } else {
-      this.setState({formStatus: 2});
+      this.setState({formStatus: 1});
       this.setState({formMsg: 'Der Username muss min. 3 und max. 40 Zeichen enthalten!'});
     }
   }
@@ -49,6 +49,7 @@ export default class Register extends Component {
       <div className={styles.registerPage + ' container'}>
         <Helmet title="Registrieren"/>
         <h1>Registrieren</h1>
+        {formStatus < 2 ?
         <div id="register-form">
           <form className="login-form form-inline" onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-group">
@@ -60,7 +61,9 @@ export default class Register extends Component {
             <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/> Registrieren</button>
           </form>
         </div>
-        {formStatus === 1 ?
+        : null
+        }
+        {formStatus === 2 ?
         <div className="register-success">
           <Label bsStyle="success">Erfolgreich registriert</Label><br /><br />
           {formMsg}
