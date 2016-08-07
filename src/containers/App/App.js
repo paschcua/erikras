@@ -62,10 +62,7 @@ export default class App extends Component {
   };
 
   onNavItemClick = () => {
-      this.setState({ navExpanded: false });
-  }
-  onNavbarToggle = () => {
-      this.setState({navExpanded: !this.state.navExpanded});
+      this.setState({ navExpanded: !this.state.navExpanded });
   }
 
   render() {
@@ -86,7 +83,7 @@ export default class App extends Component {
             <Navbar.Toggle/>
           </Navbar.Header>
 
-          <Navbar.Collapse eventKey={0}>
+          <Navbar.Collapse eventKey={0} className={this.state.navExpanded ? 'in' : ''}>
             <Nav navbar>
               <LinkContainer to="/community">
                 <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
