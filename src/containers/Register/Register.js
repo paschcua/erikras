@@ -65,8 +65,7 @@ export default class Register extends Component {
         }
         {formStatus === 2 ?
         <div className="register-success">
-          <Label bsStyle="success">Erfolgreich registriert</Label><br /><br />
-          {formMsg}
+          <Label bsStyle="success">Erfolgreich registriert</Label> {formMsg}
           <br />
           <Link to="/community">Zur Community</Link>
         </div>
@@ -74,8 +73,7 @@ export default class Register extends Component {
         }
         {formStatus === 1 ?
         <div className="register-success">
-          <Label bsStyle="danger">Fehler</Label><br /><br />
-          {formMsg}
+          <Label bsStyle="danger">Fehler</Label> {formMsg}
         </div>
         : null
         }

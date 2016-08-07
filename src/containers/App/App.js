@@ -42,6 +42,10 @@ export default class App extends Component {
     store: PropTypes.object.isRequired
   };
 
+  state = {
+    navExpanded: false
+  }
+
   componentWillReceiveProps(nextProps) {
     if (!this.props.user && nextProps.user) {
       // login
@@ -57,6 +61,13 @@ export default class App extends Component {
     this.props.logout();
   };
 
+  onNavItemClick = () => {
+      this.setState({ navExpanded: false });
+  }
+  onNavbarToggle = () => {
+      this.setState({navExpanded: !this.state.navExpanded});
+  }
+
   render() {
     const {user} = this.props;
     const styles = require('./App.scss');
@@ -64,7 +75,7 @@ export default class App extends Component {
     return (
       <div className={styles.app}>
         <Helmet {...config.app.head}/>
-        <Navbar fixedTop>
+        <Navbar fixedTop toggleNavKey={0} onClick={this.onNavbarToggle}>
           <Navbar.Header>
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
@@ -78,13 +89,13 @@ export default class App extends Component {
           <Navbar.Collapse eventKey={0}>
             <Nav navbar>
               <LinkContainer to="/community">
-                <NavItem eventKey={1}>Community</NavItem>
+                <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
               </LinkContainer>
               <LinkContainer to="/registrieren">
-                <NavItem eventKey={2}>Mitglied werden</NavItem>
+                <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
               </LinkContainer>
               <LinkContainer to="/kontakt">
-                <NavItem eventKey={3}>Kontakt</NavItem>
+                <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
               </LinkContainer>
 
               { /*
