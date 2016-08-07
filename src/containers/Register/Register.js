@@ -70,7 +70,9 @@ export default class Register extends Component {
           <br />
           <Link to="/community">Zur Community</Link>
         </div>
-        :
+        : null
+        }
+        {formStatus === 1 ?
         <div className="register-success">
           <Label bsStyle="danger">Fehler</Label><br /><br />
           {formMsg}

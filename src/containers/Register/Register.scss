@@ -11,7 +11,7 @@
     }
   }
   .form-control{
-    margin-right: 6px;
+    margin-right: 6px !important;
   }
 }
 .register-success {
@@ -24,6 +24,9 @@
       :global(.btn) {
         margin-left: 0px;
       }
+    }
+    .form-control{
+      margin-right: 0px !important;
     }
   }
 }
