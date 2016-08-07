@@ -23,7 +23,7 @@ export default class Register extends Component {
     .type('form')
     .send({ username: inputUsername, password: inputPassword })
     .set('Accept', 'application/json')
-    .end(function(err, res) {
+    .end((error, res) => {
       if (res.body.status === 1) {
         const requestMsg = 'Registrierung erfolgreich ' + res.body.msg + '!';
         this.setState({showKitten: !this.state.showKitten});
