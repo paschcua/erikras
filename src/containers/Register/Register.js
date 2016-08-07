@@ -43,14 +43,14 @@ export default class Register extends Component {
         <Helmet title="Registrieren"/>
         <h1>Registrieren</h1>
         <div id="register-form">
-          <form className="login-form form-inline" onSubmit={() => this.handleSubmit()}>
+          <form className="login-form form-inline" onSubmit={() => this.handleSubmit}>
             <div className="form-group">
               <input type="text" ref="username" name="username" id="username" placeholder="Username" className="form-control"/>
             </div>
             <div className="form-group">
               <input type="password" ref="password" name="password" id="password" placeholder="Passwort" className="form-control"/>
             </div>
-            <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/>Registrieren</button>
+            <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/> Registrieren</button>
           </form>
         </div>
         { this.state.showSuccessMsg ?
