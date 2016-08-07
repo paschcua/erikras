@@ -9,13 +9,12 @@ export default class Register extends Component {
     login: PropTypes.func
   }
 
-  constructor(props) {
-    super(props);
-    this.state = { showSuccessMsg: false };
-  }
+  state = {
+    showSuccessMsg: false
+  };
 
 
-  handleSubmit = (event) => {
+  handleSubmit = (event, this) => {
     event.preventDefault();
 
     const inputUsername = this.refs.username.value;
@@ -29,7 +28,7 @@ export default class Register extends Component {
     .end(function(err, res) {
       if (res.body.status === 1) {
         const requestMsg = 'Registrierung erfolgreich ' + res.body.msg + '!';
-        this.setState({ showSuccessMsg: true });
+        this.setState({showSuccessMsg: true});
       }else {
         const requestMsg = 'Dieser Username exisitiert bereits, wählen Sie bitte einen anderen.';
       }
@@ -43,7 +42,7 @@ export default class Register extends Component {
         <Helmet title="Registrieren"/>
         <h1>Registrieren</h1>
         <div id="register-form">
-          <form className="login-form form-inline" onSubmit={this.handleSubmit.bind(this)}>
+          <form className="login-form form-inline" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <input type="text" ref="username" name="username" id="username" placeholder="Username" className="form-control"/>
             </div>
@@ -53,7 +52,7 @@ export default class Register extends Component {
             <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/> Registrieren</button>
           </form>
         </div>
-        { this.state.showSuccessMsg ?
+        { this.showSuccessMsg ?
         <div className="register-success">
           <Label bsStyle="success">Erfolgreich registriert</Label>
           <Link to="/community">Zur Community</Link>
