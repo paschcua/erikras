@@ -6,14 +6,12 @@ import superagent from 'superagent';
 
 export default class Register extends Component {
   state = {
-    showKitten: false
+    showFormMsg: false,
+    formMsg: ''
   }
-
-  /* {  handleToggleKitten = () => this.setState({showKitten: !this.state.showKitten});  }*/
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('1: ' + this.state.showKitten);
 
     const inputUsername = this.refs.username.value;
     const inputPassword = this.refs.password.value;
@@ -25,17 +23,16 @@ export default class Register extends Component {
     .set('Accept', 'application/json')
     .end((error, res) => {
       if (res.body.status === 1) {
-        const requestMsg = 'Registrierung erfolgreich ' + res.body.msg + '!';
-        this.setState({showKitten: !this.state.showKitten});
-        console.log('2: ' + this.state.showKitten);
+        this.setState({formMsg: 'Registrierung erfolgreich ' + res.body.msg + '!'});
+        this.setState({showFormMsg: true});
       }else {
-        const requestMsg = 'Dieser Username exisitiert bereits, wählen Sie bitte einen anderen.';
+        this.setState({formMsg: 'Dieser Username exisitiert bereits, wählen Sie bitte einen anderen.'});
       }
     });
   }
 
   render() {
-    const {showKitten} = this.state;
+    const {showFormMsg, formMsg} = this.state;
     const styles = require('./Register.scss');
     return (
       <div className={styles.registerPage + ' container'}>
@@ -52,10 +49,16 @@ export default class Register extends Component {
             <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/> Registrieren</button>
           </form>
         </div>
-        {showKitten &&
+        {showFormMsg ?
         <div className="register-success">
           <Label bsStyle="success">Erfolgreich registriert</Label>
+          {formMsg}
           <Link to="/community">Zur Community</Link>
+        </div>
+        :
+        <div className="register-success">
+          <Label bsStyle="error">Error</Label>
+          {formMsg}
         </div>
         }
       </div>
