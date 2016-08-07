@@ -37,11 +37,11 @@ export default class Register extends Component {
         });
       } else {
         this.setState({formStatus: 2});
-        this.setState({formMsg: 'Das Passwort darf min. 3 und max. 40 Zeichen enthalten!'});
+        this.setState({formMsg: 'Das Passwort muss min. 3 und max. 40 Zeichen enthalten!'});
       }
     } else {
       this.setState({formStatus: 2});
-      this.setState({formMsg: 'Der Username darf min. 3 und max. 40 Zeichen enthalten!'});
+      this.setState({formMsg: 'Der Username muss min. 3 und max. 40 Zeichen enthalten!'});
     }
   }
 
@@ -65,14 +65,14 @@ export default class Register extends Component {
         </div>
         {formStatus === 1 ?
         <div className="register-success">
-          <Label bsStyle="success">Erfolgreich registriert</Label>
+          <Label bsStyle="success">Erfolgreich registriert</Label><br />
           {formMsg}
           <br />
           <Link to="/community">Zur Community</Link>
         </div>
         :
         <div className="register-success">
-          <Label bsStyle="danger">Fehler</Label>
+          <Label bsStyle="danger">Fehler</Label><br />
           {formMsg}
         </div>
         }

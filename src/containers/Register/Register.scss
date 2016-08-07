@@ -14,3 +14,13 @@
 .register-success {
   display: none;
 }
+
+@media (max-width: 768px) {
+  .registerPage {
+    form {
+      :global(.btn) {
+        margin-left: 0px;
+      }
+    }
+  }
+}
