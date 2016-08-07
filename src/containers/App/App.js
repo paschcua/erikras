@@ -72,7 +72,7 @@ export default class App extends Component {
     return (
       <div className={styles.app}>
         <Helmet {...config.app.head}/>
-        <Navbar fixedTop toggleNavKey={0} onClick={this.onNavbarToggle}>
+        <Navbar fixedTop>
           <Navbar.Header>
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
@@ -84,7 +84,7 @@ export default class App extends Component {
           </Navbar.Header>
 
           <Navbar.Collapse eventKey={0} className={this.state.navExpanded ? 'in' : ''}>
-            <Nav navbar>
+            <Nav navbar className={this.state.navExpanded ? 'in' : ''}>
               <LinkContainer to="/community">
                 <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
               </LinkContainer>
