@@ -9,6 +9,12 @@ export default class Register extends Component {
     login: PropTypes.func
   }
 
+  constructor(props) {
+    super(props);
+    this.state = { showSuccessMsg: false };
+  }
+
+
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -21,7 +27,12 @@ export default class Register extends Component {
     .send({ username: inputUsername, password: inputPassword })
     .set('Accept', 'application/json')
     .end(function(err, res) {
-      console.log(res.body.first);
+      if (res.body.status === 1) {
+        const requestMsg = 'Registrierung erfolgreich ' + res.body.msg + '!';
+        this.setState({ showSuccessMsg: true });
+      }else {
+        const requestMsg = 'Dieser Username exisitiert bereits, wählen Sie bitte einen anderen.';
+      }
     });
   }
 
@@ -42,10 +53,12 @@ export default class Register extends Component {
             <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/>Registrieren</button>
           </form>
         </div>
-        <div id="register-success">
+        { this.state.showSuccessMsg ?
+        <div className="register-success">
           <Label bsStyle="success">Erfolgreich registriert</Label>
           <Link to="/community">Zur Community</Link>
         </div>
+        : null }
       </div>
     );
   }

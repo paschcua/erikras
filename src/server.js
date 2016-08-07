@@ -46,8 +46,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 /* **** Get POST Form data */
 app.post('/registrieren', function(req, res) {
-    var username = req.body.username+"server";
-    var password = req.body.password+"server";
+    var username = req.body.username;
+    var password = req.body.password;
 
     var UserData = new UserModel({
       userid: 99,
@@ -63,11 +63,10 @@ app.post('/registrieren', function(req, res) {
             UserData.save(function (err) {
               if (err) return console.log(err);
             });
-            res.json({ first: "aha", second: "nei" });
+            res.json({ status: 1, msg: username });
         }
         else{
-            res.json('user exists already!' + result);
-            res.send('2: ' + username + ' ' + password);
+            res.json({ status: 0 });
         }
     });
 });
