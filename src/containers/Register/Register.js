@@ -1,28 +1,20 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import Label from 'react-bootstrap/lib/Label';
 import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 import superagent from 'superagent';
 
 export default class Register extends Component {
-  static propTypes = {
-    login: PropTypes.func,
-    showSuccessMsg: PropTypes.bool
-  }
-
-  constructor(props = {}, state = {}){
-		super(props, state);
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
 
   state = {
-    showSuccessMsg: false
-  };
+    showKitten: false
+  }
 
+  handleToggleKitten = () => this.setState({showKitten: !this.state.showKitten});
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('1: ' + this.state.showSuccessMsg);
+    console.log('1: ' + this.state.showKitten);
 
     const inputUsername = this.refs.username.value;
     const inputPassword = this.refs.password.value;
@@ -35,8 +27,8 @@ export default class Register extends Component {
     .end(function(err, res) {
       if (res.body.status === 1) {
         const requestMsg = 'Registrierung erfolgreich ' + res.body.msg + '!';
-        this.setState({showSuccessMsg: true});
-        console.log('2: ' + this.state.showSuccessMsg);
+        this.handleToggleKitten();
+        console.log('2: ' + this.state.showKitten);
       }else {
         const requestMsg = 'Dieser Username exisitiert bereits, wählen Sie bitte einen anderen.';
       }
@@ -44,6 +36,7 @@ export default class Register extends Component {
   }
 
   render() {
+    const {showKitten} = this.state;
     const styles = require('./Register.scss');
     return (
       <div className={styles.registerPage + ' container'}>
@@ -60,12 +53,12 @@ export default class Register extends Component {
             <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/> Registrieren</button>
           </form>
         </div>
-        { /* this.showSuccessMsg ?
+        {showKitten &&
         <div className="register-success">
           <Label bsStyle="success">Erfolgreich registriert</Label>
           <Link to="/community">Zur Community</Link>
         </div>
-        : null */ }
+        }
       </div>
     );
   }
