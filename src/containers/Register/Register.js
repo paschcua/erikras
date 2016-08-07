@@ -6,8 +6,14 @@ import superagent from 'superagent';
 
 export default class Register extends Component {
   static propTypes = {
-    login: PropTypes.func
+    login: PropTypes.func,
+    showSuccessMsg: PropTypes.bool
   }
+
+  constructor(props = {}, state = {}){
+		super(props, state);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
 
   state = {
     showSuccessMsg: false
@@ -16,6 +22,7 @@ export default class Register extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    console.log('1: ' + this.state.showSuccessMsg);
 
     const inputUsername = this.refs.username.value;
     const inputPassword = this.refs.password.value;
@@ -29,10 +36,11 @@ export default class Register extends Component {
       if (res.body.status === 1) {
         const requestMsg = 'Registrierung erfolgreich ' + res.body.msg + '!';
         this.setState({showSuccessMsg: true});
+        console.log('2: ' + this.state.showSuccessMsg);
       }else {
         const requestMsg = 'Dieser Username exisitiert bereits, wählen Sie bitte einen anderen.';
       }
-    }.bind(this));
+    });
   }
 
   render() {
@@ -52,12 +60,12 @@ export default class Register extends Component {
             <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/> Registrieren</button>
           </form>
         </div>
-        { this.showSuccessMsg ?
+        { /* this.showSuccessMsg ?
         <div className="register-success">
           <Label bsStyle="success">Erfolgreich registriert</Label>
           <Link to="/community">Zur Community</Link>
         </div>
-        : null }
+        : null */ }
       </div>
     );
   }
