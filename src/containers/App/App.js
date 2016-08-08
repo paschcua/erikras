@@ -43,7 +43,7 @@ export default class App extends Component {
   };
 
   state = {
-    navExpanded: true;
+    navExpanded: true
   }
 
   componentWillReceiveProps(nextProps) {
@@ -55,8 +55,6 @@ export default class App extends Component {
       this.props.pushState('/');
     }
   }
-
-
 
   onNavItemClick = () => {
     this.setState({ navExpanded: false });
@@ -77,7 +75,7 @@ export default class App extends Component {
     return (
       <div className={styles.app}>
         <Helmet {...config.app.head}/>
-        <Navbar fixedTop expanded={true} navExpanded={true}>
+        <Navbar fixedTop expanded={Boolean(true)} navExpanded={Boolean(true)}>
           <Navbar.Header>
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
@@ -88,7 +86,7 @@ export default class App extends Component {
             <Navbar.Toggle/>
           </Navbar.Header>
 
-          <Navbar.Collapse expanded={true} navExpanded={true}>
+          <Navbar.Collapse expanded={Boolean(true)} navExpanded={Boolean(true)}>
             <Nav navbar>
               <LinkContainer to="/community">
                 <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
