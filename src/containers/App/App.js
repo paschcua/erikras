@@ -43,7 +43,7 @@ export default class App extends Component {
   };
 
   state = {
-    navExpanded: true
+    navExpanded: true;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -56,10 +56,7 @@ export default class App extends Component {
     }
   }
 
-  handleLogout = (event) => {
-    event.preventDefault();
-    this.props.logout();
-  };
+
 
   onNavItemClick = () => {
     this.setState({ navExpanded: false });
@@ -67,6 +64,11 @@ export default class App extends Component {
   onNavbarToggle = () => {
     this.setState({ navExpanded: ! this.state.navExpanded });
   }
+  handleLogout = (event) => {
+    event.preventDefault();
+    this.props.logout();
+  };
+
 
   render() {
     const {user, navExpanded} = this.props;
@@ -86,7 +88,7 @@ export default class App extends Component {
             <Navbar.Toggle/>
           </Navbar.Header>
 
-          <Navbar.Collapse eventKey={0} expanded={true}>
+          <Navbar.Collapse expanded={true} navExpanded={true}>
             <Nav navbar>
               <LinkContainer to="/community">
                 <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
@@ -97,37 +99,7 @@ export default class App extends Component {
               <LinkContainer to="/kontakt">
                 <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
               </LinkContainer>
-
-              { /*
-              {user && <LinkContainer to="/chat">
-                <NavItem eventKey={1}>Chat</NavItem>
-              </LinkContainer>}
-              <LinkContainer to="/widgets">
-                <NavItem eventKey={2}>Widgets</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/survey">
-                <NavItem eventKey={3}>Survey</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/about">
-                <NavItem eventKey={4}>About Us</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/hello">
-                <NavItem eventKey={99}>Hello</NavItem>
-              </LinkContainer>
-              {!user &&
-              <LinkContainer to="/login">
-                <NavItem eventKey={5}>Login</NavItem>
-              </LinkContainer>}
-              {user &&
-              <LinkContainer to="/logout">
-                <NavItem eventKey={6} className="logout-link" onClick={this.handleLogout}>
-                  Logout
-                </NavItem>
-              </LinkContainer>}
-              */ }
             </Nav>
-            { /* user &&
-            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.name}</strong>.</p> */ }
           </Navbar.Collapse>
         </Navbar>
 
@@ -141,4 +113,5 @@ export default class App extends Component {
         </div>
       </div>
     );
+}
 }
