@@ -30,86 +30,86 @@ import { asyncConnect } from 'redux-async-connect';
 @connect(
   state => ({user: state.auth.user}),
   {logout, pushState: push})
-export default class App extends Component {
-  static propTypes = {
-    children: PropTypes.object.isRequired,
-    user: PropTypes.object,
-    logout: PropTypes.func.isRequired,
-    pushState: PropTypes.func.isRequired
-  };
+  export default class App extends Component {
+    static propTypes = {
+      children: PropTypes.object.isRequired,
+      user: PropTypes.object,
+      logout: PropTypes.func.isRequired,
+      pushState: PropTypes.func.isRequired
+    };
 
-  static contextTypes = {
-    store: PropTypes.object.isRequired
-  };
+    static contextTypes = {
+      store: PropTypes.object.isRequired
+    };
 
-  state = {
-    navExpanded: true
-  }
+    state = {
+      navExpanded: true
+    }
 
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.user && nextProps.user) {
-      // login
-      this.props.pushState('/loginSuccess');
-    } else if (this.props.user && !nextProps.user) {
-      // logout
-      this.props.pushState('/');
+    componentWillReceiveProps(nextProps) {
+      if (!this.props.user && nextProps.user) {
+        // login
+        this.props.pushState('/loginSuccess');
+      } else if (this.props.user && !nextProps.user) {
+        // logout
+        this.props.pushState('/');
+      }
+    }
+
+    onNavItemClick = () => {
+      this.setState({ navExpanded: false });
+    }
+    onNavbarToggle = () => {
+      this.setState({ navExpanded: ! this.state.navExpanded });
+    }
+    handleLogout = (event) => {
+      event.preventDefault();
+      this.props.logout();
+    };
+
+
+    render() {
+      const {user} = this.props;
+      const styles = require('./App.scss');
+
+      return (
+        <div className={styles.app}>
+          <Helmet {...config.app.head}/>
+          <Navbar fixedTop expanded={ this.state.navExpanded } onToggle={ this.onNavbarToggle }>
+            <Navbar.Header>
+              <Navbar.Brand>
+                <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
+                  <div className={styles.brand}/>
+                  <span>{config.app.title} {user}</span>
+                </IndexLink>
+              </Navbar.Brand>
+              <Navbar.Toggle/>
+            </Navbar.Header>
+
+            <Navbar.Collapse>
+              <Nav navbar>
+                <LinkContainer to="/community">
+                  <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/registrieren">
+                  <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/kontakt">
+                  <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
+                </LinkContainer>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+
+          <div className={styles.appContent}>
+            {this.props.children}
+          </div>
+          <InfoBar/>
+
+          <div className="well text-center">
+            copyright 2016 - swiss-react.ch
+          </div>
+        </div>
+      );
     }
   }
-
-  onNavItemClick = () => {
-    this.setState({ navExpanded: false });
-  }
-  onNavbarToggle = () => {
-    this.setState({ navExpanded: ! this.state.navExpanded });
-  }
-  handleLogout = (event) => {
-    event.preventDefault();
-    this.props.logout();
-  };
-
-
-  render() {
-    const {user, navExpanded} = this.props;
-    const styles = require('./App.scss');
-
-    return (
-      <div className={styles.app}>
-        <Helmet {...config.app.head}/>
-        <Navbar fixedTop navExpanded={Boolean(true)}>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
-                <div className={styles.brand}/>
-                <span>{config.app.title} {user}</span>
-              </IndexLink>
-            </Navbar.Brand>
-            <Navbar.Toggle/>
-          </Navbar.Header>
-
-          <Navbar.Collapse>
-            <Nav navbar>
-              <LinkContainer to="/community">
-                <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/registrieren">
-                <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/kontakt">
-                <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
-              </LinkContainer>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-
-        <div className={styles.appContent}>
-          {this.props.children}
-        </div>
-        <InfoBar/>
-
-        <div className="well text-center">
-          copyright 2016 - swiss-react.ch
-        </div>
-      </div>
-    );
-}
-}
