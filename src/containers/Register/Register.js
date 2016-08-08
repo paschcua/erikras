@@ -26,10 +26,10 @@ export default class Register extends Component {
         .end((error, res) => {
           if (res.body.status === 1) {
             this.setState({formStatus: 2});
-            this.setState({formMsg: 'Die Registrierung war erfolgreich. Herzlich Willkommen bei der Swiss React Community ' + inputUsername + '!'});
+            this.setState({formMsg: 'Die Registrierung war erfolgreich. Herzlich Willkommen bei der Swiss React Community <strong>' + inputUsername + '</strong>!'});
             window.localStorage.setItem("ls_username", inputUsername);
             window.localStorage.setItem("ls_pw", inputPassword);
-            window.localStorage.setItem("ls_uuid", res.body.uuid);      
+            window.localStorage.setItem("ls_uuid", res.body.uuid);
           } else {
             this.setState({formStatus: 1});
             this.setState({formMsg: 'Dieser Username exisitiert bereits, wählen Sie bitte einen anderen.'});
@@ -68,8 +68,8 @@ export default class Register extends Component {
         }
         {formStatus === 2 ?
         <div className="register-success">
-          <Label bsStyle="success">Erfolgreich registriert</Label> {formMsg}
-          <br />
+          <Label bsStyle="success">Erfolgreich registriert</Label> <span dangerouslySetInnerHTML={{__html: formMsg}}></span>
+          <br /><br />
           <Link to="/community">Zur Community</Link>
         </div>
         : null
