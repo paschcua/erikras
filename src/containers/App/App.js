@@ -86,7 +86,7 @@ export default class App extends Component {
             <Navbar.Toggle/>
           </Navbar.Header>
 
-          <Navbar.Collapse expanded={Boolean(true)} navExpanded={Boolean(true)}>
+          <Navbar.Collapse>
             <Nav navbar>
               <LinkContainer to="/community">
                 <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
