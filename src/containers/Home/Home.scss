@@ -1,7 +1,6 @@
 @import "../../theme/variables.scss";
 
 .home {
-  margin-top: 50px !important;
   dd {
     margin-bottom: 15px;
   }
@@ -57,7 +56,12 @@
   margin: 20px;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 768px) {
+  .home {
+    .container{
+      margin-top: 20px;
+    }
+  }
   h1 {
     font-size: 2em !important;
     margin-top: 0px !important;

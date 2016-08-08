@@ -18,6 +18,9 @@
 
 @media (max-width: 768px) {
   .registerPage {
+    .container{
+      margin-top: 20px;
+    }
     form {
       :global(.btn) {
         margin-left: 0px;
