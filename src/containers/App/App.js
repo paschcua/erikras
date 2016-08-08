@@ -75,7 +75,7 @@ export default class App extends Component {
     return (
       <div className={styles.app}>
         <Helmet {...config.app.head}/>
-        <Navbar fixedTop expanded={Boolean(true)} navExpanded={Boolean(true)}>
+        <Navbar fixedTop navExpanded={Boolean(true)}>
           <Navbar.Header>
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
