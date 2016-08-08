@@ -5,7 +5,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
-import CollapsibleNav from 'react-bootstrap/lib/CollapsibleNav';
 import Helmet from 'react-helmet';
 import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
@@ -63,12 +62,10 @@ export default class App extends Component {
   };
 
   onNavItemClick = () => {
-    console.log("2: onNavItemClick");
     this.setState({ navExpanded: false });
   }
   onNavbarToggle = () => {
-    console.log("1: onNavbarToggle");
-    this.setState({ navExpanded: !this.state.navExpanded });
+    this.setState({ navExpanded: ! this.state.navExpanded });
   }
 
   render() {
@@ -78,24 +75,60 @@ export default class App extends Component {
     return (
       <div className={styles.app}>
         <Helmet {...config.app.head}/>
-        <Navbar fixedTop onClick={this.onNavbarToggle}>
-        <CollapsibleNav eventKey={0}> {/* This is the eventKey referenced */}
-              <Nav navbar>
-                <NavItem eventKey={1} href='#'>Link</NavItem>
-                <NavItem eventKey={2} href='#'>Link</NavItem>
-                <DropdownButton eventKey={3} title='Dropdown'>
-                  <MenuItem eventKey='1'>Action</MenuItem>
-                  <MenuItem eventKey='2'>Another action</MenuItem>
-                  <MenuItem eventKey='3'>Something else here</MenuItem>
-                  <MenuItem divider />
-                  <MenuItem eventKey='4'>Separated link</MenuItem>
-                </DropdownButton>
-              </Nav>
-              <Nav navbar right>
-                <NavItem eventKey={1} href='#'>Link Right</NavItem>
-                <NavItem eventKey={2} href='#'>Link Right</NavItem>
-              </Nav>
-        </CollapsibleNav>
+        <Navbar fixedTop expanded={true} navExpanded={true}>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
+                <div className={styles.brand}/>
+                <span>{config.app.title} {user}</span>
+              </IndexLink>
+            </Navbar.Brand>
+            <Navbar.Toggle/>
+          </Navbar.Header>
+
+          <Navbar.Collapse eventKey={0} expanded={true}>
+            <Nav navbar>
+              <LinkContainer to="/community">
+                <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/registrieren">
+                <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/kontakt">
+                <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
+              </LinkContainer>
+
+              { /*
+              {user && <LinkContainer to="/chat">
+                <NavItem eventKey={1}>Chat</NavItem>
+              </LinkContainer>}
+              <LinkContainer to="/widgets">
+                <NavItem eventKey={2}>Widgets</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/survey">
+                <NavItem eventKey={3}>Survey</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/about">
+                <NavItem eventKey={4}>About Us</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/hello">
+                <NavItem eventKey={99}>Hello</NavItem>
+              </LinkContainer>
+              {!user &&
+              <LinkContainer to="/login">
+                <NavItem eventKey={5}>Login</NavItem>
+              </LinkContainer>}
+              {user &&
+              <LinkContainer to="/logout">
+                <NavItem eventKey={6} className="logout-link" onClick={this.handleLogout}>
+                  Logout
+                </NavItem>
+              </LinkContainer>}
+              */ }
+            </Nav>
+            { /* user &&
+            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.name}</strong>.</p> */ }
+          </Navbar.Collapse>
         </Navbar>
 
         <div className={styles.appContent}>
@@ -108,5 +141,4 @@ export default class App extends Component {
         </div>
       </div>
     );
-  }
 }
