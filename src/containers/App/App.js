@@ -43,7 +43,10 @@ import { asyncConnect } from 'redux-async-connect';
     };
 
     state = {
-      navExpanded: false
+      navExpanded: false,
+      userName: window.localStorage.getItem("ls_username"),
+      userPw: window.localStorage.getItem("ls_pw"),
+      userUuid: window.localStorage.getItem("ls_uuid")
     }
 
     componentWillReceiveProps(nextProps) {
@@ -69,7 +72,8 @@ import { asyncConnect } from 'redux-async-connect';
 
 
     render() {
-      const {user} = this.props;
+      const {userName, userPw, userUuid} = this.state;
+      console.log('1: ' + userName + '2: ' + userPw + '3: ' + userUuid);
       const styles = require('./App.scss');
 
       return (
