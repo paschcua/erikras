@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Label from 'react-bootstrap/lib/Label';
 import Well from 'react-bootstrap/lib/Well';
 import { Link } from 'react-router';
 import Helmet from 'react-helmet';
@@ -28,9 +27,9 @@ export default class Register extends Component {
           if (res.body.status === 1) {
             this.setState({formStatus: 2});
             this.setState({formMsg: 'Die Registrierung war erfolgreich. Herzlich Willkommen bei der Swiss React Community <strong>' + inputUsername + '</strong>!'});
-            window.localStorage.setItem("ls_username", inputUsername);
-            window.localStorage.setItem("ls_pw", inputPassword);
-            window.localStorage.setItem("ls_uuid", res.body.uuid);
+            window.localStorage.setItem('ls_username', inputUsername);
+            window.localStorage.setItem('ls_pw', inputPassword);
+            window.localStorage.setItem('ls_uuid', res.body.uuid);
           } else {
             this.setState({formStatus: 1});
             this.setState({formMsg: 'Dieser Username exisitiert bereits, wählen Sie bitte einen anderen.'});

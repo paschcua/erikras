@@ -44,9 +44,9 @@ import { asyncConnect } from 'redux-async-connect';
 
     state = {
       navExpanded: false,
-      userName: window.localStorage.getItem("ls_username"),
-      userPw: window.localStorage.getItem("ls_pw"),
-      userUuid: window.localStorage.getItem("ls_uuid")
+      userName: window.localStorage.getItem('ls_username'),
+      userPw: window.localStorage.getItem('ls_pw'),
+      userUuid: window.localStorage.getItem('ls_uuid')
     }
 
     componentWillReceiveProps(nextProps) {
@@ -63,6 +63,7 @@ import { asyncConnect } from 'redux-async-connect';
       this.setState({ navExpanded: false });
     }
     onNavbarToggle = () => {
+      console.log('1: ' + this.state.userName '2: ' + this.state.userPw + '3: ' + this.state.userUuid);
       this.setState({ navExpanded: ! this.state.navExpanded });
     }
     handleLogout = (event) => {
@@ -73,7 +74,6 @@ import { asyncConnect } from 'redux-async-connect';
 
     render() {
       const {userName, userPw, userUuid} = this.state;
-      console.log('1: ' + userName + '2: ' + userPw + '3: ' + userUuid);
       const styles = require('./App.scss');
 
       return (
@@ -84,7 +84,7 @@ import { asyncConnect } from 'redux-async-connect';
               <Navbar.Brand>
                 <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
                   <div className={styles.brand}/>
-                  <span>{config.app.title} {user}</span>
+                  <span>{config.app.title}</span>
                 </IndexLink>
               </Navbar.Brand>
               <Navbar.Toggle/>
@@ -111,7 +111,7 @@ import { asyncConnect } from 'redux-async-connect';
           <InfoBar/>
 
           <div className="well text-center">
-            copyright 2016 - swiss-react.ch
+            Copyright 2016 | Swiss React Community | React, Redux, Flux, React Native | Swiss-react.ch
           </div>
         </div>
       );
