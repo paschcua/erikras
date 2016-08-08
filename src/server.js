@@ -33,7 +33,7 @@ const proxy = httpProxy.createProxyServer({
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI);
 var userSchema = new mongoose.Schema({
-  userid: Number,
+  uuid: String,
   username: String,
   password: String
 });
