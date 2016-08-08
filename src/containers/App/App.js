@@ -30,7 +30,7 @@ import { asyncConnect } from 'redux-async-connect';
 @connect(
   state => ({user: state.auth.user}),
   {logout, pushState: push})
-export default class App extends Component {
+  export default class App extends Component {
     static propTypes = {
       children: PropTypes.object.isRequired,
       user: PropTypes.object,
@@ -72,6 +72,7 @@ export default class App extends Component {
 
 
     render() {
+      const {user} = this.state;
       const styles = require('./App.scss');
 
       return (
@@ -82,7 +83,7 @@ export default class App extends Component {
               <Navbar.Brand>
                 <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
                   <div className={styles.brand}/>
-                  <span>{config.app.title}</span>
+                  <span>{config.app.title} {user}</span>
                 </IndexLink>
               </Navbar.Brand>
               <Navbar.Toggle/>
@@ -105,7 +106,6 @@ export default class App extends Component {
 
           <div className={styles.appContent}>
             {this.props.children}
-            { console.log('1: ' + this.state.userName + '2: ' + this.state.userPw + '3: ' + this.state.userUuid) }
           </div>
           <InfoBar/>
 
