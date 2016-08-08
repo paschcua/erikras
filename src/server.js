@@ -49,8 +49,17 @@ app.post('/registrieren', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
 
+    var dateObject = new Date();
+    var uniqueId =
+         dateObject.getFullYear() + '' +
+         dateObject.getMonth() + '' +
+         dateObject.getDate() + '' +
+         dateObject.getTime();
+
+    var uuid = uniqueId+Math.random();
+
     var UserData = new UserModel({
-      userid: 99,
+      uuid: uuid,
       username: username,
       password: password
     });
@@ -63,7 +72,7 @@ app.post('/registrieren', function(req, res) {
             UserData.save(function (err) {
               if (err) return console.log(err);
             });
-            res.json({ status: 1, msg: username });
+            res.json({ status: 1, uuid: uuid });
         }
         else{
             res.json({ status: 0 });

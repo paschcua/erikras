@@ -26,7 +26,10 @@ export default class Register extends Component {
         .end((error, res) => {
           if (res.body.status === 1) {
             this.setState({formStatus: 2});
-            this.setState({formMsg: 'Registrierung erfolgreich ' + res.body.msg + '!'});
+            this.setState({formMsg: 'Die Registrierung war erfolgreich. Herzlich Willkommen bei der Swiss React Community ' + inputUsername + '!'});
+            window.localStorage.setItem("ls_username", inputUsername);
+            window.localStorage.setItem("ls_pw", inputPassword);
+            window.localStorage.setItem("ls_uuid", res.body.uuid);      
           } else {
             this.setState({formStatus: 1});
             this.setState({formMsg: 'Dieser Username exisitiert bereits, wählen Sie bitte einen anderen.'});
