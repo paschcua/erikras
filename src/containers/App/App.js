@@ -63,7 +63,6 @@ export default class App extends Component {
       this.setState({ navExpanded: false });
     }
     onNavbarToggle = () => {
-      console.log('1: ' + this.state.userName + '2: ' + this.state.userPw + '3: ' + this.state.userUuid);
       this.setState({ navExpanded: ! this.state.navExpanded });
     }
     handleLogout = (event) => {
@@ -106,6 +105,7 @@ export default class App extends Component {
 
           <div className={styles.appContent}>
             {this.props.children}
+            { console.log('1: ' + this.state.userName + '2: ' + this.state.userPw + '3: ' + this.state.userUuid) }
           </div>
           <InfoBar/>
 
