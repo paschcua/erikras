@@ -43,10 +43,7 @@ import { asyncConnect } from 'redux-async-connect';
     };
 
     state = {
-      navExpanded: false,
-      userName: window.localStorage.getItem('ls_username'),
-      userPw: window.localStorage.getItem('ls_pw'),
-      userUuid: window.localStorage.getItem('ls_uuid')
+      navExpanded: false
     }
 
     componentWillReceiveProps(nextProps) {
