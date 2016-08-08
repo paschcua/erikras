@@ -30,7 +30,7 @@ import { asyncConnect } from 'redux-async-connect';
 @connect(
   state => ({user: state.auth.user}),
   {logout, pushState: push})
-  export default class App extends Component {
+export default class App extends Component {
     static propTypes = {
       children: PropTypes.object.isRequired,
       user: PropTypes.object,
@@ -73,7 +73,6 @@ import { asyncConnect } from 'redux-async-connect';
 
 
     render() {
-      const {userName, userPw, userUuid} = this.state;
       const styles = require('./App.scss');
 
       return (
