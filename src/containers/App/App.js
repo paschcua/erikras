@@ -63,7 +63,7 @@ import { asyncConnect } from 'redux-async-connect';
       this.setState({ navExpanded: false });
     }
     onNavbarToggle = () => {
-      console.log('1: ' + this.state.userName '2: ' + this.state.userPw + '3: ' + this.state.userUuid);
+      console.log('1: ' + this.state.userName + '2: ' + this.state.userPw + '3: ' + this.state.userUuid);
       this.setState({ navExpanded: ! this.state.navExpanded });
     }
     handleLogout = (event) => {
