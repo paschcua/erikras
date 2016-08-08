@@ -58,15 +58,15 @@
 
 @media (max-width: 768px) {
   .home {
-    .container{
-      margin-top: 20px;
+    h1 {
+      font-size: 2em !important;
+      margin-top: 0px !important;
     }
-  }
-  h1 {
-    font-size: 2em !important;
-    margin-top: 0px !important;
-  }
-  h2 {
-    font-size: 1em !important;
+    h2 {
+      font-size: 1em !important;
+    }
+    .container{
+      margin-top: 20px !important;
+    }
   }
 }
