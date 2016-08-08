@@ -62,7 +62,10 @@ export default class App extends Component {
   };
 
   onNavItemClick = () => {
-      this.setState({ navExpanded: false });
+    this.setState({ navExpanded: false });
+  }
+  onNavbarToggle = () => {
+    this.setState({ navExpanded: ! this.state.navExpanded });
   }
 
   render() {
@@ -72,7 +75,7 @@ export default class App extends Component {
     return (
       <div className={styles.app}>
         <Helmet {...config.app.head}/>
-        <Navbar fixedTop>
+        <Navbar fixedTop navExpanded={ this.state.navExpanded } onToggle={ this.onNavbarToggle }>
           <Navbar.Header>
             <Navbar.Brand>
               <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
