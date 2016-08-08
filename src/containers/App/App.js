@@ -43,7 +43,7 @@ import { asyncConnect } from 'redux-async-connect';
     };
 
     state = {
-      navExpanded: true
+      navExpanded: false
     }
 
     componentWillReceiveProps(nextProps) {
