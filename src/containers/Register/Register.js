@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Label from 'react-bootstrap/lib/Label';
+import Well from 'react-bootstrap/lib/Well';
 import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 import superagent from 'superagent';
@@ -53,32 +54,34 @@ export default class Register extends Component {
         <Helmet title="Registrieren"/>
         <h1>Registrieren</h1>
         {formStatus < 2 ?
-        <div id="register-form">
-          <form className="login-form form-inline" onSubmit={this.handleSubmit.bind(this)}>
-            <div className="form-group">
-              <input type="text" ref="username" name="username" id="username" placeholder="Username" className="form-control"/>
-            </div>
-            <div className="form-group">
-              <input type="password" ref="password" name="password" id="password" placeholder="Passwort" className="form-control"/>
-            </div>
-            <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/> Registrieren</button>
-          </form>
-        </div>
-        : null
+          <div id="register-form">
+            <form className="login-form form-inline" onSubmit={this.handleSubmit.bind(this)}>
+              <div className="form-group">
+                <input type="text" ref="username" name="username" id="username" placeholder="Username" className="form-control"/>
+              </div>
+              <div className="form-group">
+                <input type="password" ref="password" name="password" id="password" placeholder="Passwort" className="form-control"/>
+              </div>
+              <button type="submit" className="btn btn-success"><i className="fa fa-sign-in"/> Registrieren</button>
+            </form>
+          </div>
+          : null
         }
         {formStatus === 2 ?
-        <div className="register-success">
-          <Label bsStyle="success">Erfolgreich registriert</Label> <span dangerouslySetInnerHTML={{__html: formMsg}}></span>
-          <br /><br />
-          <Link to="/community">Zur Community</Link>
-        </div>
-        : null
+          <Well>
+            <h3>Erfolgreich registriert</h3>
+            <div dangerouslySetInnerHTML={{__html: formMsg}}></div>
+            <br /><br />
+            <Link to="/community">Zur Community</Link>
+          </Well>
+          : null
         }
         {formStatus === 1 ?
-        <div className="register-success">
-          <Label bsStyle="danger">Fehler</Label> {formMsg}
-        </div>
-        : null
+          <Well>
+            <h3>Fehler</h3>
+            <div dangerouslySetInnerHTML={{__html: formMsg}}></div>
+          </Well>
+          : null
         }
       </div>
     );
