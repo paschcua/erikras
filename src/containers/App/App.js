@@ -43,7 +43,8 @@ import { asyncConnect } from 'redux-async-connect';
     };
 
     state = {
-      navExpanded: false
+      navExpanded: false,
+      loginUsername: false
     }
 
     componentWillReceiveProps(nextProps) {
@@ -69,8 +70,10 @@ import { asyncConnect } from 'redux-async-connect';
 
 
     render() {
-      const {user} = this.state;
+      const {user, loginUsername} = this.state;
       const styles = require('./App.scss');
+
+      if (window.localStorage.getItem('ls_username') !== null) { this.setState({ loginUsername: true }); }
 
       return (
         <div className={styles.app}>
@@ -97,6 +100,9 @@ import { asyncConnect } from 'redux-async-connect';
                 <LinkContainer to="/kontakt">
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
+                {loginUsername &&
+                  {loginUsername}
+                }
               </Nav>
             </Navbar.Collapse>
           </Navbar>
