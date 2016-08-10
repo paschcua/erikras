@@ -23,7 +23,6 @@ import { asyncConnect } from 'redux-async-connect';
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));
     }
-    console.log(window.localStorage.getItem('ls_username'));
 
     return Promise.all(promises);
   }
@@ -70,6 +69,11 @@ import { asyncConnect } from 'redux-async-connect';
       this.props.logout();
     };
 
+    componentWillMount() {
+      setTimeout(function(){
+        console.log(window.localStorage.getItem('ls_username'));
+      }, 3000);
+    }
 
     render() {
       const {user, loginUsername} = this.state;
