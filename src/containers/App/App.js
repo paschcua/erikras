@@ -63,6 +63,7 @@ import { asyncConnect } from 'redux-async-connect';
     }
     onNavbarToggle = () => {
       this.setState({ navExpanded: ! this.state.navExpanded });
+      console.log('WINDOW: ' + window.localStorage.getItem('ls_username') );
     }
     handleLogout = (event) => {
       event.preventDefault();
@@ -82,7 +83,7 @@ import { asyncConnect } from 'redux-async-connect';
               <Navbar.Brand>
                 <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
                   <div className={styles.brand}/>
-                  <span>{config.app.title} {user} { console.log(window.localStorage.getItem('ls_username')) }</span>
+                  <span>{config.app.title} {user}</span>
                 </IndexLink>
               </Navbar.Brand>
               <Navbar.Toggle/>
