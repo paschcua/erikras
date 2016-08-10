@@ -46,15 +46,16 @@ import { asyncConnect } from 'redux-async-connect';
     state = {
       navExpanded: false,
       loginStatus: false,
-      loginUsername: null
+      loginUsername: false
     }
 
     componentWillMount() {
       const aaa = window.localStorage.getItem('ls_username');
-      if (aaa !== null) {
+      console.log(aaa);
+      /*if (aaa !== null) {
         this.setState({ loginStatus: true });
         this.setState({ loginUsername: aaa });
-      }
+      }*/
     }
 
     componentWillReceiveProps(nextProps) {
@@ -108,8 +109,9 @@ import { asyncConnect } from 'redux-async-connect';
                 <LinkContainer to="/kontakt">
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
-                {loginStatus &&
-                  {loginUsername}
+                {loginStatus ?
+                  <div dangerouslySetInnerHTML={{__html: loginUsername}}></div>
+                  : null
                 }
               </Nav>
             </Navbar.Collapse>
