@@ -23,6 +23,7 @@ import { asyncConnect } from 'redux-async-connect';
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));
     }
+    console.log(window.localStorage.getItem('ls_username'));
 
     return Promise.all(promises);
   }
@@ -58,16 +59,11 @@ import { asyncConnect } from 'redux-async-connect';
       }
     }
 
-    componentWillMount() {
-      console.log('uhhh:'+window.localStorage.getItem('ls_username'));
-    }
-
     onNavItemClick = () => {
       this.setState({ navExpanded: false });
     }
     onNavbarToggle = () => {
       this.setState({ navExpanded: ! this.state.navExpanded });
-      console.log('WINDOW: ' + window.localStorage.getItem('ls_username') );
     }
     handleLogout = (event) => {
       event.preventDefault();
