@@ -82,7 +82,7 @@ import { asyncConnect } from 'redux-async-connect';
               <Navbar.Brand>
                 <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
                   <div className={styles.brand}/>
-                  <span>{config.app.title} {user} {console.log('ddd')}</span>
+                  <span>{config.app.title} {user} { console.log(window.localStorage.getItem('ls_username')) }</span>
                 </IndexLink>
               </Navbar.Brand>
               <Navbar.Toggle/>
