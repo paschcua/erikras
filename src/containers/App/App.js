@@ -50,11 +50,7 @@ import { asyncConnect } from 'redux-async-connect';
     }
 
     componentWillMount() {
-      var aaa = window.localStorage.getItem('ls_username');
-      if (aaa !== null) {
-        this.setState({ loginStatus: true });
-        this.setState({ loginUsername: aaa });
-      }
+      console.log( window.localStorage.getItem('ls_username') );
     }
 
     componentWillReceiveProps(nextProps) {
