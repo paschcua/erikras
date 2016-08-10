@@ -44,13 +44,11 @@ import { asyncConnect } from 'redux-async-connect';
     };
 
     state = {
-      navExpanded: false,
-      loginStatus: false,
-      loginUsername: false
+      navExpanded: false
     }
 
     componentWillMount() {
-      console.log( window.localStorage.getItem('ls_username') );
+      console.log('aa '+window.localStorage.getItem('ls_username'));
     }
 
     componentWillReceiveProps(nextProps) {
@@ -76,7 +74,7 @@ import { asyncConnect } from 'redux-async-connect';
 
 
     render() {
-      const {user, loginStatus, loginUsername} = this.state;
+      const {user} = this.state;
       const styles = require('./App.scss');
 
       return (
