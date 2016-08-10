@@ -44,11 +44,8 @@ import { asyncConnect } from 'redux-async-connect';
     };
 
     state = {
-      navExpanded: false
-    }
-
-    componentWillMount() {
-      console.log('aa '+window.localStorage.getItem('ls_username'));
+      navExpanded: false,
+      loginUsername: false
     }
 
     componentWillReceiveProps(nextProps) {
@@ -66,6 +63,7 @@ import { asyncConnect } from 'redux-async-connect';
     }
     onNavbarToggle = () => {
       this.setState({ navExpanded: ! this.state.navExpanded });
+      console.log('WINDOW: ' + window.localStorage.getItem('ls_username') );
     }
     handleLogout = (event) => {
       event.preventDefault();
@@ -74,7 +72,7 @@ import { asyncConnect } from 'redux-async-connect';
 
 
     render() {
-      const {user} = this.state;
+      const {user, loginUsername} = this.state;
       const styles = require('./App.scss');
 
       return (
@@ -85,7 +83,7 @@ import { asyncConnect } from 'redux-async-connect';
               <Navbar.Brand>
                 <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
                   <div className={styles.brand}/>
-                  <span>{config.app.title}</span>
+                  <span>{config.app.title} {user}</span>
                 </IndexLink>
               </Navbar.Brand>
               <Navbar.Toggle/>
@@ -102,6 +100,9 @@ import { asyncConnect } from 'redux-async-connect';
                 <LinkContainer to="/kontakt">
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
+                {loginUsername &&
+                  {loginUsername}
+                }
               </Nav>
             </Navbar.Collapse>
           </Navbar>
