@@ -50,8 +50,8 @@ import { asyncConnect } from 'redux-async-connect';
     }
 
     componentWillMount() {
-      let aaa = window.localStorage.getItem('ls_username');
-      console.log(aaa);
+      var aaa = window.localStorage.getItem('ls_username');
+      console.log('aaa: ' + aaa);
     }
 
     componentWillReceiveProps(nextProps) {
