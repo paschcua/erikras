@@ -44,7 +44,8 @@ import { asyncConnect } from 'redux-async-connect';
 
     state = {
       navExpanded: false,
-      loginUsername: false
+      loginUsername: false,
+      uuu: window.localStorage.getItem('ls_username')
     }
 
     componentWillReceiveProps(nextProps) {
@@ -72,8 +73,6 @@ import { asyncConnect } from 'redux-async-connect';
     render() {
       const {user, loginUsername} = this.state;
       const styles = require('./App.scss');
-
-      if (window.localStorage.getItem('ls_username') !== null) { this.setState({ loginUsername: true }); }
 
       return (
         <div className={styles.app}>
