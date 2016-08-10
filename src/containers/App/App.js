@@ -30,6 +30,7 @@ import { asyncConnect } from 'redux-async-connect';
 @connect(
   state => ({user: state.auth.user}),
   {logout, pushState: push})
+
   export default class App extends Component {
     static propTypes = {
       children: PropTypes.object.isRequired,
@@ -44,8 +45,7 @@ import { asyncConnect } from 'redux-async-connect';
 
     state = {
       navExpanded: false,
-      loginUsername: false,
-      uuu: window.localStorage.getItem('ls_username')
+      loginUsername: false
     }
 
     componentWillReceiveProps(nextProps) {

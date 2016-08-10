@@ -1,5 +1,8 @@
 require('babel-polyfill');
 
+const aha = window.localStorage.getItem('ls_username');
+console.log("aha: " + aha);
+
 const environment = {
   development: {
     isProduction: false
