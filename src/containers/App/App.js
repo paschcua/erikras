@@ -58,6 +58,10 @@ import { asyncConnect } from 'redux-async-connect';
       }
     }
 
+    componentWillMount() {
+      console.log('uhhh:'+window.localStorage.getItem('ls_username'));
+    }
+
     onNavItemClick = () => {
       this.setState({ navExpanded: false });
     }
