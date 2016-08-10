@@ -51,7 +51,10 @@ import { asyncConnect } from 'redux-async-connect';
 
     componentWillMount() {
       var aaa = window.localStorage.getItem('ls_username');
-      console.log('aaa: ' + aaa);
+      if (aaa !== null) {
+        this.setState({ loginStatus: true });
+        this.setState({ loginUsername: aaa });
+      }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -105,10 +108,6 @@ import { asyncConnect } from 'redux-async-connect';
                 <LinkContainer to="/kontakt">
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
-                {loginStatus ?
-                  <div dangerouslySetInnerHTML={{__html: loginUsername}}></div>
-                  : null
-                }
               </Nav>
             </Navbar.Collapse>
           </Navbar>
