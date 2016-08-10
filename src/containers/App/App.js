@@ -50,7 +50,7 @@ import { asyncConnect } from 'redux-async-connect';
     }
 
     componentWillMount() {
-      if(window.localStorage.getItem('ls_username') !== null){
+      if (window.localStorage.getItem('ls_username') !== null) {
         this.setState({ loginStatus: true });
         this.setState({ loginUsername: window.localStorage.getItem('ls_username') });
       }
@@ -79,7 +79,7 @@ import { asyncConnect } from 'redux-async-connect';
 
 
     render() {
-      const {user, loginUsername} = this.state;
+      const {user, loginStatus, loginUsername} = this.state;
       const styles = require('./App.scss');
 
       return (
@@ -108,7 +108,7 @@ import { asyncConnect } from 'redux-async-connect';
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
                 {loginStatus &&
-                  <i className="fa fa-user"/> {loginUsername}
+                  {loginUsername}
                 }
               </Nav>
             </Navbar.Collapse>
