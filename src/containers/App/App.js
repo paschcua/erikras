@@ -72,7 +72,7 @@ import { asyncConnect } from 'redux-async-connect';
     componentWillMount() {
       setTimeout(function(){
         console.log(window.localStorage.getItem('ls_username'));
-      }, 3000);
+      }, 100);
     }
 
     render() {
