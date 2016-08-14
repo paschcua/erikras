@@ -84,10 +84,6 @@ app.post('/registrieren', function(req, res) {
     });
 });
 
-app.post('/', function(req, res) {
-  res.json({ status1: 1111 });
-}
-
 app.use(compression());
 app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
 

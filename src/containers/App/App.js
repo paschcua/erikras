@@ -45,7 +45,13 @@ export default class App extends Component {
 
     state = {
       navExpanded: false,
-      loginUsername: false
+      loginUsername: 'not logged in'
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+          this.setState({ loginUsername: window.localStorage.getItem('ls_username') });
+        }, 3000);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -81,7 +87,7 @@ export default class App extends Component {
               <Navbar.Brand>
                 <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
                   <div className={styles.brand}/>
-                  <span>{config.app.title} {user}</span>
+                  <span>{config.app.title} {user} {loginUsername}</span>
                 </IndexLink>
               </Navbar.Brand>
               <Navbar.Toggle/>

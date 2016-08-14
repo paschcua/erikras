@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 /* { import { CounterButton } from 'components'; } */
 import config from '../../config';
 import Helmet from 'react-helmet';
-import superagent from 'superagent';
 
 @connect(
   state => ({ userLoggedIn: 'wis' })
@@ -21,15 +20,6 @@ export default class Home extends Component {
     const {userLoggedIn} = this.props;
     // require the logo image both from client and server
     const logoImage = require('./logo.png');
-
-    superagent
-    .post('/')
-    .set('Accept', 'application/json')
-    .end((error, res) => {
-      if (res.body.status1 === 1111) {
-        console.log("yippaaa");
-      }
-    });
 
     return (
       <div className={styles.home}>
