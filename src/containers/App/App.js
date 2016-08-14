@@ -68,20 +68,6 @@ export default class App extends Component {
       event.preventDefault();
       this.props.logout();
     }
-    getCookieByName = (cname) => {
-          var name = cname + "=";
-          var ca = document.cookie.split(';');
-          for(var i = 0; i <ca.length; i++) {
-              var c = ca[i];
-              while (c.charAt(0)==' ') {
-                  c = c.substring(1);
-              }
-              if (c.indexOf(name) == 0) {
-                  return c.substring(name.length,c.length);
-              }
-          }
-          return "";
-    }
 
     render() {
       const {user, loginUsername} = this.state;
@@ -95,7 +81,7 @@ export default class App extends Component {
               <Navbar.Brand>
                 <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
                   <div className={styles.brand}/>
-                  <span>{config.app.title} {user} { this.getCookieByName('aha') }</span>
+                  <span>{config.app.title} {user} { 'a: ' + document.cookie }</span>
                 </IndexLink>
               </Navbar.Brand>
               <Navbar.Toggle/>
