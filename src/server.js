@@ -43,7 +43,7 @@ var UserModel = mongoose.model('User', userSchema);
 
 app.use(cookieParser()); // use cookieParser for User-Cookies
 app.get('/', function(req, res){
-    res.cookie('aha', 'express1').send('cookie set'); //Sets aha=express1
+    res.cookie('aha', 'express1', {maxAge: 360000});
 });
 
 /* **** Body Parser */
