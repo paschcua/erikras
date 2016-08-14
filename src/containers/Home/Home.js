@@ -29,7 +29,7 @@ export default class Home extends Component {
             <div className={styles.logo}>
               <p>
                 <img src={logoImage}/>
-                Global.get('FOO')
+                { Global.get('FOO') }
               </p>
             </div>
             <h1>{config.app.title}</h1>
