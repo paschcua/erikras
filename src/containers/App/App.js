@@ -45,7 +45,8 @@ import { asyncConnect } from 'redux-async-connect';
 
     state = {
       navExpanded: false,
-      loginUsername: false
+      loginUsername: false,
+      loggedIn: window.localStorage.getItem('ls_username')
     }
 
     componentWillReceiveProps(nextProps) {
@@ -67,12 +68,6 @@ import { asyncConnect } from 'redux-async-connect';
     handleLogout = (event) => {
       event.preventDefault();
       this.props.logout();
-    };
-
-    componentWillMount() {
-      setTimeout(function(){
-        console.log(window.localStorage.getItem('ls_username'));
-      }, 500);
     }
 
     render() {
@@ -104,9 +99,6 @@ import { asyncConnect } from 'redux-async-connect';
                 <LinkContainer to="/kontakt">
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
-                {loginUsername &&
-                  {loginUsername}
-                }
               </Nav>
             </Navbar.Collapse>
           </Navbar>
