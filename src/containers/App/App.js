@@ -18,14 +18,13 @@ import { asyncConnect } from 'redux-async-connect';
     const promises = [];
 
     if (!isInfoLoaded(getState())) {
-      alert("saasas");
       promises.push(dispatch(loadInfo()));
     }
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));
     }
     if (isInfoLoaded(getState())) {
-      alert("Loaded!");
+      console.log("Loaded!");
     }
 
     return Promise.all(promises);
@@ -53,7 +52,6 @@ import { asyncConnect } from 'redux-async-connect';
     }
 
     componentWillReceiveProps(nextProps) {
-      console.log("chchchch");
       if (!this.props.user && nextProps.user) {
         // login
         this.props.pushState('/loginSuccess');
