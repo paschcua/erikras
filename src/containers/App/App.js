@@ -40,7 +40,8 @@ import { asyncConnect } from 'redux-async-connect';
     };
 
     static contextTypes = {
-      store: PropTypes.object.isRequired
+      store: PropTypes.object.isRequired,
+      aha: PropTypes.string
     };
 
     state = {

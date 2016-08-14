@@ -12,6 +12,7 @@ import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { ReduxAsyncConnect } from 'redux-async-connect';
 import useScroll from 'scroll-behavior/lib/useStandardScroll';
+import Global from 'react-global';
 
 import getRoutes from './routes';
 
@@ -52,14 +53,13 @@ const component = (
   </Router>
 );
 
+<Global values={{
+  FOO: 'this.props.foo2'
+}} />
+
 ReactDOM.render(
   <Provider store={store} key="provider">
     {component}
-    { window.localStorage.getItem('ls_username') !== null ?
-      console.log("aha yes")
-      :
-      console.log("aha no")
-    }
   </Provider>,
   dest
 );

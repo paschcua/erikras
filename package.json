@@ -124,6 +124,7 @@
     "react-bootstrap": "^0.28.1",
     "react-dom": "^0.14.1",
     "react-ga": "^2.1.1",
+    "react-global": "^0.1.8",
     "react-helmet": "^2.2.0",
     "react-inline-css": "^2.0.0",
     "react-redux": "^4.0.0",
