@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 /* { import { CounterButton } from 'components'; } */
 import config from '../../config';
 import Helmet from 'react-helmet';
+import superagent from 'superagent';
 
 @connect(
   state => ({ userLoggedIn: 'wis' })
@@ -14,6 +15,12 @@ export default class Home extends Component {
   static propTypes = {
     userLoggedIn: PropTypes.string
   }
+
+  superagent
+    .get('/')
+    .end(function(err, res){
+      console.log(res.body.status1);
+    });
 
   render() {
     const styles = require('./Home.scss');

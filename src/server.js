@@ -62,8 +62,6 @@ app.post('/registrieren', function(req, res) {
 
     var uuid = uniqueId+Math.random();
 
-    res.cookie('aha', 'express1');
-
     var UserData = new UserModel({
       uuid: uuid,
       username: username,
@@ -86,7 +84,9 @@ app.post('/registrieren', function(req, res) {
     });
 });
 
-
+app.get('/', function(req, res) {
+  res.json({ status1: 'hmmmmmmm' });
+}
 
 app.use(compression());
 app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
