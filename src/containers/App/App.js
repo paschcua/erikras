@@ -17,10 +17,14 @@ import { asyncConnect } from 'redux-async-connect';
   promise: ({store: {dispatch, getState}}) => {
     const promises = [];
 
+    console.log("aha 1");
+
     if (!isInfoLoaded(getState())) {
+      console.log("aha 1.1");
       promises.push(dispatch(loadInfo()));
     }
     if (!isAuthLoaded(getState())) {
+      console.log("aha 1.2");
       promises.push(dispatch(loadAuth()));
     }
 
@@ -28,6 +32,7 @@ import { asyncConnect } from 'redux-async-connect';
   }
 }])
 @connect(
+  console.log("aha 2");
   state => ({user: state.auth.user}),
   {logout, pushState: push})
 
@@ -45,8 +50,7 @@ import { asyncConnect } from 'redux-async-connect';
 
     state = {
       navExpanded: false,
-      loginUsername: false,
-      loggedIn: window.localStorage.getItem('ls_username')
+      loginUsername: false
     }
 
     componentWillReceiveProps(nextProps) {
