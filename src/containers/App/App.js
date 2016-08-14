@@ -49,7 +49,6 @@ import { asyncConnect } from 'redux-async-connect';
     }
 
     componentWillReceiveProps(nextProps) {
-      console.log("chchchch");
       if (!this.props.user && nextProps.user) {
         // login
         this.props.pushState('/loginSuccess');
@@ -82,7 +81,7 @@ import { asyncConnect } from 'redux-async-connect';
               <Navbar.Brand>
                 <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
                   <div className={styles.brand}/>
-                  <span>{config.app.title} {user} { console.log("inside console") }</span>
+                  <span>{config.app.title} {user} { console.log("inside console:" + window.localStorage ) }</span>
                 </IndexLink>
               </Navbar.Brand>
               <Navbar.Toggle/>
