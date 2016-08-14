@@ -17,14 +17,10 @@ import { asyncConnect } from 'redux-async-connect';
   promise: ({store: {dispatch, getState}}) => {
     const promises = [];
 
-    console.log("aha 1");
-
     if (!isInfoLoaded(getState())) {
-      console.log("aha 1.1");
       promises.push(dispatch(loadInfo()));
     }
     if (!isAuthLoaded(getState())) {
-      console.log("aha 1.2");
       promises.push(dispatch(loadAuth()));
     }
 
@@ -53,6 +49,7 @@ import { asyncConnect } from 'redux-async-connect';
     }
 
     componentWillReceiveProps(nextProps) {
+      console.log("chchchch");
       if (!this.props.user && nextProps.user) {
         // login
         this.props.pushState('/loginSuccess');
@@ -85,7 +82,7 @@ import { asyncConnect } from 'redux-async-connect';
               <Navbar.Brand>
                 <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
                   <div className={styles.brand}/>
-                  <span>{config.app.title} {user}</span>
+                  <span>{config.app.title} {user} { console.log("inside console") }</span>
                 </IndexLink>
               </Navbar.Brand>
               <Navbar.Toggle/>
