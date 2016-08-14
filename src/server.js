@@ -42,9 +42,6 @@ var UserModel = mongoose.model('User', userSchema);
 
 
 app.use(cookieParser()); // use cookieParser for User-Cookies
-app.get('/', function(req, res){
-    res.cookie('aha', 'express1'); //Sets aha=express1
-});
 
 /* **** Body Parser */
 var bodyParser = require('body-parser');
@@ -64,6 +61,8 @@ app.post('/registrieren', function(req, res) {
          dateObject.getTime();
 
     var uuid = uniqueId+Math.random();
+
+    res.cookie('aha', 'express1');
 
     var UserData = new UserModel({
       uuid: uuid,
