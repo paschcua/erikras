@@ -84,8 +84,8 @@ app.post('/registrieren', function(req, res) {
     });
 });
 
-app.get('/', function(req, res) {
-  res.json({ status1: 'hmmmmmmm' });
+app.post('/', function(req, res) {
+  res.json({ status1: 1111 });
 }
 
 app.use(compression());

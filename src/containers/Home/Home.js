@@ -16,17 +16,21 @@ export default class Home extends Component {
     userLoggedIn: PropTypes.string
   }
 
-  superagent
-    .get('/')
-    .end(function(err, res){
-      console.log(res.body.status1);
-    });
-
   render() {
     const styles = require('./Home.scss');
     const {userLoggedIn} = this.props;
     // require the logo image both from client and server
     const logoImage = require('./logo.png');
+
+    superagent
+    .post('/')
+    .set('Accept', 'application/json')
+    .end((error, res) => {
+      if (res.body.status1 === 1111) {
+        console.log("yippaaa");
+      }
+    });
+
     return (
       <div className={styles.home}>
         <Helmet title="Home"/>
