@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 /* { import { CounterButton } from 'components'; } */
 import config from '../../config';
 import Helmet from 'react-helmet';
-import Global from 'react-global';
 
 @connect(
   state => ({ userLoggedIn: 'wis' })
@@ -29,7 +28,6 @@ export default class Home extends Component {
             <div className={styles.logo}>
               <p>
                 <img src={logoImage}/>
-                { Global.get('FOO') }
               </p>
             </div>
             <h1>{config.app.title}</h1>

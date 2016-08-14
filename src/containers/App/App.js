@@ -12,6 +12,7 @@ import { InfoBar } from 'components';
 import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
+import Global from 'react-global';
 
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
@@ -31,7 +32,7 @@ import { asyncConnect } from 'redux-async-connect';
   state => ({user: state.auth.user}),
   {logout, pushState: push})
 
-  export default class App extends Component {
+export default class App extends Component {
     static propTypes = {
       children: PropTypes.object.isRequired,
       user: PropTypes.object,
@@ -74,6 +75,7 @@ import { asyncConnect } from 'redux-async-connect';
       const {user, loginUsername} = this.state;
       const styles = require('./App.scss');
 
+
       return (
         <div className={styles.app}>
           <Helmet {...config.app.head}/>
@@ -83,6 +85,9 @@ import { asyncConnect } from 'redux-async-connect';
                 <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
                   <div className={styles.brand}/>
                   <span>{config.app.title} {user}</span>
+                    <Global values={{
+                      FOO: 'this.props.foo2'
+                    }} />
                 </IndexLink>
               </Navbar.Brand>
               <Navbar.Toggle/>

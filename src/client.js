@@ -53,10 +53,6 @@ const component = (
   </Router>
 );
 
-<Global values={{
-  FOO: 'this.props.foo2'
-}} />
-
 ReactDOM.render(
   <Provider store={store} key="provider">
     {component}
