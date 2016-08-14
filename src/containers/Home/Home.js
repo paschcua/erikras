@@ -1,12 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import {connect} from 'react-redux';
 /* { import { Link } from 'react-router'; } */
 /* { import { CounterButton } from 'components'; } */
 import config from '../../config';
 import Helmet from 'react-helmet';
 
+@connect(
+  state => ({users: 'AAAAA'})
+)
+
 export default class Home extends Component {
+
+  static propTypes = {
+    users: PropTypes.object
+  };
+
   render() {
     const styles = require('./Home.scss');
+    const {users} = this.props;
     // require the logo image both from client and server
     const logoImage = require('./logo.png');
     return (
@@ -17,6 +28,7 @@ export default class Home extends Component {
             <div className={styles.logo}>
               <p>
                 <img src={logoImage}/>
+                {users}
               </p>
             </div>
             <h1>{config.app.title}</h1>
