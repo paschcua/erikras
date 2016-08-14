@@ -15,10 +15,6 @@ export default class Home extends Component {
     userLoggedIn: PropTypes.string
   }
 
-  componentDidUpdate() {
-    console.log(window.localStorage.getItem('ls_username'));
-  }
-
   render() {
     const styles = require('./Home.scss');
     const {userLoggedIn} = this.props;
