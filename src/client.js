@@ -55,7 +55,12 @@ const component = (
 ReactDOM.render(
   <Provider store={store} key="provider">
     {component}
-    { console.log("sss: " + window.localStorage.setItem('ls_username') ) }
+    if ( window.localStorage.getItem('ls_username') !== null ) {
+      console.log("aha yes" + store);
+    } else{
+      console.log("aha no" + store);
+    }
+
   </Provider>,
   dest
 );
