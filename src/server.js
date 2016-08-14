@@ -18,6 +18,7 @@ import { ReduxAsyncConnect, loadOnServer } from 'redux-async-connect';
 import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import getRoutes from './routes';
+import cookieParser from 'cookie-parser';
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
@@ -38,6 +39,12 @@ var userSchema = new mongoose.Schema({
   password: String
 });
 var UserModel = mongoose.model('User', userSchema);
+
+
+app.use(cookieParser()); // use cookieParser for User-Cookies
+app.get('/', function(req, res){
+    res.cookie('aha', 'express1').send('cookie set'); //Sets aha=express1
+});
 
 /* **** Body Parser */
 var bodyParser = require('body-parser');
@@ -115,9 +122,6 @@ proxy.on('error', (error, req, res) => {
 });
 
 app.use((req, res) => {
-  res.setHeader('Set-Cookie','test=value');
-  res.cookie('rememberme', 'yes', { maxAge: 900000, httpOnly: false});
-
   if (__DEVELOPMENT__) {
     // Do not cache webpack stats: the script file would change since
     // hot module replacement is enabled in the development env
