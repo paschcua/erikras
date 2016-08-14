@@ -55,6 +55,7 @@ const component = (
 ReactDOM.render(
   <Provider store={store} key="provider">
     {component}
+    { console.log("sss: " + window.localStorage) }
   </Provider>,
   dest
 );
