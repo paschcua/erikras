@@ -1,13 +1,18 @@
 import React, { Component, PropTypes } from 'react';
-import {connect} from 'react-redux';
+import { asyncConnect } from 'redux-async-connect';
 /* { import { Link } from 'react-router'; } */
 /* { import { CounterButton } from 'components'; } */
 import config from '../../config';
 import Helmet from 'react-helmet';
 
-@connect(
-  state => ({ userLoggedIn: window.localStorage.getItem('ls_username') })
-)
+@asyncConnect([{
+  promise: ({store: {dispatch, getState}}) => {
+    const promises = [];
+    promises.push(window.localStorage.getItem('ls_username'));
+
+    return Promise.all(promises);
+  }
+}])
 
 export default class Home extends Component {
 
