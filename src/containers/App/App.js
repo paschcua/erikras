@@ -90,7 +90,7 @@ export default class App extends Component {
                   <span>
                     {config.app.title} {user}
                     {loginUsername === null ?
-                      <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                      <i className="fa fa-spinner fa-pulse fa-fw"></i>
                       :
                       loginUsername
                     }
