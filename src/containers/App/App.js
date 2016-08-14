@@ -41,8 +41,7 @@ export default class App extends Component {
     };
 
     static contextTypes = {
-      store: PropTypes.object.isRequired,
-      aha: PropTypes.string
+      store: PropTypes.object.isRequired
     };
 
     state = {
@@ -70,11 +69,13 @@ export default class App extends Component {
       event.preventDefault();
       this.props.logout();
     }
+    if (window && document) {
+      console.log("hmmmm");
+    }
 
     render() {
       const {user, loginUsername} = this.state;
       const styles = require('./App.scss');
-
 
       return (
         <div className={styles.app}>
@@ -85,9 +86,6 @@ export default class App extends Component {
                 <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
                   <div className={styles.brand}/>
                   <span>{config.app.title} {user}</span>
-                    <Global values={{
-                      FOO: 'this.props.foo2'
-                    }} />
                 </IndexLink>
               </Navbar.Brand>
               <Navbar.Toggle/>
