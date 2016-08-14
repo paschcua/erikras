@@ -56,9 +56,9 @@ ReactDOM.render(
   <Provider store={store} key="provider">
     {component}
     { window.localStorage.getItem('ls_username') !== null ?
-      console.log("aha yes" + store)
+      console.log("aha yes" + JSON.stringify(store))
       :
-      console.log("aha no" + store)
+      console.log("aha no" + JSON.stringify(store))
     }
   </Provider>,
   dest
