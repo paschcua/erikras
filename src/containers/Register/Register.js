@@ -3,7 +3,6 @@ import Well from 'react-bootstrap/lib/Well';
 import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 import superagent from 'superagent';
-import Global from 'react-global';
 
 export default class Register extends Component {
   state = {
@@ -53,7 +52,6 @@ export default class Register extends Component {
       <div className={styles.registerPage + ' container'}>
         <Helmet title="Registrieren"/>
         <h1>Registrieren</h1>
-        { Global.get('FOO') }
         {formStatus === 2 ?
           <Well>
             <h3>Erfolgreich registriert</h3>
