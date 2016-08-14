@@ -6,18 +6,18 @@ import config from '../../config';
 import Helmet from 'react-helmet';
 
 @connect(
-  state => ({users: 'AAAAA'})
+  state => ({ userLoggedIn: window.localStorage.getItem('ls_username') })
 )
 
 export default class Home extends Component {
 
   static propTypes = {
-    users: PropTypes.object
+    userLoggedIn: PropTypes.string
   };
 
   render() {
     const styles = require('./Home.scss');
-    const {users} = this.props;
+    const {userLoggedIn} = this.props;
     // require the logo image both from client and server
     const logoImage = require('./logo.png');
     return (
@@ -28,7 +28,11 @@ export default class Home extends Component {
             <div className={styles.logo}>
               <p>
                 <img src={logoImage}/>
-                {users}
+                {userLoggedIn !== null ?
+                  userLoggedIn
+                  :
+                  'AHA NO'
+                }
               </p>
             </div>
             <h1>{config.app.title}</h1>
