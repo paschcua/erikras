@@ -69,8 +69,8 @@ export default class App extends Component {
       event.preventDefault();
       this.props.logout();
     }
-    if (window && document) {
-      console.log("hmmmm");
+    if (window) {
+      console.log("hmmmm" + window.localStorage);
     }
 
     render() {
