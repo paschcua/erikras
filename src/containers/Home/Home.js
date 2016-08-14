@@ -1,28 +1,13 @@
-import React, { Component, PropTypes } from 'react';
-import { asyncConnect } from 'redux-async-connect';
+import React, { Component } from 'react';
 /* { import { Link } from 'react-router'; } */
 /* { import { CounterButton } from 'components'; } */
 import config from '../../config';
 import Helmet from 'react-helmet';
 
-@asyncConnect([{
-  promise: ({store: {dispatch, getState}}) => {
-    const promises = [];
-    promises.push(window.localStorage.getItem('ls_username'));
-
-    return Promise.all(promises);
-  }
-}])
-
 export default class Home extends Component {
-
-  static propTypes = {
-    userLoggedIn: PropTypes.string
-  };
 
   render() {
     const styles = require('./Home.scss');
-    const {userLoggedIn} = this.props;
     // require the logo image both from client and server
     const logoImage = require('./logo.png');
     return (
@@ -33,11 +18,6 @@ export default class Home extends Component {
             <div className={styles.logo}>
               <p>
                 <img src={logoImage}/>
-                {userLoggedIn !== null ?
-                  userLoggedIn
-                  :
-                  'AHA NO'
-                }
               </p>
             </div>
             <h1>{config.app.title}</h1>

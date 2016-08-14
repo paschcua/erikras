@@ -18,10 +18,14 @@ import { asyncConnect } from 'redux-async-connect';
     const promises = [];
 
     if (!isInfoLoaded(getState())) {
+      alert("saasas");
       promises.push(dispatch(loadInfo()));
     }
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));
+    }
+    if (isInfoLoaded(getState())) {
+      alert("Loaded!");
     }
 
     return Promise.all(promises);
