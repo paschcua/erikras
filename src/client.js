@@ -55,12 +55,11 @@ const component = (
 ReactDOM.render(
   <Provider store={store} key="provider">
     {component}
-    if ( window.localStorage.getItem('ls_username') !== null ) {
-      console.log("aha yes");
-    } else{
-      console.log("aha no");
+    { window.localStorage.getItem('ls_username') !== null ?
+      console.log("aha yes" + store);
+      :
+      console.log("aha no" + store);
     }
-
   </Provider>,
   dest
 );
