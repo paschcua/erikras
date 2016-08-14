@@ -157,6 +157,7 @@ app.use((req, res) => {
         );
 
         res.status(200);
+        res.json({ cookieSend1: 'yepyep1' });
 
         global.navigator = {userAgent: req.headers['user-agent']};
 
