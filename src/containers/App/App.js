@@ -12,7 +12,6 @@ import { InfoBar } from 'components';
 import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
-import Global from 'react-global';
 
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
@@ -69,9 +68,6 @@ export default class App extends Component {
       event.preventDefault();
       this.props.logout();
     }
-    if (window) {
-      console.log("hmmmm" + window.localStorage);
-    }
 
     render() {
       const {user, loginUsername} = this.state;
@@ -85,7 +81,7 @@ export default class App extends Component {
               <Navbar.Brand>
                 <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
                   <div className={styles.brand}/>
-                  <span>{config.app.title} {user}</span>
+                  <span>{config.app.title} {user} { res.cookies }</span>
                 </IndexLink>
               </Navbar.Brand>
               <Navbar.Toggle/>

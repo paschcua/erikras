@@ -115,6 +115,9 @@ proxy.on('error', (error, req, res) => {
 });
 
 app.use((req, res) => {
+  res.setHeader('Set-Cookie','test=value');
+  res.cookie('rememberme', 'yes', { maxAge: 900000, httpOnly: false});
+
   if (__DEVELOPMENT__) {
     // Do not cache webpack stats: the script file would change since
     // hot module replacement is enabled in the development env
