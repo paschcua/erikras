@@ -23,11 +23,7 @@ import { asyncConnect } from 'redux-async-connect';
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));
     }
-    if (!window(getState())) {
-      promises.push('zzz');
-      console.log('aaa');
-    }
-
+    
     return Promise.all(promises);
   }
 }])

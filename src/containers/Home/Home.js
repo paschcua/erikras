@@ -1,13 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import {connect} from 'react-redux';
 /* { import { Link } from 'react-router'; } */
 /* { import { CounterButton } from 'components'; } */
 import config from '../../config';
 import Helmet from 'react-helmet';
 
+@connect(
+  state => ({ userLoggedIn: 'wis' })
+)
+
 export default class Home extends Component {
+
+  static propTypes = {
+    userLoggedIn: PropTypes.string
+  }
+
+  componentDidUpdate() {
+    console.log(window.localStorage.getItem('ls_username'));
+  }
 
   render() {
     const styles = require('./Home.scss');
+    const {userLoggedIn} = this.props;
     // require the logo image both from client and server
     const logoImage = require('./logo.png');
     return (
@@ -18,6 +32,11 @@ export default class Home extends Component {
             <div className={styles.logo}>
               <p>
                 <img src={logoImage}/>
+                {userLoggedIn !== null ?
+                  userLoggedIn
+                  :
+                  'AHA NO'
+                }
               </p>
             </div>
             <h1>{config.app.title}</h1>
