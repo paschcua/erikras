@@ -32,7 +32,6 @@ import { asyncConnect } from 'redux-async-connect';
   }
 }])
 @connect(
-  console.log("aha 2");
   state => ({user: state.auth.user}),
   {logout, pushState: push})
 
