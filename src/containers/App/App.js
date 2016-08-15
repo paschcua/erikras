@@ -104,9 +104,7 @@ export default class App extends Component {
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
                 {loginUsername !== null ?
-                  <LinkContainer to="/community">
                     <i className="fa fa-user" aria-hidden="true"></i> <span dangerouslySetInnerHTML={{__html: loginUsername}}></span>
-                  </LinkContainer>
                   : null
                 }
               </Nav>
