@@ -86,10 +86,6 @@ export default class App extends Component {
                   <div className={styles.brand}/>
                   <span>
                     {config.app.title}
-                    {loginUsername === null ?
-                      loginUsername
-                      : null
-                    }
                   </span>
                 </IndexLink>
               </Navbar.Brand>
@@ -107,6 +103,12 @@ export default class App extends Component {
                 <LinkContainer to="/kontakt">
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
+                {loginUsername !== null ?
+                  <LinkContainer to="/community">
+                    <i className="fa fa-user" aria-hidden="true"></i> loginUsername
+                  </LinkContainer>
+                  : null
+                }
               </Nav>
             </Navbar.Collapse>
           </Navbar>
