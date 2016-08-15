@@ -12,6 +12,7 @@ import { InfoBar } from 'components';
 import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
+import cookie from 'react-cookie';
 
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
@@ -45,12 +46,12 @@ export default class App extends Component {
 
     state = {
       navExpanded: false,
-      loginUsername: false
+      loginUsername: cookie.load('userId')
     }
 
     componentDidMount() {
         setTimeout(() => {
-          this.setState({ loginUsername: window.localStorage.getItem('ls_username') });
+          cookie.save('userId', window.localStorage.getItem('ls_username'), { path: '/' });
         }, 1500);
     }
 
