@@ -45,7 +45,7 @@ export default class App extends Component {
 
     state = {
       navExpanded: false,
-      loginUsername: null
+      loginUsername: false
     }
 
     componentDidMount() {
@@ -89,10 +89,10 @@ export default class App extends Component {
                   <div className={styles.brand}/>
                   <span>
                     {config.app.title} {user}
-                    {loginUsername === null ?
-                      <i className="fa fa-spinner fa-pulse fa-1 fa-fw"></i>
-                      :
-                      loginUsername
+                    {loginUsername === false ?
+                      <i className="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
+                      : (loginUsername === null) ? 'not reg.'
+                      : loginUsername
                     }
                   </span>
                 </IndexLink>
