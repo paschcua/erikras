@@ -46,13 +46,9 @@ export default class App extends Component {
 
     state = {
       navExpanded: false,
-      loginUsername: cookie.load('userId')
-    }
-
-    componentDidMount() {
-        setTimeout(() => {
-          cookie.save('userId', window.localStorage.getItem('ls_username'), { path: '/' });
-        }, 1500);
+      loginUsername: cookie.load('ck_username'),
+      loginPw: cookie.load('ck_pw'),
+      loginUuid: cookie.load('ck_uuid')
     }
 
     componentWillReceiveProps(nextProps) {
@@ -77,7 +73,7 @@ export default class App extends Component {
     }
 
     render() {
-      const {user, loginUsername} = this.state;
+      const {loginUsername} = this.state;
       const styles = require('./App.scss');
 
       return (
@@ -89,11 +85,10 @@ export default class App extends Component {
                 <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
                   <div className={styles.brand}/>
                   <span>
-                    {config.app.title} {user}
-                    {loginUsername === false ?
-                      <i className="fa fa-spinner fa-pulse fa-lg fa-fw"></i>
-                      : (loginUsername === null) ? 'not reg.'
-                      : loginUsername
+                    {config.app.title}
+                    {loginUsername === null ?
+                      loginUsername
+                      : null
                     }
                   </span>
                 </IndexLink>

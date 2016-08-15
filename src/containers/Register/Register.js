@@ -3,6 +3,7 @@ import Well from 'react-bootstrap/lib/Well';
 import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 import superagent from 'superagent';
+import cookie from 'react-cookie';
 
 export default class Register extends Component {
   state = {
@@ -27,9 +28,9 @@ export default class Register extends Component {
           if (res.body.status === 1) {
             this.setState({formStatus: 2});
             this.setState({formMsg: 'Die Registrierung war erfolgreich. Herzlich Willkommen bei der Swiss React Community <strong>' + inputUsername + '</strong>!'});
-            window.localStorage.setItem('ls_username', inputUsername);
-            window.localStorage.setItem('ls_pw', inputPassword);
-            window.localStorage.setItem('ls_uuid', res.body.uuid);
+            cookie.save('ck_username', inputUsername);
+            cookie.save('ck_pw', inputPassword);
+            cookie.save('ck_uuid', res.body.uuid);
           } else {
             this.setState({formStatus: 1});
             this.setState({formMsg: 'Dieser Username exisitiert bereits, wählen Sie bitte einen anderen.'});
