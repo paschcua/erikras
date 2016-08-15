@@ -105,7 +105,7 @@ export default class App extends Component {
                 </LinkContainer>
                 {loginUsername !== null ?
                   <LinkContainer to="/community">
-                    <i className="fa fa-user" aria-hidden="true"></i> loginUsername
+                    <i className="fa fa-user" aria-hidden="true"></i> <span dangerouslySetInnerHTML={{__html: loginUsername}}></span>
                   </LinkContainer>
                   : null
                 }
