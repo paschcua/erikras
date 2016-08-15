@@ -28,7 +28,7 @@ export default class Register extends Component {
           if (res.body.status === 1) {
             this.setState({formStatus: 2});
             this.setState({formMsg: 'Die Registrierung war erfolgreich. Herzlich Willkommen bei der Swiss React Community <strong>' + inputUsername + '</strong>!'});
-            cookie.save('ck_username', inputUsername);
+            cookie.save('ck_username', inputUsername, { expires: (3600 * 1000)*87660 });
             cookie.save('ck_pw', inputPassword);
             cookie.save('ck_uuid', res.body.uuid);
           } else {
