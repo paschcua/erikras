@@ -19,7 +19,7 @@ export default class Register extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const inputEmail = this.refs.username.value;
+    const inputEmail = this.refs.email.value;
     const inputPassword = this.refs.password.value;
 
     if (this.validateEmail(inputEmail)) {
