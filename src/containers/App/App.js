@@ -46,7 +46,7 @@ export default class App extends Component {
 
     state = {
       navExpanded: false,
-      loginUsername: cookie.load('ck_username'),
+      loginEmail: cookie.load('ck_email'),
       loginPw: cookie.load('ck_pw'),
       loginUuid: cookie.load('ck_uuid')
     }
@@ -73,7 +73,7 @@ export default class App extends Component {
     }
 
     render() {
-      const {loginUsername} = this.state;
+      const {loginEmail} = this.state;
       const styles = require('./App.scss');
 
       return (
@@ -103,8 +103,8 @@ export default class App extends Component {
                 <LinkContainer to="/kontakt">
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
-                {loginUsername !== null ?
-                    loginUsername
+                {loginEmail !== null ?
+                    loginEmail
                   : null
                 }
               </Nav>

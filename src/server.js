@@ -35,7 +35,7 @@ var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI);
 var userSchema = new mongoose.Schema({
   uuid: String,
-  username: String,
+  email: String,
   password: String
 });
 var UserModel = mongoose.model('User', userSchema);
@@ -50,7 +50,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 /* **** Get POST Form data */
 app.post('/registrieren', function(req, res) {
-    var username = req.body.username;
+    var email = req.body.email;
     var password = req.body.password;
 
     var dateObject = new Date();
@@ -64,11 +64,11 @@ app.post('/registrieren', function(req, res) {
 
     var UserData = new UserModel({
       uuid: uuid,
-      username: username,
+      email: email,
       password: password
     });
 
-    UserModel.findOne({ username: username }, 'username', function(error, result){
+    UserModel.findOne({ email: email }, 'email', function(error, result){
         if(error){
             res.json(error);
         }
