@@ -11,24 +11,35 @@ export default class Register extends Component {
     formMsg: ''
   }
 
+  validateEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const inputUsername = this.refs.username.value;
+    const inputEmail = this.refs.username.value;
     const inputPassword = this.refs.password.value;
 
-    if (inputUsername.length > 2 && inputUsername.length < 40) {
+    if(this.validateEmail(inputEmail)){
+      console.log("Email is OK");
+    }else{
+      console.log("Email is NOT OK");
+    }
+
+    if (inputEmail.length > 4 && inputEmail.length < 60) {
       if (inputPassword.length > 2 && inputPassword.length < 40) {
         superagent
         .post('/registrieren')
         .type('form')
-        .send({ username: inputUsername, password: inputPassword })
+        .send({ username: inputEmail, password: inputPassword })
         .set('Accept', 'application/json')
         .end((error, res) => {
           if (res.body.status === 1) {
             this.setState({formStatus: 2});
-            this.setState({formMsg: 'Die Registrierung war erfolgreich. Herzlich Willkommen bei der Swiss React Community <strong>' + inputUsername + '</strong>!'});
-            cookie.save('ck_username', inputUsername, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
+            this.setState({formMsg: 'Die Registrierung war erfolgreich. Herzlich Willkommen bei der Swiss React Community <strong>' + inputEmail + '</strong>!'});
+            cookie.save('ck_username', inputEmail, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
             cookie.save('ck_pw', inputPassword);
             cookie.save('ck_uuid', res.body.uuid);
           } else {
@@ -42,7 +53,7 @@ export default class Register extends Component {
       }
     } else {
       this.setState({formStatus: 1});
-      this.setState({formMsg: 'Der Username muss min. 3 und max. 40 Zeichen enthalten!'});
+      this.setState({formMsg: 'Die Email-Adresse muss min. 5 und max. 60 Zeichen enthalten!'});
     }
   }
 
