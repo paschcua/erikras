@@ -69,9 +69,9 @@ export default class Register extends Component {
   render() {
     const { getData } = this.props;
     console.log('aaa1: '+JSON.stringify(getData));
-    let mappedData = {};
     if (getData.email !== null) {
-      mappedData = getData.map(getDataElement => <li>{getDataElement.text}</li>);
+      const mappedData = getData.map(getDataElement => <li>{getDataElement.text}</li>);
+      console.log('aaa1.2: '+JSON.stringify(mappedData));
     }
     console.log('aaa2: '+JSON.stringify(mappedData));
 
@@ -81,10 +81,6 @@ export default class Register extends Component {
       <div className={styles.registerPage + ' container'}>
         <Helmet title="Registrieren"/>
         <h1>Registrieren</h1>
-        <div>
-          oha
-          <ul>{mappedData}</ul>
-        </div>
         {formStatus === 2 ?
           <Well>
             <h3>Erfolgreich registriert</h3>
