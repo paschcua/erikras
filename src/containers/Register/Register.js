@@ -69,9 +69,10 @@ export default class Register extends Component {
   render() {
     const { getData } = this.props;
     console.log('aaa1: '+JSON.stringify(getData));
-
-    const mappedData = getData.map(getDataElement => <li>{getDataElement.text}</li>);
-
+    let mappedData = {};
+    if (getData) {
+      mappedData = getData.map(getDataElement => <li>{getDataElement.text}</li>);
+    }
     console.log('aaa2: '+JSON.stringify(mappedData));
 
     const {formStatus, formMsg} = this.state;
