@@ -4,6 +4,16 @@ import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 import superagent from 'superagent';
 import cookie from 'react-cookie';
+import { connect } from 'react-redux';
+
+import { fetchItFn } from '../../redux/actions/getDataActions';
+
+
+@connect((store) => {
+  return {
+    getData: store.getData.user,
+  };
+})
 
 export default class Register extends Component {
   state = {
@@ -33,9 +43,13 @@ export default class Register extends Component {
           if (res.body.status === 1) {
             this.setState({formStatus: 2});
             this.setState({formMsg: 'Die Registrierung war erfolgreich. Herzlich Willkommen bei der Swiss React Community <strong>' + inputEmail + '</strong>!'});
+
+            this.props.dispatch(fetchItFn(true, inputEmail, inputPassword, res.body.uuid));
+
             cookie.save('ck_email', inputEmail, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
             cookie.save('ck_pw', inputPassword);
             cookie.save('ck_uuid', res.body.uuid);
+
           } else {
             this.setState({formStatus: 1});
             this.setState({formMsg: 'Diese Email-Adresse wurde bereits registriert, wählen Sie bitte eine andere.'});
@@ -52,12 +66,21 @@ export default class Register extends Component {
   }
 
   render() {
+    const { getData } = this.props;
+    let mappedData = null;
+    if (!getData) {
+      mappedData = getData.map(getDataElement => <li>{getDataElement.text}</li>);
+    }
+
     const {formStatus, formMsg} = this.state;
     const styles = require('./Register.scss');
     return (
       <div className={styles.registerPage + ' container'}>
         <Helmet title="Registrieren"/>
         <h1>Registrieren</h1>
+        <div>
+          <ul>{mappedData}</ul>
+        </div>
         {formStatus === 2 ?
           <Well>
             <h3>Erfolgreich registriert</h3>
