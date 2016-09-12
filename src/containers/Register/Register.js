@@ -6,6 +6,8 @@ import superagent from 'superagent';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
 
+import { fetchItFn } from '../../redux/actions/getDataActions';
+
 @connect((store) => {
   console.log('hmm store: '+JSON.stringify(store.getData.user));
   return {
