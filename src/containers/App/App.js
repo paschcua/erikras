@@ -12,7 +12,6 @@ import { InfoBar } from 'components';
 import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
-import cookie from 'react-cookie';
 
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
@@ -45,10 +44,7 @@ export default class App extends Component {
     };
 
     state = {
-      navExpanded: false,
-      loginEmail: cookie.load('ck_email'),
-      loginPw: cookie.load('ck_pw'),
-      loginUuid: cookie.load('ck_uuid')
+      navExpanded: false
     }
 
     componentWillReceiveProps(nextProps) {
@@ -73,7 +69,6 @@ export default class App extends Component {
     }
 
     render() {
-      const {loginEmail} = this.state;
       const styles = require('./App.scss');
 
       return (
@@ -103,10 +98,6 @@ export default class App extends Component {
                 <LinkContainer to="/kontakt">
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
-                {loginEmail !== null ?
-                    loginEmail
-                  : null
-                }
               </Nav>
             </Navbar.Collapse>
           </Navbar>
