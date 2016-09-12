@@ -70,7 +70,7 @@ export default class Register extends Component {
     const { getData } = this.props;
     console.log('aaa1: '+JSON.stringify(getData));
     let mappedData = {};
-    if (getData) {
+    if (getData.email !== null) {
       mappedData = getData.map(getDataElement => <li>{getDataElement.text}</li>);
     }
     console.log('aaa2: '+JSON.stringify(mappedData));
