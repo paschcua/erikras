@@ -70,10 +70,10 @@ export default class Register extends Component {
     const { getData } = this.props;
     console.log('aaa1: '+JSON.stringify(getData));
     if (getData.email !== null) {
+      console.log("getData.email TRUE");
       const mappedData = getData.map(getDataElement => <li>{getDataElement.text}</li>);
       console.log('aaa1.2: '+JSON.stringify(mappedData));
-    }
-    console.log('aaa2: '+JSON.stringify(mappedData));
+    }else{console.log("getData.email FALSE");}
 
     const {formStatus, formMsg} = this.state;
     const styles = require('./Register.scss');
