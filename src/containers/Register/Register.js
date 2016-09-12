@@ -10,6 +10,7 @@ import { fetchItFn } from '../../redux/actions/getDataActions';
 
 
 @connect((store) => {
+  console.log('hmm store: '+store.getData.user);
   return {
     getData: store.getData.user,
   };
@@ -67,10 +68,12 @@ export default class Register extends Component {
 
   render() {
     const { getData } = this.props;
+    console.log('aaa1 '+getData);
     let mappedData = null;
     if (!getData) {
       mappedData = getData.map(getDataElement => <li>{getDataElement.text}</li>);
     }
+    console.log('aaa2 '+mappedData);
 
     const {formStatus, formMsg} = this.state;
     const styles = require('./Register.scss');
@@ -79,6 +82,7 @@ export default class Register extends Component {
         <Helmet title="Registrieren"/>
         <h1>Registrieren</h1>
         <div>
+          oha
           <ul>{mappedData}</ul>
         </div>
         {formStatus === 2 ?
