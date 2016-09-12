@@ -6,9 +6,6 @@ import superagent from 'superagent';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
 
-import { fetchItFn } from '../../redux/actions/getDataActions';
-
-
 @connect((store) => {
   console.log('hmm store: '+JSON.stringify(store.getData.user));
   return {
@@ -68,12 +65,6 @@ export default class Register extends Component {
 
   render() {
     const { getData } = this.props;
-    console.log('aaa1: '+JSON.stringify(getData));
-    if (getData.email !== null) {
-      console.log("getData.email TRUE");
-      const mappedData = getData.map(getDataElement => <li>{getDataElement.text}</li>);
-      console.log('aaa1.2: '+JSON.stringify(mappedData));
-    }else{console.log("getData.email FALSE");}
 
     const {formStatus, formMsg} = this.state;
     const styles = require('./Register.scss');
@@ -81,6 +72,8 @@ export default class Register extends Component {
       <div className={styles.registerPage + ' container'}>
         <Helmet title="Registrieren"/>
         <h1>Registrieren</h1>
+        oha:
+        {getData.email}
         {formStatus === 2 ?
           <Well>
             <h3>Erfolgreich registriert</h3>
