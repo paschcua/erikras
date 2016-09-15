@@ -5,9 +5,14 @@ import {connect} from 'react-redux';
 import config from '../../config';
 import Helmet from 'react-helmet';
 
-@connect(
+/*@connect(
   state => ({ userLoggedIn: 'wis' })
-)
+)*/
+@connect((store) => {
+  return {
+    registerNewUserState: store.registerNewUser.user,
+  };
+})
 
 export default class Home extends Component {
 
@@ -17,7 +22,7 @@ export default class Home extends Component {
 
   render() {
     const styles = require('./Home.scss');
-    const {userLoggedIn} = this.props;
+    const {registerNewUserState} = this.props;
     // require the logo image both from client and server
     const logoImage = require('./logo.png');
 
@@ -46,11 +51,11 @@ export default class Home extends Component {
           </div>
           } */
           }
-
           <h3>Neuste Blogeinträge</h3>
 
           <h2>
-            React-Applikation produktiv auf Heroku publizieren (Node.js, Express.js, Heroku)
+            React-Applikation produktiv auf Heroku publizieren (Node.js, Express.js, Heroku)<br />
+            {registerNewUserState.email}
           </h2>
 
         </div>

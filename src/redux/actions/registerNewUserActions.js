@@ -1,9 +1,8 @@
-export function fetchItFn(fetchit, email, pw, uuid) {
+export function registerNewUser(fetchit, email, pw, uuid) {
   return function(dispatch) {
     dispatch({
-      type: 'ADD_USER_MAN_FULFILLED',
+      type: 'REGISTER_NEW_USER_FULFILLED',
       payload: {
-        fetchit: fetchit,
         email: email,
         pw: pw,
         uuid: uuid,

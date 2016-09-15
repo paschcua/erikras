@@ -4,9 +4,8 @@ import cookie from 'react-cookie';
 import { connect } from 'react-redux';
 
 @connect((store) => {
-  console.log('hmm store: '+JSON.stringify(store.getData.user));
   return {
-    getData: store.getData.user,
+    registerNewUserState: store.registerNewUser.user,
   };
 })
 
@@ -20,6 +19,7 @@ export default class Community extends Component {
 
   render() {
     const {loginEmail} = this.state;
+    const { registerNewUserState } = this.props;
 
     return (
       <div className="container">
@@ -29,6 +29,7 @@ export default class Community extends Component {
               loginEmail
             : null
           }
+          {registerNewUserState.email}
         <p>Community will open soon...</p>
       </div>
     );

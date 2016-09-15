@@ -6,12 +6,11 @@ import superagent from 'superagent';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
 
-import { fetchItFn } from '../../redux/actions/getDataActions';
+import { registerNewUser } from '../../redux/actions/registerNewUserActions';
 
 @connect((store) => {
-  console.log('hmm store: '+JSON.stringify(store.getData.user));
   return {
-    getData: store.getData.user,
+    registerNewUserState: store.registerNewUser.user,
   };
 })
 
@@ -44,7 +43,7 @@ export default class Register extends Component {
             this.setState({formStatus: 2});
             this.setState({formMsg: 'Die Registrierung war erfolgreich. Herzlich Willkommen bei der Swiss React Community <strong>' + inputEmail + '</strong>!'});
 
-            this.props.dispatch(fetchItFn(true, inputEmail, inputPassword, res.body.uuid));
+            this.props.dispatch(registerNewUser(true, inputEmail, inputPassword, res.body.uuid));
 
             cookie.save('ck_email', inputEmail, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
             cookie.save('ck_pw', inputPassword);
@@ -66,7 +65,7 @@ export default class Register extends Component {
   }
 
   render() {
-    const { getData } = this.props;
+    const { registerNewUserState } = this.props;
 
     const {formStatus, formMsg} = this.state;
     const styles = require('./Register.scss');
@@ -74,8 +73,7 @@ export default class Register extends Component {
       <div className={styles.registerPage + ' container'}>
         <Helmet title="Registrieren"/>
         <h1>Registrieren</h1>
-        oha:
-        {getData.email}
+        {registerNewUserState.email}
         {formStatus === 2 ?
           <Well>
             <h3>Erfolgreich registriert</h3>
