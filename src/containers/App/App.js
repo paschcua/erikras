@@ -12,6 +12,7 @@ import { InfoBar } from 'components';
 import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
+import cookie from 'react-cookie';
 
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
@@ -27,9 +28,12 @@ import { asyncConnect } from 'redux-async-connect';
     return Promise.all(promises);
   }
 }])
-@connect(
-  state => ({user: state.auth.user}),
-  {logout, pushState: push})
+
+@connect((store) => {
+  return {
+    registerNewUserState: store.registerNewUser.user,
+  };
+})
 
 export default class App extends Component {
     static propTypes = {
@@ -44,8 +48,10 @@ export default class App extends Component {
     };
 
     state = {
-      navExpanded: false
+      navExpanded: false,
+      loginEmail: cookie.load('ck_email')
     }
+
 
     componentWillReceiveProps(nextProps) {
       if (!this.props.user && nextProps.user) {
@@ -70,6 +76,7 @@ export default class App extends Component {
 
     render() {
       const styles = require('./App.scss');
+      const { registerNewUserState } = this.props;
 
       return (
         <div className={styles.app}>
@@ -92,9 +99,11 @@ export default class App extends Component {
                 <LinkContainer to="/community">
                   <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
                 </LinkContainer>
+                {!registerNewUserState && !this.state.loginEmail &&
                 <LinkContainer to="/registrieren">
                   <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
                 </LinkContainer>
+                }
                 <LinkContainer to="/kontakt">
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
