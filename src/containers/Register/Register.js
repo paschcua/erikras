@@ -5,7 +5,6 @@ import Helmet from 'react-helmet';
 import superagent from 'superagent';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
-import nodemailer from 'nodemailer';
 
 import { registerNewUser } from '../../redux/actions/registerNewUserActions';
 
@@ -42,23 +41,20 @@ export default class Register extends Component {
         .end((error, res) => {
           if (res.body.status === 1) {
 
-            // create reusable transporter object using the default SMTP transport
-            let transporter = nodemailer.createTransport('smtps://paschcua%40gmail.com:cobra1985@smtp.gmail.com');
-
-            // setup e-mail data with unicode symbols
-            let mailOptions = {
-                to: 'paschcua@hispeed.ch', // list of receivers
-                subject: 'Hello from SwissReact.ch', // Subject line
-                text: 'Hello world Swiss React Confirmation', // plaintext body
-                html: '<b>Hello <italic>world text html here</italic></b>' // html body
-            };
-
-            // send mail with defined transport object
+            var nodemailer = require('nodemailer');
+            var transporter = nodemailer.createTransport('smtps://paschcua%40gmail.com:cobra1985@smtp.gmail.com');
+            var mailOptions = {
+                to: 'paschcua@hispeed.ch',
+                subject: 'Hello from SwissReact.ch',
+                text: 'Hello world Swiss React Confirmation',
+                html: '<b>Hello <italic>world text html here</italic></b>'
+            }
             transporter.sendMail(mailOptions, function(error, info){
                 if(error){
                     return console.log(error);
                 }
-            });
+                console.log('Message sent: ' + info.response);
+            })
 
             this.setState({formStatus: 2});
             this.setState({formMsg: 'Die Registrierung war erfolgreich. Herzlich Willkommen bei der Swiss React Community <strong>' + inputEmail + '</strong>!'});
