@@ -5,8 +5,10 @@ import Helmet from 'react-helmet';
 import superagent from 'superagent';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
+import nodemailer from 'nodemailer';
 
 import { registerNewUser } from '../../redux/actions/registerNewUserActions';
+
 
 @connect((store) => {
   return {
@@ -41,7 +43,6 @@ export default class Register extends Component {
         .end((error, res) => {
           if (res.body.status === 1) {
 
-            var nodemailer = require('nodemailer');
             var transporter = nodemailer.createTransport('smtps://paschcua%40gmail.com:cobra1985@smtp.gmail.com');
             var mailOptions = {
                 to: 'paschcua@hispeed.ch',
