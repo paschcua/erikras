@@ -76,7 +76,29 @@ app.post('/registrieren', function(req, res) {
             UserData.save(function (err) {
               if (err) return console.log(err);
             });
-            res.json({ status: 1, uuid: uuid });
+            
+            /* SEND EMAIL WITH Nodemailer */
+            var nodemailer = require('nodemailer');
+
+            // create reusable transporter object using the default SMTP transport
+            var transporter = nodemailer.createTransport('smtps://user%40gmail.com:pass@smtp.gmail.com');
+
+            // setup e-mail data with unicode symbols
+            var mailOptions = {
+                from: '"Fred Foo 👥" <foo@blurdybloop.com>', // sender address
+                to: 'paschcua@hispeed.ch', // list of receivers
+                subject: 'Hello ✔', // Subject line
+                text: 'Hello world 🐴', // plaintext body
+                html: '<b>Hello <italic>world</italic> 🐴</b>' // html body
+            };
+
+            // send mail with defined transport object
+            transporter.sendMail(mailOptions, function(error, info){
+                if(error){
+                    return console.log(error);
+                }
+                res.json({ status: 1, uuid: uuid });
+            });
         }
         else{
             res.json({ status: 0 });
