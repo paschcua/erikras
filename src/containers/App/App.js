@@ -77,6 +77,7 @@ export default class App extends Component {
     render() {
       const styles = require('./App.scss');
       const { registerNewUserState } = this.props;
+      console.log("a: "+registerNewUserState+", b: "+this.state.loginEmail);
 
       return (
         <div className={styles.app}>
@@ -99,10 +100,11 @@ export default class App extends Component {
                 <LinkContainer to="/community">
                   <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
                 </LinkContainer>
-                {!registerNewUserState && !this.state.loginEmail &&
+                {registerNewUserState === null || this.state.loginEmail === null ?
                 <LinkContainer to="/registrieren">
                   <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
                 </LinkContainer>
+                : null
                 }
                 <LinkContainer to="/kontakt">
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
