@@ -20,6 +20,16 @@ import {Provider} from 'react-redux';
 import getRoutes from './routes';
 import cookieParser from 'cookie-parser';
 
+var nodemailer = require("nodemailer");
+
+var smtpTransport = nodemailer.createTransport("SMTP",{
+    service: "Gmail",
+    auth: {
+        user: "paschcua@gmail.com",
+        pass: "cobra1985"
+    }
+});
+
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
 const app = new Express();
@@ -50,6 +60,23 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 /* **** Get POST Form data */
 app.post('/registrieren', function(req, res) {
+
+  var mailOptions={
+     to : 'paschcua@hispeed.ch',
+     subject: 'Hello from SwissReact.ch',
+     text: 'Hello world Swiss React Confirmation'
+  }
+  console.log(mailOptions);
+  smtpTransport.sendMail(mailOptions, function(error, response){
+    if(error){
+      console.log(error);
+      res.end("error");
+    }else{
+      console.log("Message sent: " + response.message);
+      res.end("sent");
+    }
+  });
+
     var email = req.body.email;
     var password = req.body.password;
 

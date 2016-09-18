@@ -5,10 +5,8 @@ import Helmet from 'react-helmet';
 import superagent from 'superagent';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
-import nodemailer from 'nodemailer';
 
 import { registerNewUser } from '../../redux/actions/registerNewUserActions';
-
 
 @connect((store) => {
   return {
@@ -42,21 +40,6 @@ export default class Register extends Component {
         .set('Accept', 'application/json')
         .end((error, res) => {
           if (res.body.status === 1) {
-
-            var transporter = nodemailer.createTransport('smtps://paschcua%40gmail.com:cobra1985@smtp.gmail.com');
-            var mailOptions = {
-                to: 'paschcua@hispeed.ch',
-                subject: 'Hello from SwissReact.ch',
-                text: 'Hello world Swiss React Confirmation',
-                html: '<b>Hello <italic>world text html here</italic></b>'
-            }
-            transporter.sendMail(mailOptions, function(error, info){
-                if(error){
-                    return console.log(error);
-                }
-                console.log('Message sent: ' + info.response);
-            })
-
             this.setState({formStatus: 2});
             this.setState({formMsg: 'Die Registrierung war erfolgreich. Herzlich Willkommen bei der Swiss React Community <strong>' + inputEmail + '</strong>!'});
 
