@@ -83,7 +83,6 @@ app.post('/registrieren', function(req, res) {
 
             // setup e-mail data with unicode symbols
             var mailOptions = {
-                from: '"Swiss React Community" <noreply@swiss-react.ch>', // sender address
                 to: email, // list of receivers
                 subject: 'Willkommen bei der Swiss React Community', // Subject line
                 text: 'Registrierung bestätigen', // plaintext body
