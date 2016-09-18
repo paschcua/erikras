@@ -22,13 +22,13 @@ import cookieParser from 'cookie-parser';
 
 var nodemailer = require("nodemailer");
 
-var smtpTransport = nodemailer.createTransport("SMTP",{
+const smtpTransport = nodemailer.createTransport("SMTP", {
     service: "Gmail",
     auth: {
         user: "paschcua@gmail.com",
         pass: "cobra1985"
     }
-});
+})
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
@@ -66,16 +66,14 @@ app.post('/registrieren', function(req, res) {
      subject: 'Hello from SwissReact.ch',
      text: 'Hello world Swiss React Confirmation'
   }
-  console.log(mailOptions);
   smtpTransport.sendMail(mailOptions, function(error, response){
-    if(error){
-      console.log(error);
-      res.end("error");
-    }else{
-      console.log("Message sent: " + response.message);
-      res.end("sent");
+    if(error) {
+      res.end("error")
     }
-  });
+    else {
+      res.end("sent")
+    }
+  })
 
     var email = req.body.email;
     var password = req.body.password;
