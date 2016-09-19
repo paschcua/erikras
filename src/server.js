@@ -21,9 +21,6 @@ import getRoutes from './routes';
 import cookieParser from 'cookie-parser';
 import nodemailer from 'nodemailer';
 
-// create reusable transporter object using the default SMTP transport
-var transporter = nodemailer.createTransport('smtps://paschcua%40gmail.com:cobra1985@smtp.gmail.com');
-
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
 const app = new Express();
@@ -81,6 +78,8 @@ app.post('/registrieren', function(req, res) {
               if (err) return console.log(err);
             });
 
+            // create reusable transporter object using the default SMTP transport
+            var transporter = nodemailer.createTransport('smtps://paschcua%40gmail.com:cobra1985@smtp.gmail.com');
             // setup e-mail data with unicode symbols
             var mailOptions = {
                 to: email, // list of receivers
