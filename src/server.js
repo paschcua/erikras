@@ -73,15 +73,6 @@ app.post('/registrieren', function(req, res) {
        smtpTransport.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
     });
 
-
-    // send mail with defined transport object
-    transporter.sendMail(mailOptions, function(error, info){
-        if(error){
-            return console.log(error);
-        }
-        console.log('Message sent: ' + info.response);
-    });
-
     var email = req.body.email;
     var password = req.body.password;
 
