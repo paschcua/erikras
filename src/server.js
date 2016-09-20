@@ -22,21 +22,14 @@ import cookieParser from 'cookie-parser';
 
 var nodemailer = require('nodemailer');
 
-var transporter = nodemailer.createTransport('smtps://paschcua%40gmail.com:cobra1985@smtp.gmail.com');
+var transporter = nodemailer.createTransport('smtps://paschcua%40hispeed.ch:Cobra1985.1@smtp.hispeed.ch');
 
 var mailOptions = {
-    to: 'bar@blurdybloop.com, baz@blurdybloop.com',
+    to: 'paschcua@gmail.com',
     subject: 'Hello ✔',
     text: 'Hello world 🐴',
     html: '<b>Hello world 🐴</b>'
 };
-
-transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        return console.log(error);
-    }
-    console.log('Message sent: ' + info.response);
-});
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
