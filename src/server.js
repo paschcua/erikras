@@ -51,15 +51,12 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 /* **** Get POST Form data */
 app.post('/registrieren', function(req, res) {
-    var email = req.body.email;
-    var password = req.body.password;
-
 
     // create reusable transporter object using the default SMTP transport
     var transporter = nodemailer.createTransport('smtps://paschcua%40gmail.com:cobra1985@smtp.gmail.com');
     // setup e-mail data with unicode symbols
     var mailOptions = {
-        to: email, // list of receivers
+        to: 'paschcua@hispeed.ch', // list of receivers
         subject: 'Willkommen bei der Swiss React Community', // Subject line
         text: 'Registrierung bestätigen'
     };
@@ -72,6 +69,8 @@ app.post('/registrieren', function(req, res) {
         console.log('Message sent: ' + info.response);
     });
 
+    var email = req.body.email;
+    var password = req.body.password;
 
     var dateObject = new Date();
     var uniqueId =
