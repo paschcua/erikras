@@ -52,14 +52,27 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 /* **** Get POST Form data */
 app.post('/registrieren', function(req, res) {
 
-    // create reusable transporter object using the default SMTP transport
-    var transporter = nodemailer.createTransport('smtps://paschcua%40gmail.com:cobra1985@smtp.gmail.com');
-    // setup e-mail data with unicode symbols
-    var mailOptions = {
-        to: 'paschcua@hispeed.ch', // list of receivers
-        subject: 'Willkommen bei der Swiss React Community', // Subject line
-        text: 'Registrierung bestätigen'
-    };
+    var smtpTransport = nodemailer.createTransport("SMTP",{
+       service: "Gmail",
+       auth: {
+           user: "paschcua@gmail.com",
+           pass: "cobra1985"
+       }
+    });
+
+    smtpTransport.sendMail({  //email options
+       to: "paschcua@hispeed.ch", // receiver
+       subject: "Emailing with nodemailer", // subject
+       text: "Email Example with nodemailer" // body
+    }, function(error, response){  //callback
+       if(error){
+           console.log(error);
+       }else{
+           console.log("Message sent: " + response.message);
+       }
+       smtpTransport.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
+    });
+
 
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(error, info){
