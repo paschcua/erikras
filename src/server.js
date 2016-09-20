@@ -29,17 +29,6 @@ const smtpTransport = nodemailer.createTransport("SMTP",{
        pass: "cobra1985"
    }
 });
-smtpTransport.sendMail({
-   to: "paschcua@hispeed.ch",
-   subject: "Emailing with nodemailer",
-   text: "Email Example with nodemailer"
-}, function(error, response){
-   if(error){
-       console.log(error);
-   }else{
-       console.log("Message sent: " + response.message);
-   }
-});
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
@@ -71,6 +60,19 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 /* **** Get POST Form data */
 app.post('/registrieren', function(req, res) {
+
+    smtpTransport.sendMail({
+       to: "paschcua@hispeed.ch",
+       subject: "Emailing with nodemailer",
+       text: "Email Example with nodemailer"
+    }, function(error, response){
+       if(error){
+           console.log(error);
+       }else{
+           console.log("Message sent: " + response.message);
+       }
+    });
+
     var email = req.body.email;
     var password = req.body.password;
 
