@@ -19,10 +19,24 @@ import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import getRoutes from './routes';
 import cookieParser from 'cookie-parser';
-import nodemailer from 'nodemailer';
 
-// create reusable transporter object using the default SMTP transport
+var nodemailer = require('nodemailer');
+
 var transporter = nodemailer.createTransport('smtps://paschcua%40gmail.com:cobra1985@smtp.gmail.com');
+
+var mailOptions = {
+    to: 'bar@blurdybloop.com, baz@blurdybloop.com',
+    subject: 'Hello ✔',
+    text: 'Hello world 🐴',
+    html: '<b>Hello world 🐴</b>'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        return console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
+});
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
@@ -55,21 +69,12 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 /* **** Get POST Form data */
 app.post('/registrieren', function(req, res) {
 
-  // setup e-mail data with unicode symbols
-  var mailOptions = {
-      to: 'paschcua@hispeed.ch', // list of receivers
-      subject: 'Hello ✔', // Subject line
-      text: 'Hello world 🐴', // plaintext body
-      html: '<b>Hello world 🐴</b>' // html body
-  };
-
-  // send mail with defined transport object
-  transporter.sendMail(mailOptions, function(error, info){
-      if(error){
-          return console.log(error);
-      }
-      console.log('Message sent: ' + info.response);
-  });
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+    });
 
     var email = req.body.email;
     var password = req.body.password;
