@@ -22,7 +22,7 @@ import cookieParser from 'cookie-parser';
 
 var nodemailer = require('nodemailer');
 
-var transporter = nodemailer.createTransport('smtps://paschcua%40hispeed.ch:Cobra1985.1@smtp.hispeed.ch');
+var transporter = nodemailer.createTransport('smtps://paschcua%40gmail.com:Cobra1985.1@smtp.gmail.com');
 
 var mailOptions = {
     to: 'paschcua@gmail.com',
@@ -30,6 +30,12 @@ var mailOptions = {
     text: 'Hello world 🐴',
     html: '<b>Hello world 🐴</b>'
 };
+transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        return console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
+});
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
@@ -62,12 +68,12 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 /* **** Get POST Form data */
 app.post('/registrieren', function(req, res) {
 
-    transporter.sendMail(mailOptions, function(error, info){
-        if(error){
-            return console.log(error);
-        }
-        console.log('Message sent: ' + info.response);
-    });
+  transporter.sendMail(mailOptions, function(error, info){
+      if(error){
+          return console.log(error);
+      }
+      console.log('Message sent: ' + info.response);
+  });
 
     var email = req.body.email;
     var password = req.body.password;
