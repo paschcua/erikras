@@ -21,6 +21,14 @@ import getRoutes from './routes';
 import cookieParser from 'cookie-parser';
 import nodemailer from 'nodemailer';
 
+var smtpTransport = nodemailer.createTransport("SMTP",{
+   service: "Gmail",
+   auth: {
+       user: "paschcua@gmail.com",
+       pass: "cobra1985"
+   }
+});
+
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
 const app = new Express();
@@ -51,14 +59,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 /* **** Get POST Form data */
 app.post('/registrieren', function(req, res) {
-
-    var smtpTransport = nodemailer.createTransport("SMTP",{
-       service: "Gmail",
-       auth: {
-           user: "paschcua@gmail.com",
-           pass: "cobra1985"
-       }
-    });
 
     smtpTransport.sendMail({  //email options
        to: "paschcua@hispeed.ch", // receiver
