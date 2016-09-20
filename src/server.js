@@ -19,8 +19,8 @@ import createHistory from 'react-router/lib/createMemoryHistory';
 import {Provider} from 'react-redux';
 import getRoutes from './routes';
 import cookieParser from 'cookie-parser';
-import nodemailer from 'nodemailer';
 
+var nodemailer = require('nodemailer');
 var smtpTransport = nodemailer.createTransport("SMTP",{
    service: "Gmail",
    auth: {
