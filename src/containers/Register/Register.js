@@ -47,7 +47,6 @@ export default class Register extends Component {
 
             cookie.save('ck_email', inputEmail, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
             cookie.save('ck_pw', inputPassword);
-            cookie.save('ck_uuid', res.body.uuid);
 
           } else {
             this.setState({formStatus: 1});

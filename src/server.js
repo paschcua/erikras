@@ -53,7 +53,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-/* **** Get POST Form data */
+/* **** Get POST Form data from Registration */
 app.post('/registrieren', function(req, res) {
 
     var email = req.body.email;
@@ -105,6 +105,27 @@ app.post('/registrieren', function(req, res) {
         }
     });
 });
+
+/* **** Activation User */
+app.get('/activation', function(req, res) {
+  var emailValidation = req.query.m;
+  var uuidValidation = req.query.u;
+
+  var query = {"email": emailValidation, "uuid": uuidValidation};
+  var update = {activation: true};
+  var options = {new: true};
+  UserModel.findOneAndUpdate(query, update, options, function(err, person) {
+    if (err) {
+      console.log('got an error');
+      res.json({ status: 0 });
+    }
+    res.json({ status: 1 });
+  });
+});
+
+
+
+
 
 app.use(compression());
 app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));

@@ -13,8 +13,7 @@ export default class Community extends Component {
 
   state = {
     loginEmail: cookie.load('ck_email'),
-    loginPw: cookie.load('ck_pw'),
-    loginUuid: cookie.load('ck_uuid')
+    loginPw: cookie.load('ck_pw')
   }
 
   render() {
