@@ -6,6 +6,7 @@ export function registerNewUser(fetchit, email, pw, uuid) {
         email: email,
         pw: pw,
         uuid: uuid,
+        activation: false
       }
     });
   };
