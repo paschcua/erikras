@@ -41,7 +41,7 @@ export default class Register extends Component {
         .end((error, res) => {
           if (res.body.status === 1) {
             this.setState({formStatus: 2});
-            this.setState({formMsg: 'Herzlich willkommen bei der Swiss React Community! Um deinen Account zu aktivieren, klicke bitte auf den Aktivierungslink in dem Bestätigungsmail welches dir automatisch an <strong>' + inputEmail + ' gesendet wurde.</strong>!'});
+            this.setState({formMsg: 'Herzlich willkommen bei der Swiss React Community! Um deinen Account zu aktivieren, klicke bitte auf den Aktivierungslink in dem Bestätigungsmail welches dir automatisch an <strong>' + inputEmail + '</strong> gesendet wurde!'});
 
             this.props.dispatch(registerNewUser(true, inputEmail, inputPassword, res.body.uuid));
 
@@ -72,13 +72,10 @@ export default class Register extends Component {
       <div className={styles.registerPage + ' container'}>
         <Helmet title="Registrieren"/>
         <h1>Registrieren</h1>
-        {registerNewUserState.email}
         {formStatus === 2 ?
           <Well>
             <h3>Erfolgreich registriert</h3>
             <div dangerouslySetInnerHTML={{__html: formMsg}}></div>
-            <br /><br />
-            <Link to="/community">Zur Community</Link>
           </Well>
           : null
         }
