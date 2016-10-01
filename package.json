@@ -120,6 +120,7 @@
     "multireducer": "^2.0.0",
     "net": "^1.0.2",
     "nodemailer": "2.6.0",
+    "nodemailer-ses-transport": "1.4.0",
     "piping": "^0.3.0",
     "pretty-error": "^1.2.0",
     "react": "^0.14.2",
