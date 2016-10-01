@@ -21,8 +21,22 @@ import getRoutes from './routes';
 import cookieParser from 'cookie-parser';
 
 var nodemailer = require('nodemailer');
+var sesTransport = require('nodemailer-ses-transport');
 
-var transporter = nodemailer.createTransport('smtps://info%40swiss-react.ch:Cobra1985@inbound-smtp.us-west-2.amazonaws.com');
+var transporter = nodemailer.createTransport(sesTransport({
+    accessKeyId: "AKIAI3ACTW2AD5C3ASVA",
+    secretAccessKey: "Ak7idtkgRLERGMJ1Miygepl7ByILLSRwnP8bcqsD+Rhv",
+    rateLimit: 5
+}));
+
+// Username SES: ses-smtp-user.20161001-172544
+/*
+SMTP Username:
+AKIAI3ACTW2AD5C3ASVA
+SMTP Password:
+Ak7idtkgRLERGMJ1Miygepl7ByILLSRwnP8bcqsD+Rhv
+*/
+//var transporter = nodemailer.createTransport('smtps://info%40swiss-react.ch:Cobra1985@email-smtp.us-west-2.amazonaws.com');
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
