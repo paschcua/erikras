@@ -22,7 +22,7 @@ import cookieParser from 'cookie-parser';
 
 var nodemailer = require('nodemailer');
 
-var transporter = nodemailer.createTransport('smtps://paschcua%40gmail.com:Cobra1985.3@smtp.gmail.com');
+var transporter = nodemailer.createTransport('smtps://info%40swiss-react.ch:Cobra1985@inbound-smtp.us-west-2.amazonaws.com');
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
