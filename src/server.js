@@ -29,15 +29,6 @@ var transporter = nodemailer.createTransport(sesTransport({
     rateLimit: 5
 }));
 
-// Username SES: ses-smtp-user.20161001-172544
-/*
-SMTP Username:
-AKIAI3ACTW2AD5C3ASVA
-SMTP Password:
-Ak7idtkgRLERGMJ1Miygepl7ByILLSRwnP8bcqsD+Rhv
-*/
-//var transporter = nodemailer.createTransport('smtps://info%40swiss-react.ch:Cobra1985@email-smtp.us-west-2.amazonaws.com');
-
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
 const app = new Express();
@@ -97,19 +88,22 @@ app.post('/registrieren', function(req, res) {
             UserData.save(function (err) {
               if (err) return console.log(err);
             });
-            var mailOptions = {
-                to: email,
-                subject: 'Willkommen bei der Swiss React Community',
-                text: 'Registrierung bestätigen',
-                html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Willkommen bei Swiss-React.ch</title></head><body bgcolor="#8d8e90"><table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#8d8e90"> <tr> <td><table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" align="center"> <tr> <td><table width="100%" border="0" cellspacing="0" cellpadding="0"> <tr> <td width="61"><a href="//www.swiss-react.ch" target="_blank"><img src="https://s3.eu-central-1.amazonaws.com/swiss-react.ch/resources/img/PROMO-GREEN2_01_01.jpg" width="61" height="76" border="0" alt=""/></a></td><td width="144"><a href="//www.swiss-react.ch" target="_blank"><img src="https://s3.eu-central-1.amazonaws.com/swiss-react.ch/resources/img/PROMO-GREEN2_01_02.jpg" width="144" height="76" border="0" alt=""/></a></td><td width="393"><table width="100%" border="0" cellspacing="0" cellpadding="0"> <tr> <td height="30"><img src="https://s3.eu-central-1.amazonaws.com/swiss-react.ch/resources/img/PROMO-GREEN2_01_04.jpg" width="393" height="30" border="0" alt=""/></td></tr></table></td></tr></table></td></tr><tr> <td align="center">&nbsp;</td></tr><tr> <td>&nbsp;</td></tr><tr> <td><table width="100%" border="0" cellspacing="0" cellpadding="0"> <tr> <td width="10%">&nbsp;</td><td width="80%" align="left" valign="top"><font style="font-family: Georgia, Times, serif; color:#010101; font-size:24px"><strong><em>Willkommen bei Swiss-React.ch</em></strong></font><br/><br/> <font style="font-family: Verdana, Geneva, sans-serif; color:#666766; font-size:13px; line-height:21px">Wir freuen uns, dass du dich unserer Community anschliesst!<br/><br/>Bestätige bitte deine Registrierung mit dem untenstehenden Link:<br/><a href="http://www.swiss-react.ch/activation/?m='+email+'&u='+uuid+'">Anmeldung bestätigen</a><br/><br/>Freundliche Grüsse und willkommen an Bord,<br/>Swiss React Team</font></td><td width="10%">&nbsp;</td></tr></table></td></tr><tr> <td>&nbsp;</td></tr><tr> <td>&nbsp;</td></tr><tr> <td><img src="https://s3.eu-central-1.amazonaws.com/swiss-react.ch/resources/img/PROMO-GREEN2_07.jpg" width="598" height="7" style="display:block" border="0" alt=""/></td></tr><tr> <td>&nbsp;</td></tr><tr> <td align="center"><font style="font-family: Helvetica, Arial, sans-serif; color:#231f20; font-size:8px"><strong>Swiss React Community by Emma &amp; John | www.emmaandjohn.ch </strong></font></td></tr><tr> <td>&nbsp;</td></tr></table></td></tr></table></body></html>'
-            };
-            transporter.sendMail(mailOptions, function(error, info){
-                if(error){
-                    return console.log(error);
-                }
-                console.log('Message sent: ' + info.response);
+            transporter.sendMail({
+                    from: 'info@swiss-react.ch',
+                    to: email,
+                    subject: 'Willkommen bei der Swiss React Community',
+                    text: 'Registrierung bestätigen',
+                    html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Willkommen bei Swiss-React.ch</title></head><body bgcolor="#8d8e90"><table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#8d8e90"> <tr> <td><table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF" align="center"> <tr> <td><table width="100%" border="0" cellspacing="0" cellpadding="0"> <tr> <td width="61"><a href="//www.swiss-react.ch" target="_blank"><img src="https://s3.eu-central-1.amazonaws.com/swiss-react.ch/resources/img/PROMO-GREEN2_01_01.jpg" width="61" height="76" border="0" alt=""/></a></td><td width="144"><a href="//www.swiss-react.ch" target="_blank"><img src="https://s3.eu-central-1.amazonaws.com/swiss-react.ch/resources/img/PROMO-GREEN2_01_02.jpg" width="144" height="76" border="0" alt=""/></a></td><td width="393"><table width="100%" border="0" cellspacing="0" cellpadding="0"> <tr> <td height="30"><img src="https://s3.eu-central-1.amazonaws.com/swiss-react.ch/resources/img/PROMO-GREEN2_01_04.jpg" width="393" height="30" border="0" alt=""/></td></tr></table></td></tr></table></td></tr><tr> <td align="center">&nbsp;</td></tr><tr> <td>&nbsp;</td></tr><tr> <td><table width="100%" border="0" cellspacing="0" cellpadding="0"> <tr> <td width="10%">&nbsp;</td><td width="80%" align="left" valign="top"><font style="font-family: Georgia, Times, serif; color:#010101; font-size:24px"><strong><em>Willkommen bei Swiss-React.ch</em></strong></font><br/><br/> <font style="font-family: Verdana, Geneva, sans-serif; color:#666766; font-size:13px; line-height:21px">Wir freuen uns, dass du dich unserer Community anschliesst!<br/><br/>Bestätige bitte deine Registrierung mit dem untenstehenden Link:<br/><a href="http://www.swiss-react.ch/activation/?m='+email+'&u='+uuid+'">Anmeldung bestätigen</a><br/><br/>Freundliche Grüsse und willkommen an Bord,<br/>Swiss React Team</font></td><td width="10%">&nbsp;</td></tr></table></td></tr><tr> <td>&nbsp;</td></tr><tr> <td>&nbsp;</td></tr><tr> <td><img src="https://s3.eu-central-1.amazonaws.com/swiss-react.ch/resources/img/PROMO-GREEN2_07.jpg" width="598" height="7" style="display:block" border="0" alt=""/></td></tr><tr> <td>&nbsp;</td></tr><tr> <td align="center"><font style="font-family: Helvetica, Arial, sans-serif; color:#231f20; font-size:8px"><strong>Swiss React Community by Emma &amp; John | www.emmaandjohn.ch </strong></font></td></tr><tr> <td>&nbsp;</td></tr></table></td></tr></table></body></html>'
+            },
+            function(err,info){
+               if(err){
+                 res.send('error');
+                   } else {
+                 res.json({ status: 1, uuid: uuid });
+                   }
+                   console.log(info);
+                   console.log(err);
             });
-            res.json({ status: 1, uuid: uuid });
         }
         else{
             res.json({ status: 0 });
