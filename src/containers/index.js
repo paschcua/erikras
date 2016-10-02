@@ -10,3 +10,4 @@ export NotFound from './NotFound/NotFound';
 export Register from './Register/Register';
 export Kontakt from './Kontakt/Kontakt';
 export Community from './Community/Community';
+export Activation from './Activation/Activation';
