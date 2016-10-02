@@ -13,8 +13,8 @@ export default class Activation extends Component {
   componentWillMount() {
     superagent
     .get('/activation')
-    .set('Accept', 'application/json')
     .end((error, res) => {
+      console.log(JSON.stringify(res, error));
       if (res.body.status === 1) {
         this.setState({responseStatus: 1});
         this.setState({responseMsg: 'Dein Account wurde erfolgreich bestätigt! Herzlich willkommen bei der Swiss React Community! '});
