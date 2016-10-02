@@ -21,7 +21,7 @@ import getRoutes from './routes';
 import cookieParser from 'cookie-parser';
 
 var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport('smtps://paschcua%40zoho.com:Cobra1985@smtp.zoho.com');
+var transporter = nodemailer.createTransport('smtps://info%40emmandjohn.ch:1.emma.and.john.1@asmtp.mail.hostpoint.ch');
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
