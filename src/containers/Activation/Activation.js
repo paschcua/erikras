@@ -12,7 +12,7 @@ export default class Activation extends Component {
 
   componentWillMount() {
     superagent
-    .post('/activation')
+    .get('/activation')
     .set('Accept', 'application/json')
     .end((error, res) => {
       if (res.body.status === 1) {
