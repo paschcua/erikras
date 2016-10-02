@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Well from 'react-bootstrap/lib/Well';
-import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 import superagent from 'superagent';
 import cookie from 'react-cookie';
@@ -11,19 +10,21 @@ export default class Activation extends Component {
     responseMsg: ''
   }
 
-  superagent
-  .get('/activation')
-  .end((error, res) => {
-    if (res.body.status === 1) {
-      this.setState({responseStatus: 1});
-      this.setState({responseMsg: 'Dein Account wurde erfolgreich bestätigt! Herzlich willkommen bei der Swiss React Community! '});
-      cookie.save('ck_status', true, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
-    } else {
-      this.setState({responseStatus: 2});
-      this.setState({responseMsg: 'Es liegt ein Fehler mit der Bestätigung deines Accounts vor, bitte versuche es später nochmals! '});
-      cookie.save('ck_status', false, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
-    }
-  });
+  componentWillMount() {
+    superagent
+    .get('/activation')
+    .end((error, res) => {
+      if (res.body.status === 1) {
+        this.setState({responseStatus: 1});
+        this.setState({responseMsg: 'Dein Account wurde erfolgreich bestätigt! Herzlich willkommen bei der Swiss React Community! '});
+        cookie.save('ck_status', true, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
+      } else {
+        this.setState({responseStatus: 2});
+        this.setState({responseMsg: 'Es liegt ein Fehler mit der Bestätigung deines Accounts vor, bitte versuche es später nochmals! '});
+        cookie.save('ck_status', false, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
+      }
+    });
+  }
 
   render() {
     const {responseMsg, responseStatus} = this.state;
