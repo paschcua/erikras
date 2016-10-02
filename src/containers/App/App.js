@@ -80,6 +80,7 @@ export default class App extends Component {
       console.log("a: "+registerNewUserState.email +", b: "+this.state.loginEmail);
 
       return (
+        <div className="preload-images"></div>
         <div className={styles.app}>
           <Helmet {...config.app.head}/>
           <Navbar fixedTop expanded={ this.state.navExpanded } onToggle={ this.onNavbarToggle }>
