@@ -117,7 +117,7 @@ app.get('/activation', function(req, res) {
       res.json({ status: 0 });
     }
     res.json({ status: 1 });
-    onsole.log('activation: success');
+    console.log('activation: success');
   });
 });
 
