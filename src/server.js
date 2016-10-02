@@ -83,6 +83,7 @@ app.post('/registrieren', function(req, res) {
               if (err) return console.log(err);
             });
             var mailOptions = {
+                from: 'Fred Foo <paschcua@zoho.com>', 
                 to: email,
                 subject: 'Willkommen bei der Swiss React Community',
                 text: 'Registrierung bestätigen',
