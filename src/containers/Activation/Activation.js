@@ -13,7 +13,6 @@ export default class Activation extends Component {
 
   superagent
   .get('/activation')
-  .set('Accept', 'application/json')
   .end((error, res) => {
     if (res.body.status === 1) {
       this.setState({responseStatus: 1});
@@ -25,7 +24,6 @@ export default class Activation extends Component {
       cookie.save('ck_status', false, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
     }
   });
-
 
   render() {
     const {responseMsg, responseStatus} = this.state;
