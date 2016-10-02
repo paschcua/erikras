@@ -113,13 +113,13 @@ app.get('/activation', function(req, res) {
   var options = {new: true};
   UserModel.findOneAndUpdate(query, update, options, function(err, person) {
     if (err) {
-      console.log('got an error');
+      console.log('activation: got an error');
       res.json({ status: 0 });
     }
     res.json({ status: 1 });
+    onsole.log('activation: success');
   });
 });
-
 
 
 

@@ -12,7 +12,8 @@ export default class Activation extends Component {
 
   componentWillMount() {
     superagent
-    .get('/activation')
+    .post('/activation')
+    .set('Accept', 'application/json')
     .end((error, res) => {
       if (res.body.status === 1) {
         this.setState({responseStatus: 1});
