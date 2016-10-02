@@ -35,6 +35,11 @@ module.exports = Object.assign({
         {property: 'og:image:width', content: '200'},
         {property: 'og:image:height', content: '200'}
       ]
+    },
+    settings: {
+      SenderEmail: 'info%40emmaandjohn.ch',
+      SenderEmailPw: '1.emma.and.john.1',
+      SenderEmailSMTPHost: 'asmtp.mail.hostpoint.ch' 
     }
   },
 

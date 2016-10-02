@@ -21,7 +21,7 @@ import getRoutes from './routes';
 import cookieParser from 'cookie-parser';
 
 var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport('smtps://info%40emmaandjohn.ch:1.emma.and.john.1@asmtp.mail.hostpoint.ch');
+var transporter = nodemailer.createTransport('smtps://'+config.app.settings.SenderEmail+':'+config.app.settings.SenderEmailPw+'@'+config.app.settings.SenderEmailSMTPHost);
 
 const targetUrl = 'http://' + config.apiHost + ':' + config.apiPort;
 const pretty = new PrettyError();
@@ -83,7 +83,7 @@ app.post('/registrieren', function(req, res) {
               if (err) return console.log(err);
             });
             var mailOptions = {
-                from: 'info@swiss-react.ch',
+                from: '"Swiss React Community: Registrierung" <info@swiss-react.ch>',
                 to: email,
                 subject: 'Willkommen bei der Swiss React Community',
                 text: 'Registrierung bestätigen',
