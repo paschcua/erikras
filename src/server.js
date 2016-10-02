@@ -83,7 +83,7 @@ app.post('/registrieren', function(req, res) {
               if (err) return console.log(err);
             });
             var mailOptions = {
-                from: 'Swiss React <info@swiss-react.ch>',
+                from: 'info@swiss-react.ch',
                 to: email,
                 subject: 'Willkommen bei der Swiss React Community',
                 text: 'Registrierung bestätigen',
