@@ -103,12 +103,17 @@ app.post('/registrieren', function(req, res) {
     });
 });
 
-/* **** Activation User */
+/* **** Activation GET parameters first */
 app.get('/activation', function(req, res) {
-    var emailValidation = req.query.m;
-    var uuidValidation = req.query.u;
-
-    var query = {"email": emailValidation, "uuid": uuidValidation};
+    console.log("GET GET GET");
+    global_emailValidation = req.query.m;
+    global_uuidValidation = req.query.u;
+}
+/* **** Activation POST Event from superagent */
+app.post('/activation', function(req, res) {
+  console.log("POST POST POST");
+  console.log(global_emailValidation + global_uuidValidation);
+    var query = {"email": global_emailValidation, "uuid": global_uuidValidation};
     var update = {activation: true};
     var options = {new: true};
     UserModel.findOneAndUpdate(query, update, options, function(err, person) {
