@@ -12,12 +12,13 @@ export default class Activation extends Component {
 
   componentDidMount() {
     superagent
-    .post('/activation')
-    .send({ email: 1, uuid: 1 })
-    .set('Accept', 'application/json')
+    .get('/activation')
+    .accept('Accept', 'application/json')
     .end((error, res) => {
       console.log('ACTIVATION STRINGIFY: '+JSON.stringify(res));
-      if (res.body.status === 1) {
+      this.setState({responseStatus: 1});
+      this.setState({responseMsg: 'Dein Account wurde erfolgreich bestätigt! Herzlich willkommen bei der Swiss React Community! '});
+      /*if (res.body.status === 1) {
         this.setState({responseStatus: 1});
         this.setState({responseMsg: 'Dein Account wurde erfolgreich bestätigt! Herzlich willkommen bei der Swiss React Community! '});
         cookie.save('ck_status', true, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
@@ -25,7 +26,7 @@ export default class Activation extends Component {
         this.setState({responseStatus: 2});
         this.setState({responseMsg: 'Es liegt ein Fehler mit der Bestätigung deines Accounts vor, bitte versuche es später nochmals! '});
         cookie.save('ck_status', false, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
-      }
+      }*/
     });
   }
 
