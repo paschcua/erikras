@@ -108,7 +108,7 @@ app.get('/activation', function(req, res) {
     console.log("GET GET GET");
     global_emailValidation = req.query.m;
     global_uuidValidation = req.query.u;
-}
+});
 /* **** Activation POST Event from superagent */
 app.post('/activation', function(req, res) {
   console.log("POST POST POST");
