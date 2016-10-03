@@ -7,10 +7,12 @@ import cookie from 'react-cookie';
 export default class Activation extends Component {
   state = {
     responseStatus: 0,
-    responseMsg: ''
+    responseMsg: '',
+    fullurl: this.props.location.pathname
   }
 
   componentDidMount() {
+    console.log("fullirl: "+this.state.fullurl);
     superagent
     .post('/activation')
     .send({ email: null, uuid: null })
