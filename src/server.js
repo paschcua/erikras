@@ -104,7 +104,7 @@ app.post('/registrieren', function(req, res) {
 });
 
 /* **** Activation User */
-/*app.get('/activation', function(req, res) {
+app.get('/activation', function(req, res) {
   console.log('app.use: '+req.originalUrl)
   var emailValidation = req.query.m;
   var uuidValidation = req.query.u;
@@ -115,12 +115,12 @@ app.post('/registrieren', function(req, res) {
   UserModel.findOneAndUpdate(query, update, options, function(err, person) {
     if (err) {
       console.log('activation: got an error');
-      //res.json({ status: 0 });
+      res.json({ status: 0 });
     }
-    //res.json({ status: 1 });
+    res.json({ status: 1 });
     console.log('activation: success');
   });
-});*/
+});
 
 
 
