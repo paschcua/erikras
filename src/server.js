@@ -105,8 +105,9 @@ app.post('/registrieren', function(req, res) {
 
 /* **** Activation User */
 app.post('/activation', function(req, res) {
-  console.log("go go go"+ req.params);
-  console.log(req.params.m);
+  console.log("go go go");
+  console.log(JSON.stringify(req.body));
+  console.log(JSON.stringify(req.params));
   var emailValidation = req.query.m;
   var uuidValidation = req.query.u;
 
