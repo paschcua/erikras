@@ -104,8 +104,7 @@ app.post('/registrieren', function(req, res) {
 });
 
 /* **** Activation User */
-app.use('/activation', function(req, res) {
-  console.log(JSON.stringify(req));
+app.post('/activation', function(req, res) {
   var emailValidation = req.query.m;
   var uuidValidation = req.query.u;
 

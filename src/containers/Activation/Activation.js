@@ -11,8 +11,10 @@ export default class Activation extends Component {
   }
 
   componentDidMount() {
+    console.log("go superagent POST now...");
     superagent
-    .get('/activation')
+    .post('/activation')
+    .send({ email: 1, uuid: 1 })
     .set('Accept', 'application/json')
     .end((error, res) => {
       console.log('ACTIVATION STRINGIFY: '+JSON.stringify(res));
