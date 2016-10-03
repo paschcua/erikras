@@ -104,24 +104,25 @@ app.post('/registrieren', function(req, res) {
 });
 
 /* **** Activation User */
-app.post('/activation', function(req, res) {
-  console.log("go go go");
-  console.log(JSON.stringify(req.body));
-  console.log(JSON.stringify(req.params));
-  var emailValidation = req.query.m;
-  var uuidValidation = req.query.u;
+app.post('/activation/', function(parentReq, parentRes) {
+  app.get('/', function (req, res) {
 
-  var query = {"email": emailValidation, "uuid": uuidValidation};
-  var update = {activation: true};
-  var options = {new: true};
-  UserModel.findOneAndUpdate(query, update, options, function(err, person) {
-    if (err) {
-      console.log('activation: got an error');
-      res.json({ status: 0 });
-    } else {
-      res.json({ status: 1 });
-      console.log('activation: success');
-    }
+    var emailValidation = req.query.m;
+    var uuidValidation = req.query.u;
+
+    var query = {"email": emailValidation, "uuid": uuidValidation};
+    var update = {activation: true};
+    var options = {new: true};
+    UserModel.findOneAndUpdate(query, update, options, function(err, person) {
+      if (err) {
+        console.log('activation: got an error');
+        parentRes.json({ status: 0 });
+      } else {
+        parentRes.json({ status: 1 });
+        console.log('activation: success');
+      }
+    });
+
   });
 });
 
