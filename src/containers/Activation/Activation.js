@@ -11,9 +11,6 @@ export default class Activation extends Component {
   }
 
   componentDidMount() {
-    console.dir(this.props)
-    console.log("fullirl M: "+this.props.location.query.m);
-    console.log("fullirl U: "+this.props.location.query.u);
     const queryM = this.props.location.query.m;
     const queryU = this.props.location.query.u;
     superagent
@@ -21,7 +18,6 @@ export default class Activation extends Component {
     .send({ queryM: queryM, queryU: queryU })
     .set('Accept', 'application/json')
     .end((error, res) => {
-      console.log('ACTIVATION STRINGIFY: '+JSON.stringify(res));
       if (res.body.status === 1) {
         this.setState({responseStatus: 1});
         this.setState({responseMsg: 'Dein Account wurde erfolgreich bestätigt! Herzlich willkommen bei der Swiss React Community! '});
