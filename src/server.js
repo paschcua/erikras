@@ -104,7 +104,7 @@ app.post('/registrieren', function(req, res) {
 });
 
 /* **** Activation User */
-app.get('/activation', function(req, res) {
+/*app.get('/activation', function(req, res) {
   console.log('app.use: '+req.originalUrl)
   var emailValidation = req.query.m;
   var uuidValidation = req.query.u;
@@ -120,7 +120,7 @@ app.get('/activation', function(req, res) {
     //res.json({ status: 1 });
     console.log('activation: success');
   });
-});
+});*/
 
 
 
