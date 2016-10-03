@@ -7,15 +7,18 @@ import cookie from 'react-cookie';
 export default class Activation extends Component {
   state = {
     responseStatus: 0,
-    responseMsg: '',
-    fullurl: this.props.location.pathname
+    responseMsg: ''
   }
 
   componentDidMount() {
-    console.log("fullirl: "+this.state.fullurl);
+    console.dir(this.props)
+    console.log("fullirl M: "+this.props.location.query.m);
+    console.log("fullirl U: "+this.props.location.query.u);
+    const queryM = this.props.location.query.m;
+    const queryU = this.props.location.query.u;
     superagent
     .post('/activation')
-    .send({ email: null, uuid: null })
+    .send({ queryM: queryM, queryU: queryU })
     .set('Accept', 'application/json')
     .end((error, res) => {
       console.log('ACTIVATION STRINGIFY: '+JSON.stringify(res));
