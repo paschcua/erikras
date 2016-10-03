@@ -10,7 +10,7 @@ export default class Activation extends Component {
     responseMsg: ''
   }
 
-  componentWillMount() {
+  componentDidMount() {
     superagent
     .get('/activation')
     .set('Accept', 'application/json')
