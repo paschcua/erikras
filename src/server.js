@@ -104,6 +104,8 @@ app.post('/registrieren', function(req, res) {
 });
 
 /* **** Activation GET parameters first */
+var global_emailValidation = '';
+var global_uuidValidation = '';
 app.get('/activation', function(req, res) {
     console.log("GET GET GET");
     global_emailValidation = req.query.m;
