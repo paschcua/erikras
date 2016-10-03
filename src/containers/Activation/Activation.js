@@ -10,7 +10,7 @@ export default class Activation extends Component {
     responseMsg: ''
   }
 
-  componentWillMount() {
+  /*componentWillMount() {
     superagent
     .get('/activation')
     .end((error, res) => {
@@ -25,7 +25,7 @@ export default class Activation extends Component {
         cookie.save('ck_status', false, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
       }
     });
-  }
+  }*/
 
   render() {
     const {responseMsg, responseStatus} = this.state;
