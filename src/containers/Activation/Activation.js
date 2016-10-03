@@ -13,6 +13,7 @@ export default class Activation extends Component {
   componentWillMount() {
     superagent
     .get('/activation')
+    .set('Accept', 'application/json')
     .end((error, res) => {
       console.log('ACTIVATION STRINGIFY: '+JSON.stringify(res));
       this.setState({responseStatus: 1});
