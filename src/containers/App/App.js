@@ -78,13 +78,15 @@ export default class App extends Component {
       const { registerNewUserState } = this.props;
 
       let userNavLoggedIn = true;
+      console.log("cookie: "+this.state.loginEmail+", state: "+registerNewUserState.email);
       if(this.state.loginEmail === undefined){
         userNavLoggedIn = false;
       }
       if(registerNewUserState.email === null){
         userNavLoggedIn = false;
       }
-
+      console.log("1: "+userNavLoggedIn);
+      
       return (
         <div className={styles.app}>
           <Helmet {...config.app.head}/>
@@ -115,9 +117,12 @@ export default class App extends Component {
                 <LinkContainer to="/registrieren">
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
                 </LinkContainer>
+                <LinkContainer to="/registrieren">
+                  <NavItem eventKey={4} onClick={ this.onNavItemClick }>Login</NavItem>
+                </LinkContainer>
                 }
                 <LinkContainer to="/kontakt">
-                  <NavItem eventKey={4} onClick={ this.onNavItemClick }>Kontakt</NavItem>
+                  <NavItem eventKey={5} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
               </Nav>
             </Navbar.Collapse>
