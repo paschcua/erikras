@@ -101,7 +101,7 @@ export default class App extends Component {
                 <LinkContainer to="/community">
                   <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
                 </LinkContainer>
-                { registerNewUserState.email === null && this.state.loginEmail === undefined ?
+                { registerNewUserState.email !== null ?
                 <LinkContainer to="/registrieren">
                   <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
                 </LinkContainer>
