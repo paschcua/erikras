@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Editor, EditorState, RichUtils} from 'draft-js';
+import ReactDOM from 'react-dom';
+import {Editor, EditorState} from 'draft-js';
 import Helmet from 'react-helmet';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
@@ -11,7 +12,6 @@ import { connect } from 'react-redux';
 })
 
 export default class DraftJsEditor extends Component {
-
   state = {
     loginEmail: cookie.load('ck_email')
   }
@@ -19,32 +19,22 @@ export default class DraftJsEditor extends Component {
     super(props);
     this.state = {editorState: EditorState.createEmpty()};
     this.onChange = (editorState) => this.setState({editorState});
-    this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
-  handleKeyCommand(command) {
-    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
-    if (newState) {
-      this.onChange(newState);
-      return 'handled';
-    }
-    return 'not-handled';
-  }
-
 
   render() {
-    const {loginEmail} = this.state;
-
+    const {loginEmail, editorState} = this.state;
     return (
       <div className="container">
         <h1>Community</h1>
         <Helmet title="Community"/>
-          <Editor
-            editorState={this.state.editorState}
-            handleKeyCommand={this.handleKeyCommand}
-            onChange={this.onChange}
-          />
+          <Editor editorState={editorState} onChange={this.onChange} />;
+          <div id="container"></div>
       </div>
     );
   }
-
 }
+
+ReactDOM.render(
+  <MyEditor />,
+  document.getElementById('container')
+);
