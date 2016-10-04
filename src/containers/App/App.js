@@ -101,14 +101,17 @@ export default class App extends Component {
                 <LinkContainer to="/community">
                   <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
                 </LinkContainer>
-                {registerNewUserState.email === null && this.state.loginEmail === undefined ?
+                { registerNewUserState.email === null && this.state.loginEmail === undefined ?
                 <LinkContainer to="/registrieren">
                   <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
                 </LinkContainer>
-                : null
+                :
+                <LinkContainer to="/registrieren">
+                  <NavItem eventKey={3} onClick={ this.onNavItemClick }>Mein Profil</NavItem>
+                </LinkContainer>
                 }
                 <LinkContainer to="/kontakt">
-                  <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
+                  <NavItem eventKey={5} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
               </Nav>
             </Navbar.Collapse>
@@ -120,7 +123,7 @@ export default class App extends Component {
           <InfoBar/>
 
           <div className="well text-center">
-            Copyright 2016 | Swiss React Community | React, Redux, Flux, React Native | Swiss-react.ch
+            Copyright { new Date().getFullYear() } | Swiss React Community | React, Redux, Flux, React Native | Swiss-react.ch
           </div>
         </div>
       );
