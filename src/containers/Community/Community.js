@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
   };
 })
 
-export default class DraftJsEditor extends Component {
+export default class MyEditor extends Component {
   state = {
     loginEmail: cookie.load('ck_email')
   }
