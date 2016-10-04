@@ -114,18 +114,22 @@ export default class App extends Component {
                   <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mein Profil</NavItem>
                 </LinkContainer>
                 :
-                <span>
-                  <LinkContainer to="/registrieren">
-                    <NavItem eventKey={3} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
-                  </LinkContainer>
-                  <LinkContainer to="/registrieren">
-                    <NavItem eventKey={4} onClick={ this.onNavItemClick }>Login</NavItem>
-                  </LinkContainer>
-                </span>
+                <LinkContainer to="/registrieren">
+                  <NavItem eventKey={3} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
+                </LinkContainer>
                 }
                 <LinkContainer to="/kontakt">
-                  <NavItem eventKey={5} onClick={ this.onNavItemClick }>Kontakt</NavItem>
+                  <NavItem eventKey={4} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
+                { userNavLoggedIn === true ?
+                  <LinkContainer to="/registrieren">
+                    <NavItem eventKey={5} onClick={ this.onNavItemClick }>Logout</NavItem>
+                  </LinkContainer>
+                  :
+                  <LinkContainer to="/registrieren">
+                    <NavItem eventKey={6} onClick={ this.onNavItemClick }>Login</NavItem>
+                  </LinkContainer>
+                }
               </Nav>
             </Navbar.Collapse>
           </Navbar>
