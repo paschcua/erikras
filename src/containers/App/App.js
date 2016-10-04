@@ -86,7 +86,7 @@ export default class App extends Component {
         userNavLoggedIn = false;
       }
       console.log("1: "+userNavLoggedIn);
-      
+
       return (
         <div className={styles.app}>
           <Helmet {...config.app.head}/>
@@ -114,12 +114,14 @@ export default class App extends Component {
                   <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mein Profil</NavItem>
                 </LinkContainer>
                 :
-                <LinkContainer to="/registrieren">
-                  <NavItem eventKey={3} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/registrieren">
-                  <NavItem eventKey={4} onClick={ this.onNavItemClick }>Login</NavItem>
-                </LinkContainer>
+                <span>
+                  <LinkContainer to="/registrieren">
+                    <NavItem eventKey={3} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/registrieren">
+                    <NavItem eventKey={4} onClick={ this.onNavItemClick }>Login</NavItem>
+                  </LinkContainer>
+                </span>
                 }
                 <LinkContainer to="/kontakt">
                   <NavItem eventKey={5} onClick={ this.onNavItemClick }>Kontakt</NavItem>

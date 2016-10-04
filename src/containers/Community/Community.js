@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Editor, EditorState} from 'draft-js';
 import Helmet from 'react-helmet';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
@@ -9,27 +10,26 @@ import { connect } from 'react-redux';
   };
 })
 
-export default class Community extends Component {
+export default class DraftJsEditor extends Component {
 
   state = {
-    loginEmail: cookie.load('ck_email'),
-    loginPw: cookie.load('ck_pw')
+    loginEmail: cookie.load('ck_email')
+  }
+  constructor(props) {
+      super(props);
+      this.state = {editorState: EditorState.createEmpty()};
+      this.onChange = (editorState) => this.setState({editorState});
   }
 
+
   render() {
-    const {loginEmail} = this.state;
-    const { registerNewUserState } = this.props;
+    const {loginEmail, editorState} = this.state;
 
     return (
       <div className="container">
         <h1>Community...</h1>
         <Helmet title="Community"/>
-          {loginEmail !== null ?
-              loginEmail
-            : null
-          }
-          {registerNewUserState.email}
-        <p>Community will open soon...</p>
+          <Editor editorState={editorState} onChange={this.onChange} />
       </div>
     );
   }
