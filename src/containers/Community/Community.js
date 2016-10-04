@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Editor, EditorState} from 'draft-js';
+import {Editor, EditorState, RichUtils} from 'draft-js';
 import Helmet from 'react-helmet';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
@@ -16,20 +16,33 @@ export default class DraftJsEditor extends Component {
     loginEmail: cookie.load('ck_email')
   }
   constructor(props) {
-      super(props);
-      this.state = {editorState: EditorState.createEmpty()};
-      this.onChange = (editorState) => this.setState({editorState});
+    super(props);
+    this.state = {editorState: EditorState.createEmpty()};
+    this.onChange = (editorState) => this.setState({editorState});
+    this.handleKeyCommand = this.handleKeyCommand.bind(this);
+  }
+  handleKeyCommand(command) {
+    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+    if (newState) {
+      this.onChange(newState);
+      return 'handled';
+    }
+    return 'not-handled';
   }
 
 
   render() {
-    const {loginEmail, editorState} = this.state;
+    const {loginEmail} = this.state;
 
     return (
       <div className="container">
-        <h1>Community...</h1>
+        <h1>Community</h1>
         <Helmet title="Community"/>
-          <Editor editorState={editorState} onChange={this.onChange} />
+          <Editor
+            editorState={this.state.editorState}
+            handleKeyCommand={this.handleKeyCommand}
+            onChange={this.onChange}
+          />
       </div>
     );
   }

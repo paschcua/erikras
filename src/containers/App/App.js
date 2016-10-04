@@ -82,8 +82,8 @@ export default class App extends Component {
       if(this.state.loginEmail === undefined){
         userNavLoggedIn = false;
       }
-      if(registerNewUserState.email === null){
-        userNavLoggedIn = false;
+      if(registerNewUserState.email !== null){
+        userNavLoggedIn = true;
       }
       console.log("1: "+userNavLoggedIn);
 
@@ -110,7 +110,7 @@ export default class App extends Component {
                   <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
                 </LinkContainer>
                 { userNavLoggedIn === true ?
-                <LinkContainer to="/registrieren">
+                <LinkContainer to="/registrieren0">
                   <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mein Profil</NavItem>
                 </LinkContainer>
                 :
@@ -122,11 +122,11 @@ export default class App extends Component {
                   <NavItem eventKey={4} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
                 { userNavLoggedIn === true ?
-                  <LinkContainer to="/registrieren">
+                  <LinkContainer to="/registrieren1">
                     <NavItem eventKey={5} onClick={ this.onNavItemClick }>Logout</NavItem>
                   </LinkContainer>
                   :
-                  <LinkContainer to="/registrieren">
+                  <LinkContainer to="/registrieren2">
                     <NavItem eventKey={6} onClick={ this.onNavItemClick }>Login</NavItem>
                   </LinkContainer>
                 }
