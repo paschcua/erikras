@@ -22,19 +22,18 @@ export default class MyEditor extends Component {
   }
 
   render() {
-    const {loginEmail, editorState} = this.state;
+    const {loginEmail} = this.state;
     return (
       <div className="container">
         <h1>Community</h1>
         <Helmet title="Community"/>
-          <Editor editorState={editorState} onChange={this.onChange} />;
-          <div id="container"></div>
+        <div className="editor">
+          <Editor
+            editorState={this.state.editorState}
+            onChange={this.onChange}
+          />
+        </div>
       </div>
     );
   }
 }
-
-ReactDOM.render(
-  <MyEditor />,
-  document.getElementById('container')
-);
