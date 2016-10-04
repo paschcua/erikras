@@ -52,7 +52,6 @@ export default class App extends Component {
       loginEmail: cookie.load('ck_email')
     }
 
-
     componentWillReceiveProps(nextProps) {
       if (!this.props.user && nextProps.user) {
         // login
@@ -77,7 +76,14 @@ export default class App extends Component {
     render() {
       const styles = require('./App.scss');
       const { registerNewUserState } = this.props;
-      console.log("a: "+registerNewUserState.email +", b: "+this.state.loginEmail);
+
+      let userNavLoggedIn = true;
+      if(this.state.loginEmail === undefined){
+        userNavLoggedIn = false;
+      }
+      if(registerNewUserState.email === null){
+        userNavLoggedIn = false;
+      }
 
       return (
         <div className={styles.app}>
@@ -101,17 +107,17 @@ export default class App extends Component {
                 <LinkContainer to="/community">
                   <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
                 </LinkContainer>
-                { registerNewUserState.email !== null ?
+                { userNavLoggedIn === true ?
                 <LinkContainer to="/registrieren">
-                  <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
+                  <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mein Profil</NavItem>
                 </LinkContainer>
                 :
                 <LinkContainer to="/registrieren">
-                  <NavItem eventKey={3} onClick={ this.onNavItemClick }>Mein Profil</NavItem>
+                  <NavItem eventKey={3} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
                 </LinkContainer>
                 }
                 <LinkContainer to="/kontakt">
-                  <NavItem eventKey={5} onClick={ this.onNavItemClick }>Kontakt</NavItem>
+                  <NavItem eventKey={4} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
               </Nav>
             </Navbar.Collapse>
