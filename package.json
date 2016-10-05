@@ -105,6 +105,7 @@
     "compression": "^1.6.0",
     "cookie-parser": "^1.4.3",
     "draft-js": "^0.9.1",
+    "draft-js-editor": "^1.7.2",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "file-loader": "^0.8.5",
