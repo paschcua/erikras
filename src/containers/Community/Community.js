@@ -3,7 +3,7 @@ import { Editor, EditorState, RichUtils } from 'draft-js';
 import Helmet from 'react-helmet';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
-import stylesEditor from './Community.scss';
+import stylesEditor from './Community.css';
 
 @connect((store) => {
   return {
