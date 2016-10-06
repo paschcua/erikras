@@ -87,7 +87,6 @@ export default class RichEditorExample extends Component {
             />
           <div className={className} onClick={this.focus}>
             <Editor
-              style={styles.image}
               blockStyleFn={getBlockStyle}
               customStyleMap={styleMap}
               editorState={editorState}
