@@ -3,7 +3,7 @@ import { Editor, EditorState, RichUtils } from 'draft-js';
 import Helmet from 'react-helmet';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
-import stylesEditor from './Community.css';
+import styles from './Community.scss';
 
 @connect((store) => {
   return {
@@ -64,10 +64,7 @@ export default class RichEditorExample extends Component {
 
 
   render() {
-    const style = require('./Community.scss');
     const {loginEmail, editorState} = this.state;
-    // If the user changes block type before entering any text, we can
-    // either style the placeholder or hide it. Let's just hide it now.
     let className = 'RichEditor-editor';
     var contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
@@ -108,8 +105,6 @@ export default class RichEditorExample extends Component {
   }
 }
 
-
-// Custom overrides for "code" style.
  const styleMap = {
    CODE: {
      backgroundColor: 'rgba(0, 0, 0, 0.05)',
@@ -117,6 +112,12 @@ export default class RichEditorExample extends Component {
      fontSize: 16,
      padding: 2,
    },
+   RichEditor-editor: {
+     borderTop: '1px solid #ddd';
+     cursor: "text";
+     fontSize: 50;
+     marginTop: 100;
+   }
  };
 
  function getBlockStyle(block) {
