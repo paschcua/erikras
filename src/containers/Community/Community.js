@@ -64,7 +64,6 @@ export default class RichEditorExample extends Component {
 
   render() {
     const {loginEmail, editorState} = this.state;
-    const styles = require('./Community.scss');
     let className = 'RichEditor-editor';
     var contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
@@ -74,7 +73,7 @@ export default class RichEditorExample extends Component {
     }
 
     return (
-      <div className={styles.container}>
+      <div className="container">
         <h1>Community</h1>
         <Helmet title="Community"/>
         <div className="RichEditor-root">
@@ -88,6 +87,7 @@ export default class RichEditorExample extends Component {
             />
           <div className={className} onClick={this.focus}>
             <Editor
+              style={styles.image}
               blockStyleFn={getBlockStyle}
               customStyleMap={styleMap}
               editorState={editorState}
