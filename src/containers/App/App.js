@@ -78,16 +78,12 @@ export default class App extends Component {
       const { registerNewUserState } = this.props;
 
       let userNavLoggedIn = true;
-      console.log("cookie: "+this.state.loginEmail+", state: "+registerNewUserState.email);
       if(this.state.loginEmail === undefined){
         userNavLoggedIn = false;
-        console.log("cookie is undefined!");
-      }else{console.log("cookie is NOT undefined!");}
+      }
       if(registerNewUserState.email !== null){
         userNavLoggedIn = true;
-        console.log("STATE is NOT null!");
-      }else{console.log("STATE is null!");}
-      console.log("1: "+userNavLoggedIn);
+      }
 
       return (
         <div className={styles.app}>

@@ -3,7 +3,6 @@ import { Editor, EditorState, RichUtils } from 'draft-js';
 import Helmet from 'react-helmet';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
-import styles from './Community.scss';
 
 @connect((store) => {
   return {
@@ -65,6 +64,7 @@ export default class RichEditorExample extends Component {
 
   render() {
     const {loginEmail, editorState} = this.state;
+    const styles = require('./Community.scss');
     let className = 'RichEditor-editor';
     var contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
@@ -74,7 +74,7 @@ export default class RichEditorExample extends Component {
     }
 
     return (
-      <div className="container">
+      <div className={styles.container}>
         <h1>Community</h1>
         <Helmet title="Community"/>
         <div className="RichEditor-root">
