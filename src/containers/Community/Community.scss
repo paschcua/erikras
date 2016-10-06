@@ -1,8 +1,7 @@
-.DraftEditor-root {
-  /* Stop collapsing margins breaking our side control positioning */
-  padding-top: 1px;
-  position: relative;
-}
-.public-DraftEditorPlaceholder-root {
-  position: absolute;
+.RichEditor-styleButton {
+  background-color: #f8f8f8;
+  border: 1px solid #efefef;
+  float: left;
+  margin-right: 5px;
+  padding: 5px;
 }
