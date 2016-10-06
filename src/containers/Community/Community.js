@@ -112,12 +112,6 @@ export default class RichEditorExample extends Component {
      fontSize: 16,
      padding: 2,
    },
-   RichEditor-editor: {
-     borderTop: '1px solid #ddd';
-     cursor: "text";
-     fontSize: 50;
-     marginTop: 100;
-   }
  };
 
  function getBlockStyle(block) {
