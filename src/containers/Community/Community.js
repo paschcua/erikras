@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Editor, EditorState, RichUtils } from 'draft-js';
+import { Editor, EditorState, RichUtils, convertFromRaw, convertToRaw } from 'draft-js';
+import { stateToHTML } from 'draft-js-export-html';
 import Helmet from 'react-helmet';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
@@ -61,6 +62,10 @@ export default class RichEditorExample extends Component {
     );
   }
 
+  _saveDataToDatabase() {
+    console.log(stateToHTML(this.state.editorState.getCurrentContent()));
+  }
+
 
   render() {
     const {loginEmail, editorState} = this.state;
@@ -93,12 +98,13 @@ export default class RichEditorExample extends Component {
               handleKeyCommand={this.handleKeyCommand}
               onChange={this.onChange}
               onTab={this.onTab}
-              placeholder="Tell a story..."
+              placeholder=""
               ref="editor"
               spellCheck={true}
               />
           </div>
         </div>
+        <button className="btn btn-primary" onClick={this._saveDataToDatabase}>Speichern</button>
       </div>
     );
   }
