@@ -82,6 +82,8 @@ export default class RichEditorExample extends Component {
         <h1>Community</h1>
         <Helmet title="Community"/>
         <div className="RichEditor-root">
+          <button className="btn btn-primary" onClick={this.saveDataToDatabase}>Speichern1</button>
+          <button className="btn btn-primary" onClick={saveDataToDatabase}>Speichern2</button>
           <BlockStyleControls
             editorState={editorState}
             onToggle={this.toggleBlockType}
@@ -104,7 +106,6 @@ export default class RichEditorExample extends Component {
               />
           </div>
         </div>
-        <button className="btn btn-primary" onClick={this.saveDataToDatabase}>Speichern</button>
       </div>
     );
   }
