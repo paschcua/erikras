@@ -62,7 +62,7 @@ export default class RichEditorExample extends Component {
     );
   }
 
-  _saveDataToDatabase() {
+  saveDataToDatabase() {
     console.log(stateToHTML(this.state.editorState.getCurrentContent()));
   }
 
@@ -104,7 +104,7 @@ export default class RichEditorExample extends Component {
               />
           </div>
         </div>
-        <button className="btn btn-primary" onClick={this._saveDataToDatabase}>Speichern</button>
+        <button className="btn btn-primary" onClick={this.saveDataToDatabase}>Speichern</button>
       </div>
     );
   }
