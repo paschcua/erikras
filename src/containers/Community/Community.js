@@ -103,8 +103,8 @@ export default class RichEditorExample extends Component {
               spellCheck={true}
               />
           </div>
-          <FormButton text="Create" onClick={this.saveDataToDatabase.bind(this)} />
         </div>
+        <button className="btn btn-primary" onClick={this.saveDataToDatabase.bind(this)}>Speichern</button>
       </div>
     );
   }
