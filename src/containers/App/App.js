@@ -38,7 +38,7 @@ import cookie from 'react-cookie';
 export default class App extends Component {
     state = {
       loaded: false,
-      loginEmail: cookie.load('ck_email'),
+      loginEmail: cookie.load('ck_userLoggedIn'),
       navExpanded: false
     }
 
@@ -52,6 +52,11 @@ export default class App extends Component {
     static contextTypes = {
       store: PropTypes.object.isRequired
     };
+
+    componentWillMount() {
+      this.setState({loaded: true});
+      console.log("component componentDidMount ----------------");
+    }
 
     componentWillReceiveProps(nextProps) {
       console.log("component componentWillReceiveProps ----------------");
@@ -87,7 +92,6 @@ export default class App extends Component {
       if(registerNewUserState.email !== null){
         userNavLoggedIn = 1;
       }
-      this.setState({loaded: true});
       console.log('userNavLoggedIn: ' + userNavLoggedIn + ', cookie.load(ck_email): ' + this.state.loginEmail + ', registerNewUserState.email: '+registerNewUserState.email);
 
       return (
