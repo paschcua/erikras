@@ -14,7 +14,8 @@ import { connect } from 'react-redux';
 
 export default class RichEditorExample extends Component {
   state = {
-    loginStatus: cookie.load('ck_loginStatus'),
+    userLoggedIn: cookie.load('ck_userLoggedIn');
+    activation: cookie.load('ck_activation'),
     userEmail: cookie.load('ck_email'),
     draftjsStatus: 0,
     draftjsMsg: ''
@@ -87,7 +88,7 @@ export default class RichEditorExample extends Component {
 
 
   render() {
-    const {userEmail, loginStatus, draftjsStatus, draftjsMsg, editorState} = this.state;
+    const {userLoggedIn, userEmail, activation, draftjsStatus, draftjsMsg, editorState} = this.state;
     let className = 'RichEditor-editor';
     var contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
@@ -100,7 +101,7 @@ export default class RichEditorExample extends Component {
       <div className="container">
         <h1>Community</h1>
         <Helmet title="Community"/>
-        {loginStatus === 1 ?
+        {activation === 1 && userLoggedIn === 1 ?
         <div className="RichEditor-root">
           <BlockStyleControls
             editorState={editorState}
