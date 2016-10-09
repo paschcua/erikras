@@ -131,7 +131,6 @@ export default class RichEditorExample extends Component {
           <button className="btn btn-primary" onClick={this.saveDataToDatabase.bind(this)}>Speichern</button>
         </div>
         : null }
-        <div>a: {activateNewUserState.activatedUser} b: {activateNewUserState.loggedInUser}</div>
       </div>
     );
   }

@@ -33,7 +33,7 @@ export default class Activation extends Component {
 
         this.props.dispatch(activateNewUser(true, true));
 
-        cookie.save('ck_userLoggedIn', true { path: '/', expires: new Date(new Date().getTime() + (3600*3600*3700)) });
+        cookie.save('ck_userLoggedIn', true, { path: '/', expires: new Date(new Date().getTime() + (3600*3600*3700)) });
         cookie.save('ck_activation', true, { path: '/', expires: new Date(new Date().getTime() + (3600*3600*3700)) });
       } else {
         this.setState({responseStatus: 2});
@@ -59,7 +59,6 @@ export default class Activation extends Component {
             <Well>
               <h3>Erfolgreich Account bestätigt</h3>
               <div dangerouslySetInnerHTML={{__html: responseMsg}}></div>
-              <div>a: {activateNewUserState.activatedUser} b: {activateNewUserState.loggedInUser}</div>
             </Well>
             : null
           }
