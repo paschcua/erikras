@@ -52,8 +52,8 @@ export default class App extends Component {
       store: PropTypes.object.isRequired
     };
 
-    componentDidMount() {
-      this.state.loaded = true;
+    componentWillMount() {
+      this.setState({loaded: true});
       console.log("component componentDidMount ----------------");
     }
 
