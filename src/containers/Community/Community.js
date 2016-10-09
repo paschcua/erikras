@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 @connect((store) => {
   return {
     registerNewUserState: store.registerNewUser.user,
+    activateNewUserState: store.activateNewUser.userStatus
   };
 })
 
@@ -86,8 +87,7 @@ export default class RichEditorExample extends Component {
 
   render() {
     const {userEmail, draftjsStatus, draftjsMsg, editorState} = this.state;
-    const activation = cookie.load('ck_activation');
-    const userLoggedIn = cookie.load('ck_userLoggedIn');
+    const { activateNewUserState } = this.props;
 
     let className = 'RichEditor-editor';
     var contentState = editorState.getCurrentContent();
@@ -129,6 +129,7 @@ export default class RichEditorExample extends Component {
           <button className="btn btn-primary" onClick={this.saveDataToDatabase.bind(this)}>Speichern</button>
         </div>
         : null }
+        <div>a: {activateNewUserState.activatedUser} b: {activateNewUserState.loggedInUser}</div>
       </div>
     );
   }

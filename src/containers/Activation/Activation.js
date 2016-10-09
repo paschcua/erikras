@@ -3,6 +3,13 @@ import Well from 'react-bootstrap/lib/Well';
 import Helmet from 'react-helmet';
 import superagent from 'superagent';
 import cookie from 'react-cookie';
+import { connect } from 'react-redux';
+
+@connect((store) => {
+  return {
+    activateNewUserState: store.activateNewUser.userStatus,
+  };
+})
 
 export default class Activation extends Component {
   state = {
@@ -21,6 +28,9 @@ export default class Activation extends Component {
       if (res.body.status === 1) {
         this.setState({responseStatus: 1});
         this.setState({responseMsg: 'Dein Account wurde erfolgreich bestätigt! Herzlich willkommen bei der Swiss React Community! '});
+
+        this.props.dispatch(activateNewUser(true, true)); /* Persistent State/Cookie - LoggedIn & Activated */
+
         cookie.save('ck_userLoggedIn', '1', { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
         cookie.save('ck_activation', '1', { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
       } else {
@@ -34,6 +44,8 @@ export default class Activation extends Component {
 
   render() {
     const {responseMsg, responseStatus} = this.state;
+    const { activateNewUserState } = this.props;
+
     return (
       <div className="container">
         <Helmet title="Aktivierung"/>
@@ -45,6 +57,7 @@ export default class Activation extends Component {
             <Well>
               <h3>Erfolgreich Account bestätigt</h3>
               <div dangerouslySetInnerHTML={{__html: responseMsg}}></div>
+              <div>a: {activateNewUserState.activatedUser} b: {activateNewUserState.loggedInUser}</div>
             </Well>
             : null
           }
