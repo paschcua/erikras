@@ -96,13 +96,13 @@ export default class RichEditorExample extends Component {
         className += ' RichEditor-hidePlaceholder';
       }
     }
-    console.log('activation: '+activation + ', userLoggedIn: '+userLoggedIn);
+    console.log('activation: '+activateNewUserState.activatedUser + ', userLoggedIn: '+activateNewUserState.loggedInUser);
 
     return (
       <div className="container">
         <h1>Community</h1>
         <Helmet title="Community"/>
-        {activation === '1' && userLoggedIn === '1' ?
+        {activateNewUserState.activatedUser === true && activateNewUserState.loggedInUser === true ?
         <div className="RichEditor-root">
           <BlockStyleControls
             editorState={editorState}
