@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 
 export default class RichEditorExample extends Component {
   state = {
-    userLoggedIn: cookie.load('ck_userLoggedIn');
+    userLoggedIn: cookie.load('ck_userLoggedIn'),
     activation: cookie.load('ck_activation'),
     userEmail: cookie.load('ck_email'),
     draftjsStatus: 0,
