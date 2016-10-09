@@ -84,6 +84,7 @@ export default class App extends Component {
       if(registerNewUserState.email !== null){
         userNavLoggedIn = true;
       }
+      console.log('userNavLoggedIn: ' + userNavLoggedIn);
 
       return (
         <div className={styles.app}>

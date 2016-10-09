@@ -96,7 +96,7 @@ export default class RichEditorExample extends Component {
         className += ' RichEditor-hidePlaceholder';
       }
     }
-    console.log(activation + userLoggedIn);
+    console.log('activation: '+activation + 'userLoggedIn: '+userLoggedIn);
 
     return (
       <div className="container">
