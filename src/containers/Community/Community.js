@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 export default class RichEditorExample extends Component {
   state = {
     loginStatus: cookie.load('ck_loginStatus'),
-    userId: cookie.load('ck_uuid'),
+    userEmail: cookie.load('ck_email'),
     draftjsStatus: 0,
     draftjsMsg: ''
   }
@@ -72,28 +72,22 @@ export default class RichEditorExample extends Component {
 
     superagent
     .post('/community')
-    .send({ markupData: markupData, userId: userId })
+    .send({ markupData: markupData, userEmail: userEmail })
     .set('Accept', 'application/json')
     .end((error, res) => {
       if (res.body.status === 1) {
-        this.setState({draftjsStatus: 2});
-        this.setState({draftjsMsg: 'Herzlich willkommen bei der Swiss React Community! Um deinen Account zu aktivieren, klicke bitte auf den Aktivierungslink in dem Bestätigungsmail welches dir automatisch an <strong>' + inputEmail + '</strong> gesendet wurde!'});
-
-        this.props.dispatch(registerNewUser(true, inputEmail, inputPassword, res.body.uuid));
-
-        cookie.save('ck_email', inputEmail, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
-        cookie.save('ck_pw', inputPassword, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
-
+        this.setState({draftjsStatus: 1});
+        this.setState({draftjsMsg: res.body.blogEntry});
       } else {
-        this.setState({formStatus: 1});
-        this.setState({formMsg: 'Diese Email-Adresse wurde bereits registriert, wählen Sie bitte eine andere.'});
+        this.setState({draftjsStatus: 0});
+        this.setState({draftjsMsg: 'Fehler beim Speichern des Beitrages!'});
       }
     });
   }
 
 
   render() {
-    const {loginEmail, editorState, loginStatus} = this.state;
+    const {userEmail, loginStatus, draftjsStatus, draftjsMsg, editorState} = this.state;
     let className = 'RichEditor-editor';
     var contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
@@ -106,7 +100,7 @@ export default class RichEditorExample extends Component {
       <div className="container">
         <h1>Community</h1>
         <Helmet title="Community"/>
-        {loginStatus === true ?
+        {loginStatus === 1 ?
         <div className="RichEditor-root">
           <BlockStyleControls
             editorState={editorState}

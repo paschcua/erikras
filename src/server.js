@@ -45,7 +45,7 @@ var userSchema = new mongoose.Schema({
 var UserModel = mongoose.model('User', userSchema);
 
 var blogSchema = new mongoose.Schema({
-  uuid: String,
+  userEmail: String,
   markup: String
 });
 var BlogModel = mongoose.model('Blog', blogSchema);
@@ -130,13 +130,13 @@ app.post('/activation', function(req, res) {
 /* **** Save new User-Post-Entry to database/mongoose */
 app.post('/community', function(req, res) {
     var markupData = req.body.markupData;
-    var userId = req.body.userId;
+    var userEmail = req.body.userEmail;
 
     var BlogData = new BlogModel({
-      uuid: userId,
+      userEmail: userEmail,
       markup: markupData
     });
-    UserModel.findOne({ uuid: userId }, 'uuid', function(error, result){
+    UserModel.findOne({ email: userEmail }, 'email', function(error, result){
         if(error){
             res.json(error);
         }
