@@ -33,8 +33,8 @@ export default class Activation extends Component {
 
         this.props.dispatch(activateNewUser(true, true));
 
-        cookie.save('ck_userLoggedIn', '1', { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
-        cookie.save('ck_activation', '1', { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
+        cookie.save('ck_userLoggedIn', 'userLoggedIn', { expires: new Date(new Date().getTime() + (3600*3600*3700)) });
+        cookie.save('ck_activation', 'userActivated', { expires: new Date(new Date().getTime() + (3600*3600*3700)) });
       } else {
         this.setState({responseStatus: 2});
         this.setState({responseMsg: 'Es liegt ein Fehler mit der Bestätigung deines Accounts vor, bitte versuche es später nochmals! '});

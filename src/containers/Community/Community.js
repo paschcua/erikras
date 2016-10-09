@@ -16,6 +16,8 @@ import { connect } from 'react-redux';
 export default class RichEditorExample extends Component {
   state = {
     userEmail: cookie.load('ck_email'),
+    userLoggedIn: cookie.load('ck_userLoggedIn'),
+    userActivated: cookie.load('ck_activation'),
     draftjsStatus: 0,
     draftjsMsg: ''
   }
@@ -86,7 +88,7 @@ export default class RichEditorExample extends Component {
   }
 
   render() {
-    const {userEmail, draftjsStatus, draftjsMsg, editorState} = this.state;
+    const {userEmail, userLoggedIn, userActivated, draftjsStatus, draftjsMsg, editorState} = this.state;
     const { activateNewUserState } = this.props;
 
     let className = 'RichEditor-editor';
@@ -96,13 +98,14 @@ export default class RichEditorExample extends Component {
         className += ' RichEditor-hidePlaceholder';
       }
     }
-    console.log('activation: '+activateNewUserState.activatedUser + ', userLoggedIn: '+activateNewUserState.loggedInUser);
+    console.log('activation: '+activateNewUserState + ', userLoggedIn JSON: '+JSON.stringify(activateNewUserState));
+    console.log('COOKIE 1 - userLoggedIn: '+userLoggedIn + ', COOKIE 2 - userActivated: '+userActivated);
 
     return (
       <div className="container">
         <h1>Community</h1>
         <Helmet title="Community"/>
-        {activateNewUserState.activatedUser === true && activateNewUserState.loggedInUser === true ?
+        {(activateNewUserState.activatedUser === true && activateNewUserState.loggedInUser === true) || (userLoggedIn === 'userLoggedIn' && userActivated === 'userActivated') ?
         <div className="RichEditor-root">
           <BlockStyleControls
             editorState={editorState}
