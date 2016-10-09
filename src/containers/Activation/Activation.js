@@ -22,10 +22,12 @@ export default class Activation extends Component {
         this.setState({responseStatus: 1});
         this.setState({responseMsg: 'Dein Account wurde erfolgreich bestätigt! Herzlich willkommen bei der Swiss React Community! '});
         cookie.save('ck_status', true, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
+        cookie.save('ck_loginStatus', true, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
       } else {
         this.setState({responseStatus: 2});
         this.setState({responseMsg: 'Es liegt ein Fehler mit der Bestätigung deines Accounts vor, bitte versuche es später nochmals! '});
         cookie.save('ck_status', false, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
+        cookie.save('ck_loginStatus', false, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
       }
     });
   }

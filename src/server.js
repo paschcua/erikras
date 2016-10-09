@@ -44,6 +44,12 @@ var userSchema = new mongoose.Schema({
 });
 var UserModel = mongoose.model('User', userSchema);
 
+var blogSchema = new mongoose.Schema({
+  uuid: String,
+  markup: String
+});
+var BlogModel = mongoose.model('Blog', blogSchema);
+
 
 app.use(cookieParser()); // use cookieParser for User-Cookies
 
@@ -120,6 +126,31 @@ app.post('/activation', function(req, res) {
       }
     });
 });
+
+/* **** Save new User-Post-Entry to database/mongoose */
+app.post('/community', function(req, res) {
+    var markupData = req.body.markupData;
+    var userId = req.body.userId;
+
+    var BlogData = new BlogModel({
+      uuid: userId,
+      markup: markupData
+    });
+    UserModel.findOne({ uuid: userId }, 'uuid', function(error, result){
+        if(error){
+            res.json(error);
+        }
+        else if(result == null){
+        }
+        else{ /* Success: Save data to mongoose */
+          BlogData.save(function (err) {
+            if (err) return console.log(err);
+          });
+          res.json({ status: 1, blogEntry: markupData });
+        }
+    });
+});
+
 
 
 

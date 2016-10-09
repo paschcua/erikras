@@ -3,6 +3,7 @@ import { Editor, EditorState, RichUtils, convertFromRaw, convertToRaw } from 'dr
 import { stateToHTML } from 'draft-js-export-html';
 import Helmet from 'react-helmet';
 import cookie from 'react-cookie';
+import superagent from 'superagent';
 import { connect } from 'react-redux';
 
 @connect((store) => {
@@ -13,7 +14,10 @@ import { connect } from 'react-redux';
 
 export default class RichEditorExample extends Component {
   state = {
-    loginEmail: cookie.load('ck_email')
+    loginStatus: cookie.load('ck_loginStatus'),
+    userId: cookie.load('ck_uuid'),
+    draftjsStatus: 0,
+    draftjsMsg: ''
   }
 
   constructor(props) {
@@ -63,12 +67,33 @@ export default class RichEditorExample extends Component {
   }
 
   saveDataToDatabase() {
-    console.log(stateToHTML(this.state.editorState.getCurrentContent()));
+    const markupData = stateToHTML(this.state.editorState.getCurrentContent());
+    const userId = this.state.userId;
+
+    superagent
+    .post('/community')
+    .send({ markupData: markupData, userId: userId })
+    .set('Accept', 'application/json')
+    .end((error, res) => {
+      if (res.body.status === 1) {
+        this.setState({draftjsStatus: 2});
+        this.setState({draftjsMsg: 'Herzlich willkommen bei der Swiss React Community! Um deinen Account zu aktivieren, klicke bitte auf den Aktivierungslink in dem Bestätigungsmail welches dir automatisch an <strong>' + inputEmail + '</strong> gesendet wurde!'});
+
+        this.props.dispatch(registerNewUser(true, inputEmail, inputPassword, res.body.uuid));
+
+        cookie.save('ck_email', inputEmail, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
+        cookie.save('ck_pw', inputPassword, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
+
+      } else {
+        this.setState({formStatus: 1});
+        this.setState({formMsg: 'Diese Email-Adresse wurde bereits registriert, wählen Sie bitte eine andere.'});
+      }
+    });
   }
 
 
   render() {
-    const {loginEmail, editorState} = this.state;
+    const {loginEmail, editorState. loginStatus} = this.state;
     let className = 'RichEditor-editor';
     var contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
@@ -81,6 +106,7 @@ export default class RichEditorExample extends Component {
       <div className="container">
         <h1>Community</h1>
         <Helmet title="Community"/>
+        {loginStatus === true ?
         <div className="RichEditor-root">
           <BlockStyleControls
             editorState={editorState}
@@ -104,7 +130,9 @@ export default class RichEditorExample extends Component {
               />
           </div>
         </div>
+        <br />
         <button className="btn btn-primary" onClick={this.saveDataToDatabase.bind(this)}>Speichern</button>
+        : null
       </div>
     );
   }
