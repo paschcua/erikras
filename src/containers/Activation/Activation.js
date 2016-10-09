@@ -5,6 +5,8 @@ import superagent from 'superagent';
 import cookie from 'react-cookie';
 import { connect } from 'react-redux';
 
+import { activateNewUser } from '../../redux/actions/activateNewUserActions';
+
 @connect((store) => {
   return {
     activateNewUserState: store.activateNewUser.userStatus,
@@ -29,7 +31,7 @@ export default class Activation extends Component {
         this.setState({responseStatus: 1});
         this.setState({responseMsg: 'Dein Account wurde erfolgreich bestätigt! Herzlich willkommen bei der Swiss React Community! '});
 
-        this.props.dispatch(activateNewUser(true, true)); /* Persistent State/Cookie - LoggedIn & Activated */
+        this.props.dispatch(activateNewUser(true, true));
 
         cookie.save('ck_userLoggedIn', '1', { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
         cookie.save('ck_activation', '1', { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
