@@ -9,6 +9,7 @@ import {reducer as form} from 'redux-form';
 import info from './info';
 import widgets from './widgets';
 import registerNewUser from './registerNewUserReducer';
+import activateNewUser from './activateNewUserReducer';
 
 export default combineReducers({
   routing: routerReducer,
@@ -22,5 +23,6 @@ export default combineReducers({
   }),
   info,
   widgets,
-  registerNewUser
+  registerNewUser,
+  activateNewUser
 });
