@@ -112,13 +112,10 @@ export default class App extends Component {
                 <LinkContainer to="/registrieren0">
                   <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mein Profil</NavItem>
                 </LinkContainer>
-                : null
-                }
-                { userNavLoggedIn === 0 ?
+                :
                 <LinkContainer to="/registrieren">
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
                 </LinkContainer>
-                : null
                 }
                 <LinkContainer to="/kontakt">
                   <NavItem eventKey={4} onClick={ this.onNavItemClick }>Kontakt</NavItem>
@@ -127,13 +124,10 @@ export default class App extends Component {
                   <LinkContainer to="/registrieren1">
                     <NavItem eventKey={5} onClick={ this.onNavItemClick }>Logout</NavItem>
                   </LinkContainer>
-                  : null
-                }
-                { userNavLoggedIn === 0 ?
+                  :
                   <LinkContainer to="/registrieren2">
                     <NavItem eventKey={6} onClick={ this.onNavItemClick }>Login</NavItem>
                   </LinkContainer>
-                  : null
                 }
               </Nav>
             </Navbar.Collapse>
