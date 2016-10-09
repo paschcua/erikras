@@ -83,12 +83,11 @@ export default class App extends Component {
       var userNavLoggedIn = 0;
       if(this.state.loginEmail !== undefined){
         userNavLoggedIn = 1;
-        this.setState({loaded: true});
       }
       if(registerNewUserState.email !== null){
         userNavLoggedIn = 1;
-        this.setState({loaded: true});
       }
+      this.setState({loaded: true});
       console.log('userNavLoggedIn: ' + userNavLoggedIn + ', cookie.load(ck_email): ' + this.state.loginEmail + ', registerNewUserState.email: '+registerNewUserState.email);
 
       return (
