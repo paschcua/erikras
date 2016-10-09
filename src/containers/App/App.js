@@ -77,14 +77,14 @@ export default class App extends Component {
       const styles = require('./App.scss');
       const { registerNewUserState } = this.props;
 
-      let userNavLoggedIn = 2;
+      var userNavLoggedIn = 2;
       if(this.state.loginEmail === undefined){
         userNavLoggedIn = 0;
       }
       if(registerNewUserState.email !== null){
         userNavLoggedIn = 1;
       }
-      console.log('userNavLoggedIn: ' + userNavLoggedIn);
+      console.log('userNavLoggedIn: ' + userNavLoggedIn + ', cookie.load(ck_email): ' + this.state.loginEmail + ', registerNewUserState.email: '+registerNewUserState.email);
 
       return (
         <div className={styles.app}>
