@@ -36,6 +36,11 @@ import cookie from 'react-cookie';
 })
 
 export default class App extends Component {
+    state = {
+      loaded: false,
+      navExpanded: false
+    }
+
     static propTypes = {
       children: PropTypes.object.isRequired,
       user: PropTypes.object,
@@ -47,12 +52,13 @@ export default class App extends Component {
       store: PropTypes.object.isRequired
     };
 
-    state = {
-      navExpanded: false,
-      loginEmail: cookie.load('ck_email')
+    componentDidMount() {
+      this.state.loaded = true;
+      console.log("component componentDidMount ----------------");
     }
 
     componentWillReceiveProps(nextProps) {
+      console.log("component componentWillReceiveProps ----------------");
       if (!this.props.user && nextProps.user) {
         // login
         this.props.pushState('/loginSuccess');
@@ -75,6 +81,7 @@ export default class App extends Component {
 
     render() {
       const styles = require('./App.scss');
+      const {loaded} = this.state;
       const { registerNewUserState } = this.props;
 
       var userNavLoggedIn = 0;
@@ -90,6 +97,7 @@ export default class App extends Component {
         <div className={styles.app}>
           <Helmet {...config.app.head}/>
           <div className="preload-images"></div>
+          {loaded === true ?
           <Navbar fixedTop expanded={ this.state.navExpanded } onToggle={ this.onNavbarToggle }>
             <Navbar.Header>
               <Navbar.Brand>
@@ -132,6 +140,8 @@ export default class App extends Component {
               </Nav>
             </Navbar.Collapse>
           </Navbar>
+          : null
+          }
 
           <div className={styles.appContent}>
             {this.props.children}
