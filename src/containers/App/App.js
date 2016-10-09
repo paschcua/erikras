@@ -77,12 +77,12 @@ export default class App extends Component {
       const styles = require('./App.scss');
       const { registerNewUserState } = this.props;
 
-      let userNavLoggedIn = true;
+      let userNavLoggedIn = 2;
       if(this.state.loginEmail === undefined){
-        userNavLoggedIn = false;
+        userNavLoggedIn = 0;
       }
       if(registerNewUserState.email !== null){
-        userNavLoggedIn = true;
+        userNavLoggedIn = 1;
       }
       console.log('userNavLoggedIn: ' + userNavLoggedIn);
 
@@ -108,13 +108,13 @@ export default class App extends Component {
                 <LinkContainer to="/community">
                   <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
                 </LinkContainer>
-                { userNavLoggedIn === true ?
+                { userNavLoggedIn === 1 ?
                 <LinkContainer to="/registrieren0">
                   <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mein Profil</NavItem>
                 </LinkContainer>
                 : null
                 }
-                { userNavLoggedIn === false ?
+                { userNavLoggedIn === 0 ?
                 <LinkContainer to="/registrieren">
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
                 </LinkContainer>
@@ -123,13 +123,13 @@ export default class App extends Component {
                 <LinkContainer to="/kontakt">
                   <NavItem eventKey={4} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
-                { userNavLoggedIn === true ?
+                { userNavLoggedIn === 1 ?
                   <LinkContainer to="/registrieren1">
                     <NavItem eventKey={5} onClick={ this.onNavItemClick }>Logout</NavItem>
                   </LinkContainer>
                   : null
                 }
-                { userNavLoggedIn === false ?
+                { userNavLoggedIn === 0 ?
                   <LinkContainer to="/registrieren2">
                     <NavItem eventKey={6} onClick={ this.onNavItemClick }>Login</NavItem>
                   </LinkContainer>
