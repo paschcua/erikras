@@ -15,9 +15,6 @@ import { connect } from 'react-redux';
 
 export default class RichEditorExample extends Component {
   state = {
-    userEmail: cookie.load('ck_email'),
-    userLoggedIn: cookie.load('ck_userLoggedIn'),
-    userActivated: cookie.load('ck_activation'),
     draftjsStatus: 0,
     draftjsMsg: ''
   }
@@ -88,7 +85,7 @@ export default class RichEditorExample extends Component {
   }
 
   render() {
-    const {userEmail, userLoggedIn, userActivated, draftjsStatus, draftjsMsg, editorState} = this.state;
+    const {draftjsStatus, draftjsMsg, editorState} = this.state;
     const { activateNewUserState } = this.props;
 
     let className = 'RichEditor-editor';
@@ -99,13 +96,13 @@ export default class RichEditorExample extends Component {
       }
     }
     console.log('activation: '+activateNewUserState + ', userLoggedIn JSON: '+JSON.stringify(activateNewUserState));
-    console.log('COOKIE 1 - userLoggedIn: '+userLoggedIn + ', COOKIE 2 - userActivated: '+userActivated);
+    console.log('COOKIE 1 - userLoggedIn: '+cookie.load('ck_userLoggedIn') + ', COOKIE 2 - userActivated: '+cookie.load('ck_activation'));
 
     return (
       <div className="container">
         <h1>Community</h1>
         <Helmet title="Community"/>
-        {(activateNewUserState.activatedUser === true && activateNewUserState.loggedInUser === true) || (userLoggedIn === true && userActivated === true) ?
+        {(activateNewUserState.activatedUser === true && activateNewUserState.loggedInUser === true) || (cookie.load('ck_userLoggedIn') === true && cookie.load('ck_activation') === true) ?
         <div className="RichEditor-root">
           <BlockStyleControls
             editorState={editorState}
