@@ -154,7 +154,6 @@ app.post('/community', function(req, res) {
 
 
 
-
 app.use(compression());
 app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
 

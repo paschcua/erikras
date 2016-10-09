@@ -93,7 +93,7 @@ export default class RichEditorExample extends Component {
 
 
   render() {
-    const {loginEmail, editorState. loginStatus} = this.state;
+    const {loginEmail, editorState, loginStatus} = this.state;
     let className = 'RichEditor-editor';
     var contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
@@ -129,10 +129,10 @@ export default class RichEditorExample extends Component {
               spellCheck={true}
               />
           </div>
+          <div><br /></div>
+          <button className="btn btn-primary" onClick={this.saveDataToDatabase.bind(this)}>Speichern</button>
         </div>
-        <br />
-        <button className="btn btn-primary" onClick={this.saveDataToDatabase.bind(this)}>Speichern</button>
-        : null
+        : null }
       </div>
     );
   }
