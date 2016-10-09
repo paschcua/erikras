@@ -45,8 +45,8 @@ export default class Register extends Component {
 
             this.props.dispatch(registerNewUser(true, inputEmail, inputPassword, res.body.uuid));
 
-            cookie.save('ck_email', inputEmail, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
-            cookie.save('ck_pw', inputPassword, { expires: new Date(new Date().getTime() + (3600*3600*3600)) });
+            cookie.save('ck_email', inputEmail, { path: '/', expires: new Date(new Date().getTime() + (3600*3600*3600)) });
+            cookie.save('ck_pw', inputPassword, { path: '/', expires: new Date(new Date().getTime() + (3600*3600*3600)) });
 
           } else {
             this.setState({formStatus: 1});

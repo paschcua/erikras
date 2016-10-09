@@ -105,7 +105,7 @@ export default class RichEditorExample extends Component {
       <div className="container">
         <h1>Community</h1>
         <Helmet title="Community"/>
-        {(activateNewUserState.activatedUser === true && activateNewUserState.loggedInUser === true) || (userLoggedIn === 'userLoggedIn' && userActivated === 'userActivated') ?
+        {(activateNewUserState.activatedUser === true && activateNewUserState.loggedInUser === true) || (userLoggedIn === true && userActivated === true) ?
         <div className="RichEditor-root">
           <BlockStyleControls
             editorState={editorState}
