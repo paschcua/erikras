@@ -37,7 +37,6 @@ import cookie from 'react-cookie';
 
 export default class App extends Component {
     state = {
-      loaded: 'display: "none"',
       userEmail: cookie.load('ck_email'),
       navExpanded: false
     }
@@ -54,8 +53,6 @@ export default class App extends Component {
     };
 
     componentWillMount() {
-      //this.setState({userEmail: cookie.load('ck_email')});
-      this.setState({ loaded: 'display: "inline-block"' });
       console.log("component componentDidMount ----------------");
     }
 
@@ -83,7 +80,7 @@ export default class App extends Component {
 
     render() {
       const styles = require('./App.scss');
-      const {loaded, userEmail} = this.state;
+      const {userEmail} = this.state;
       const { registerNewUserState } = this.props;
 
       var userIsRegistered = 0;
@@ -96,7 +93,7 @@ export default class App extends Component {
       console.log('userIsRegistered: ' + userIsRegistered + ' ,cookie.load(ck_email): ' + userEmail + ', registerNewUserState.email: '+registerNewUserState.email);
 
       return (
-        <div style={loaded} className={styles.app}>
+        <div className={styles.app}>
           <Helmet {...config.app.head}/>
           <div className="preload-images"></div>
           <Navbar fixedTop expanded={ this.state.navExpanded } onToggle={ this.onNavbarToggle }>

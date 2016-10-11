@@ -10,6 +10,7 @@ url('../Home/bg.jpg') no-repeat -9999px -9999px
     $size: 40px;
     top: 5px;
     left: 5px;
+    display: inline-block;
 		display: none;
     background: url('../Home/logo.png') no-repeat center center;
     width: $size;
@@ -28,4 +29,7 @@ url('../Home/bg.jpg') no-repeat -9999px -9999px
 }
 .well h3{
   margin-top: 0px !important;
+}
+.app {
+	display: none;
 }
