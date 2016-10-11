@@ -36,14 +36,14 @@ import cookie from 'react-cookie';
 })
 
 export default class App extends Component {
-    console.log("state... ----------------");
     state = {
       loaded: false,
       userEmail: cookie.load('ck_email'),
       navExpanded: false
     }
 
-    constructor () {
+    constructor (props) {
+      super(props);
       console.log("constructor... ----------------");
       this.state = {
         loaded: false,
