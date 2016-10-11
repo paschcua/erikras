@@ -131,7 +131,7 @@ export default class App extends Component {
                   <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mein Profil</NavItem>
                 </LinkContainer>
                 : null }
-                { userIsRegistered === 0 ?
+                { userIsRegistered === 2 ?
                 <LinkContainer to="/registrieren">
                   <NavItem eventKey={3} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
                 </LinkContainer>
@@ -144,7 +144,7 @@ export default class App extends Component {
                     <NavItem eventKey={5} onClick={ this.onNavItemClick }>Logout</NavItem>
                   </LinkContainer>
                   : null }
-                  { userIsRegistered === 0 ?
+                  { userIsRegistered === 2 ?
                   <LinkContainer to="/registrieren2">
                     <NavItem eventKey={6} onClick={ this.onNavItemClick }>Login</NavItem>
                   </LinkContainer>
