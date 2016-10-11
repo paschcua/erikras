@@ -55,10 +55,7 @@ export default class App extends Component {
 
     componentWillMount() {
       //this.setState({userEmail: cookie.load('ck_email')});
-      setTimeout(function(){
-        this.setState({ loaded: 'display: "inline-block"' });
-      }, 1000);
-      
+      this.setState({ loaded: 'display: "inline-block"' });
       console.log("component componentDidMount ----------------");
     }
 
