@@ -67,7 +67,7 @@ export default class RichEditorExample extends Component {
 
   saveDataToDatabase() {
     const markupData = stateToHTML(this.state.editorState.getCurrentContent());
-    const userId = this.state.userId;
+    const userEmail = cookie.load('ck_email');
 
     superagent
     .post('/community')
@@ -129,7 +129,9 @@ export default class RichEditorExample extends Component {
         <br />
         <button className="btn btn-primary" onClick={this.saveDataToDatabase.bind(this)}>Speichern</button>
         </div>
-        : null }
+        :
+        <p>Bitte aktiviere zuerst deinen Account!</p>
+        }
       </div>
     );
   }
