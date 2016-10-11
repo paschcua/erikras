@@ -39,7 +39,6 @@ export default class App extends Component {
     state = {
       loaded: false,
       userEmail: cookie.load('ck_email'),
-      userLoginStatus: cookie.load('ck_userLoggedIn'),
       navExpanded: false
     }
 
@@ -83,11 +82,11 @@ export default class App extends Component {
 
     render() {
       const styles = require('./App.scss');
-      const {loaded, userEmail, userLoginStatus} = this.state;
+      const {loaded, userEmail} = this.state;
       const { registerNewUserState } = this.props;
 
       var userIsRegistered = 0;
-      if(userEmail !== undefined && userLoginStatus === true){
+      if(userEmail !== undefined){
         userIsRegistered = 1;
       }
       if(registerNewUserState.email !== null){
