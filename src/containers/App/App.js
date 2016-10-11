@@ -36,10 +36,20 @@ import cookie from 'react-cookie';
 })
 
 export default class App extends Component {
+    console.log("state... ----------------");
     state = {
       loaded: false,
       userEmail: cookie.load('ck_email'),
       navExpanded: false
+    }
+
+    constructor () {
+      console.log("constructor... ----------------");
+      this.state = {
+        loaded: false,
+        userEmail: cookie.load('ck_email'),
+        navExpanded: false
+      };
     }
 
     static propTypes = {
@@ -54,7 +64,7 @@ export default class App extends Component {
     };
 
     componentWillMount() {
-      this.setState({loaded: true});
+      //this.setState({userEmail: cookie.load('ck_email')});
       console.log("component componentDidMount ----------------");
     }
 
