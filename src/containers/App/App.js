@@ -38,7 +38,8 @@ import cookie from 'react-cookie';
 export default class App extends Component {
     state = {
       loaded: false,
-      loginEmail: cookie.load('ck_userLoggedIn'),
+      userEmail: cookie.load('ck_email'),
+      userLoginStatus: cookie.load('ck_userLoggedIn'),
       navExpanded: false
     }
 
@@ -82,17 +83,17 @@ export default class App extends Component {
 
     render() {
       const styles = require('./App.scss');
-      const {loaded, loginEmail} = this.state;
+      const {loaded, userEmail, userLoginStatus} = this.state;
       const { registerNewUserState } = this.props;
 
-      var userNavLoggedIn = 0;
-      if(loginEmail !== undefined){
-        userNavLoggedIn = 1;
+      var userIsRegistered = 0;
+      if(userEmail !== undefined && userLoginStatus === true){
+        userIsRegistered = 1;
       }
       if(registerNewUserState.email !== null){
-        userNavLoggedIn = 1;
+        userIsRegistered = 1;
       }
-      console.log('userNavLoggedIn: ' + userNavLoggedIn + ', cookie.load(ck_email): ' + this.state.loginEmail + ', registerNewUserState.email: '+registerNewUserState.email);
+      console.log('userIsRegistered: ' + userIsRegistered + ', userLoginStatus: '+ userLoginStatus +' ,cookie.load(ck_email): ' + userEmail + ', registerNewUserState.email: '+registerNewUserState.email);
 
       return (
         <div className={styles.app}>
@@ -117,7 +118,7 @@ export default class App extends Component {
                 <LinkContainer to="/community">
                   <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
                 </LinkContainer>
-                { userNavLoggedIn === 1 ?
+                { userIsRegistered === 1 ?
                 <LinkContainer to="/registrieren0">
                   <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mein Profil</NavItem>
                 </LinkContainer>
@@ -129,7 +130,7 @@ export default class App extends Component {
                 <LinkContainer to="/kontakt">
                   <NavItem eventKey={4} onClick={ this.onNavItemClick }>Kontakt</NavItem>
                 </LinkContainer>
-                { userNavLoggedIn === 1 ?
+                { userIsRegistered === 1 ?
                   <LinkContainer to="/registrieren1">
                     <NavItem eventKey={5} onClick={ this.onNavItemClick }>Logout</NavItem>
                   </LinkContainer>
