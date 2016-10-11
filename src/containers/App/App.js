@@ -83,12 +83,16 @@ export default class App extends Component {
       const {userEmail} = this.state;
       const { registerNewUserState } = this.props;
 
-      var userIsRegistered = 2;
+      var userIsRegistered = 0;
       if(userEmail !== undefined){
         userIsRegistered = 1;
+      } else{
+        userIsRegistered = 2;
       }
       if(registerNewUserState.email !== null){
         userIsRegistered = 1;
+      } else{
+        userIsRegistered = 2;
       }
       console.log('userIsRegistered: ' + userIsRegistered + ' ,cookie.load(ck_email): ' + userEmail + ', registerNewUserState.email: '+registerNewUserState.email);
 
@@ -132,7 +136,7 @@ export default class App extends Component {
                     <LinkContainer to="/community">
                       <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
                     </LinkContainer>
-                    <LinkContainer to="/registrieren0">
+                    <LinkContainer to="/registrieren">
                       <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
                     </LinkContainer>
                     <LinkContainer to="/kontakt">
