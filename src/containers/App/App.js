@@ -92,7 +92,7 @@ export default class App extends Component {
       if(registerNewUserState.email !== null){
         userIsRegistered = 1;
       }
-      console.log('userIsRegistered: ' + userIsRegistered + ', userLoginStatus: '+ userLoginStatus +' ,cookie.load(ck_email): ' + userEmail + ', registerNewUserState.email: '+registerNewUserState.email);
+      console.log('userIsRegistered: ' + userIsRegistered + ' ,cookie.load(ck_email): ' + userEmail + ', registerNewUserState.email: '+registerNewUserState.email);
 
       return (
         <div className={styles.app}>
