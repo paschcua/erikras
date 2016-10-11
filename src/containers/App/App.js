@@ -83,7 +83,7 @@ export default class App extends Component {
       const {userEmail} = this.state;
       const { registerNewUserState } = this.props;
 
-      var userIsRegistered = 0;
+      var userIsRegistered = 2;
       if(userEmail !== undefined){
         userIsRegistered = 1;
       }
@@ -108,37 +108,42 @@ export default class App extends Component {
               </Navbar.Brand>
               <Navbar.Toggle/>
             </Navbar.Header>
-
+            { userIsRegistered === 1 ?
             <Navbar.Collapse>
               <Nav navbar>
-                <LinkContainer to="/community">
-                  <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
-                </LinkContainer>
-                { userIsRegistered === 1 ?
-                <LinkContainer to="/registrieren0">
-                  <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mein Profil</NavItem>
-                </LinkContainer>
-                : null }
-                { userIsRegistered === 0 ?
-                <LinkContainer to="/registrieren">
-                  <NavItem eventKey={3} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
-                </LinkContainer>
-                : null }
-                <LinkContainer to="/kontakt">
-                  <NavItem eventKey={4} onClick={ this.onNavItemClick }>Kontakt</NavItem>
-                </LinkContainer>
-                { userIsRegistered === 1 ?
+                  <LinkContainer to="/community">
+                    <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/registrieren0">
+                    <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mein Profil</NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/kontakt">
+                    <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
+                  </LinkContainer>
                   <LinkContainer to="/registrieren1">
-                    <NavItem eventKey={5} onClick={ this.onNavItemClick }>Logout</NavItem>
+                    <NavItem eventKey={4} onClick={ this.onNavItemClick }>Logout</NavItem>
                   </LinkContainer>
-                  : null }
-                  { userIsRegistered === 0 ?
-                  <LinkContainer to="/registrieren2">
-                    <NavItem eventKey={6} onClick={ this.onNavItemClick }>Login</NavItem>
-                  </LinkContainer>
-                  : null }
               </Nav>
             </Navbar.Collapse>
+            : null }
+            { userIsRegistered === 2 ?
+            <Navbar.Collapse>
+                <Nav navbar>
+                    <LinkContainer to="/community">
+                      <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
+                    </LinkContainer>
+                    <LinkContainer to="/registrieren0">
+                      <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
+                    </LinkContainer>
+                    <LinkContainer to="/kontakt">
+                      <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
+                    </LinkContainer>
+                    <LinkContainer to="/registrieren1">
+                      <NavItem eventKey={4} onClick={ this.onNavItemClick }>Login</NavItem>
+                    </LinkContainer>
+                </Nav>
+            </Navbar.Collapse>
+            : null }
           </Navbar>
 
           <div className={styles.appContent}>
