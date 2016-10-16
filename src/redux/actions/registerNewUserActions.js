@@ -3,10 +3,10 @@ export function registerNewUser(activation, email, pw, uuid) {
     dispatch({
       type: 'REGISTER_NEW_USER_FULFILLED',
       payload: {
-        activation: activation
+        activation: activation,
         email: email,
         pw: pw,
-        uuid: uuid,
+        uuid: uuid
       }
     });
   };
