@@ -40,7 +40,6 @@ import { getUser } from '../../redux/actions/getUserActions';
 
 export default class App extends Component {
     state = {
-      //userEmail: cookie.load('ck_email'),
       navExpanded: false
     }
 
@@ -86,21 +85,6 @@ export default class App extends Component {
       const styles = require('./App.scss');
       const {userEmail} = null;
       const { registerNewUserState, getUserState } = this.props;
-
-      /*var userIsRegistered = 0;
-      if(userEmail !== undefined){
-        userIsRegistered = 1;
-      } else{
-        userIsRegistered = 2;
-      }
-      if(registerNewUserState.email !== null){
-        userIsRegistered = 1;
-      }
-      if(getUserState.activation !== null){
-        userIsRegistered = 1;
-      }*/
-
-      //console.log('userIsRegistered: ' + userIsRegistered + ' ,cookie.load(ck_email): ' + userEmail + ', registerNewUserState.email: '+registerNewUserState.email);
 
       return (
         <div className={styles.app}>
