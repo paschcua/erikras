@@ -63,6 +63,7 @@ export default class App extends Component {
       const ck_uuid = cookie.load('ck_uuid');
 
       this.props.dispatch(getUser(ck_activation, ck_email, ck_pw, ck_uuid));
+      console.log("Dispatcher done"+this.props.getUserState.loading);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -89,7 +90,7 @@ export default class App extends Component {
     render() {
       const styles = require('./App.scss');
       const { registerNewUserState, getUserState, activateNewUserState } = this.props;
-      const spinner = <span className={styles.app.loader}></span>;
+      const spinner = <div className={styles.loader}></div>;
       console.log("+++ getUserState.loading +++ : "+getUserState.loading);
       return (
         <div className={styles.app}>

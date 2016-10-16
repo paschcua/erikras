@@ -18,12 +18,6 @@ url('../Home/bg.jpg') no-repeat -9999px -9999px
     margin: 0 10px 0 0;
     border-radius: $size / 2;
   }
-	.loader {
-    $size: 30px;
-    background: url('../Home/loader.gif') no-repeat center center;
-    width: $size;
-    height: $size;
-  }
   nav :global(.fa) {
     font-size: 2em;
     line-height: 20px;
@@ -34,4 +28,10 @@ url('../Home/bg.jpg') no-repeat -9999px -9999px
 }
 .well h3{
   margin-top: 0px !important;
+}
+.loader {
+	$size: 30px;
+	background: url('../Home/loader.gif') no-repeat center center;
+	width: $size;
+	height: $size;
 }
