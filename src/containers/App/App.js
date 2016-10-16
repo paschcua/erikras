@@ -97,7 +97,7 @@ export default class App extends Component {
         <div className={styles.app}>
           <Helmet {...config.app.head}/>
           <div className="preload-images"></div>
-          <Loader show={getUserState.loading}>
+          <Loader show={getUserState.loading} hideContentOnLoad={true} >
           <Navbar fixedTop expanded={ this.state.navExpanded } onToggle={ this.onNavbarToggle }>
             <Navbar.Header>
               <Navbar.Brand>
@@ -141,10 +141,12 @@ export default class App extends Component {
           </Navbar>
           </Loader>
 
+          <Loader show={true} >
           <div className={styles.appContent}>
             {this.props.children}
           </div>
           <InfoBar/>
+          </Loader>
 
           <div className="well text-center">
             Copyright { new Date().getFullYear() } | Swiss React Community | React, Redux, Flux, React Native | Swiss-react.ch
