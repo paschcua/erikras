@@ -54,9 +54,14 @@ export default class App extends Component {
       store: PropTypes.object.isRequired
     };
 
-    componentWillMount() {
+    componentDidMount() {
       console.log("component componentDidMount ----------------");
-      this.props.dispatch(getUser(cookie.load('ck_activation'), cookie.load('ck_email'), cookie.load('ck_pw'), cookie.load('ck_uuid')));
+      const ck_activation = cookie.load('ck_activation');
+      const ck_email = cookie.load('ck_email');
+      const ck_pw = cookie.load('ck_pw');
+      const ck_uuid = cookie.load('ck_uuid');
+
+      this.props.dispatch(getUser(ck_activation, ck_email, ck_pw, ck_uuid));
     }
 
     componentWillReceiveProps(nextProps) {
@@ -83,7 +88,6 @@ export default class App extends Component {
 
     render() {
       const styles = require('./App.scss');
-      const {userEmail} = null;
       const { registerNewUserState, getUserState } = this.props;
 
       return (
