@@ -66,7 +66,7 @@ export default class App extends Component {
       const ck_pw = cookie.load('ck_pw');
       const ck_uuid = cookie.load('ck_uuid');
 
-      //this.props.dispatch(getUser(ck_activation, ck_email, ck_pw, ck_uuid, false));
+      this.props.dispatch(getUser(ck_activation, ck_email, ck_pw, ck_uuid, true));
       console.log("Dispatcher done"+this.props.getUserState.loading);
     }
 
@@ -95,12 +95,15 @@ export default class App extends Component {
       const styles = require('./App.scss');
       const { registerNewUserState, getUserState, activateNewUserState } = this.props;
       const spinner = <div className={styles.loader}></div>;
+
+      this.props.dispatch(getUser(null, null, null, null, false));
       console.log("+++ getUserState.loading +++ : "+getUserState.loading);
+
       return (
         <div className={styles.app}>
           <Helmet {...config.app.head}/>
           <div className="preload-images"></div>
-          <Loader show={getUserState.loading} >
+          <Loader show={getUserState.loading}>
           <Navbar fixedTop expanded={ this.state.navExpanded } onToggle={ this.onNavbarToggle }>
             <Navbar.Header>
               <Navbar.Brand>
@@ -144,12 +147,10 @@ export default class App extends Component {
           </Navbar>
           </Loader>
 
-          <Loader show={true} message={spinner} >
           <div className={styles.appContent}>
             {this.props.children}
           </div>
           <InfoBar/>
-          </Loader>
 
           <div className="well text-center">
             Copyright { new Date().getFullYear() } | Swiss React Community | React, Redux, Flux, React Native | Swiss-react.ch
