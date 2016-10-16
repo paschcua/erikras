@@ -14,6 +14,8 @@ import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
 import cookie from 'react-cookie';
 
+import { getUser } from '../../redux/actions/getUserActions';
+
 @asyncConnect([{
   promise: ({store: {dispatch, getState}}) => {
     const promises = [];
@@ -98,7 +100,7 @@ export default class App extends Component {
         userIsRegistered = 1;
       }*/
 
-      console.log('userIsRegistered: ' + userIsRegistered + ' ,cookie.load(ck_email): ' + userEmail + ', registerNewUserState.email: '+registerNewUserState.email);
+      //console.log('userIsRegistered: ' + userIsRegistered + ' ,cookie.load(ck_email): ' + userEmail + ', registerNewUserState.email: '+registerNewUserState.email);
 
       return (
         <div className={styles.app}>
