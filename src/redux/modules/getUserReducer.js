@@ -4,7 +4,7 @@ export default function reducer(state={
       pw: null,
       uuid: null,
       activation: null,
-      loaded: false
+      loading: true
     },
   }, action) {
     switch (action.type) {

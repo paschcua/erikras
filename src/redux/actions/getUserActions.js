@@ -7,7 +7,7 @@ export function getUser(activation, email, pw, uuid) {
         email: email,
         pw: pw,
         uuid: uuid,
-        loaded: true
+        loading: false
       }
     });
   };
