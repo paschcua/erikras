@@ -57,7 +57,6 @@ export default class App extends Component {
     };
 
     componentWillMount() {
-      console.log("component componentDidMount ----------------");
       const ck_activation = cookie.load('ck_activation');
       const ck_email = cookie.load('ck_email');
       const ck_pw = cookie.load('ck_pw');
@@ -67,7 +66,6 @@ export default class App extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-      console.log("component componentWillReceiveProps ----------------");
       if (!this.props.user && nextProps.user) {
         // login
         this.props.pushState('/loginSuccess');
@@ -91,7 +89,7 @@ export default class App extends Component {
     render() {
       const styles = require('./App.scss');
       const { registerNewUserState, getUserState, activateNewUserState } = this.props;
-      const spinner = <span><img src="../Home/loader.gif" width="30" height="30" /></span>;
+      const spinner = <span className={styles.app.loader}></span>;
       console.log("+++ getUserState.loading +++ : "+getUserState.loading);
       return (
         <div className={styles.app}>
