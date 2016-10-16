@@ -70,6 +70,6 @@ export default class Activation extends Component {
             : null
           }
       </div>
-    )
+    );
   }
 }

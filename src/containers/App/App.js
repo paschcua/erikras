@@ -35,6 +35,7 @@ import { getUser } from '../../redux/actions/getUserActions';
   return {
     registerNewUserState: store.registerNewUser.user,
     getUserState: store.getUser.user,
+    activateNewUserState: store.activateNewUser.userStatus,
   };
 })
 
@@ -88,7 +89,7 @@ export default class App extends Component {
 
     render() {
       const styles = require('./App.scss');
-      const { registerNewUserState, getUserState } = this.props;
+      const { registerNewUserState, getUserState, activateNewUserState } = this.props;
 
       return (
         <div className={styles.app}>
@@ -106,42 +107,28 @@ export default class App extends Component {
               </Navbar.Brand>
               <Navbar.Toggle/>
             </Navbar.Header>
-            { getUserState.activation === true ?
             <Navbar.Collapse>
               <Nav navbar>
                   <LinkContainer to="/community">
                     <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
                   </LinkContainer>
-                  <LinkContainer to="/registrieren0">
+                  { getUserState.activation === true || activateNewUserState.activatedUser === true ?
+                  <LinkContainer to="/registrieren">
                     <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mein Profil</NavItem>
                   </LinkContainer>
+                  :
+                  <LinkContainer to="/registrieren0">
+                    <NavItem eventKey={3}>Mitmachen</NavItem>
+                  </LinkContainer>
+                  }
                   <LinkContainer to="/kontakt">
-                    <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
+                    <NavItem eventKey={4}>Kontakt</NavItem>
                   </LinkContainer>
                   <LinkContainer to="/registrieren1">
-                    <NavItem eventKey={4} onClick={ this.onNavItemClick }>Logout</NavItem>
+                    <NavItem eventKey={5}>Login</NavItem>
                   </LinkContainer>
               </Nav>
             </Navbar.Collapse>
-            : null }
-            { getUserState.activation !== true ?
-            <Navbar.Collapse>
-                <Nav navbar>
-                    <LinkContainer to="/community">
-                      <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
-                    </LinkContainer>
-                    <LinkContainer to="/registrieren">
-                      <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mitglied werden</NavItem>
-                    </LinkContainer>
-                    <LinkContainer to="/kontakt">
-                      <NavItem eventKey={3} onClick={ this.onNavItemClick }>Kontakt</NavItem>
-                    </LinkContainer>
-                    <LinkContainer to="/registrieren1">
-                      <NavItem eventKey={4} onClick={ this.onNavItemClick }>Login</NavItem>
-                    </LinkContainer>
-                </Nav>
-            </Navbar.Collapse>
-            : null }
           </Navbar>
 
           <div className={styles.appContent}>
