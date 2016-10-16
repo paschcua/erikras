@@ -91,13 +91,13 @@ export default class App extends Component {
     render() {
       const styles = require('./App.scss');
       const { registerNewUserState, getUserState, activateNewUserState } = this.props;
-      //const loader = <span><img src="../Home/loader.gif" width="30" height="30" /></span>;
-
+      const spinner = <span><img src="../Home/loader.gif" width="30" height="30" /></span>;
+      console.log("+++ getUserState.loading +++ : "+getUserState.loading);
       return (
         <div className={styles.app}>
           <Helmet {...config.app.head}/>
           <div className="preload-images"></div>
-          <Loader show={getUserState.loading} hideContentOnLoad={true} >
+          <Loader show={getUserState.loading} >
           <Navbar fixedTop expanded={ this.state.navExpanded } onToggle={ this.onNavbarToggle }>
             <Navbar.Header>
               <Navbar.Brand>
@@ -141,7 +141,7 @@ export default class App extends Component {
           </Navbar>
           </Loader>
 
-          <Loader show={true} >
+          <Loader show={true} message={spinner} >
           <div className={styles.appContent}>
             {this.props.children}
           </div>
