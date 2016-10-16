@@ -3,7 +3,8 @@ export default function reducer(state={
       email: null,
       pw: null,
       uuid: null,
-      activation: null
+      activation: null,
+      loaded: false
     },
   }, action) {
     switch (action.type) {
