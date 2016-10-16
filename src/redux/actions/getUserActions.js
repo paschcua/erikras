@@ -1,4 +1,4 @@
-export function getUser(activation, email, pw, uuid) {
+export function getUser(activation, email, pw, uuid, loading) {
   return function(dispatch) {
     dispatch({
       type: 'GET_USER_FULFILLED',
@@ -7,7 +7,7 @@ export function getUser(activation, email, pw, uuid) {
         email: email,
         pw: pw,
         uuid: uuid,
-        loading: false
+        loading: loading
       }
     });
   };
