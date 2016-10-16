@@ -133,6 +133,7 @@
     "react-global": "^0.1.8",
     "react-helmet": "^2.2.0",
     "react-inline-css": "^2.0.0",
+    "react-loader-advanced": "^1.4.1",
     "react-redux": "^4.0.0",
     "react-router": "2.0.0",
     "react-router-bootstrap": "^0.20.1",

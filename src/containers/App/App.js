@@ -13,6 +13,7 @@ import { push } from 'react-router-redux';
 import config from '../../config';
 import { asyncConnect } from 'redux-async-connect';
 import cookie from 'react-cookie';
+import Loader from 'react-loader-advanced';
 
 import { getUser } from '../../redux/actions/getUserActions';
 
@@ -55,7 +56,7 @@ export default class App extends Component {
       store: PropTypes.object.isRequired
     };
 
-    componentDidMount() {
+    componentWillMount() {
       console.log("component componentDidMount ----------------");
       const ck_activation = cookie.load('ck_activation');
       const ck_email = cookie.load('ck_email');
@@ -92,8 +93,10 @@ export default class App extends Component {
       const { registerNewUserState, getUserState, activateNewUserState } = this.props;
 
       return (
+        <Loader show={true} message={'loading'}>
         <div className={styles.app}>
           <Helmet {...config.app.head}/>
+          <div className="loader"></div>
           <div className="preload-images"></div>
           <Navbar fixedTop expanded={ this.state.navExpanded } onToggle={ this.onNavbarToggle }>
             <Navbar.Header>
@@ -140,6 +143,7 @@ export default class App extends Component {
             Copyright { new Date().getFullYear() } | Swiss React Community | React, Redux, Flux, React Native | Swiss-react.ch
           </div>
         </div>
+        </Loader>
       );
     }
   }
