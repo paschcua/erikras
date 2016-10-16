@@ -45,7 +45,6 @@ export default class App extends Component {
       navExpanded: false
     }
 
-
     static propTypes = {
       children: PropTypes.object.isRequired,
       user: PropTypes.object,
@@ -67,7 +66,7 @@ export default class App extends Component {
       const ck_pw = cookie.load('ck_pw');
       const ck_uuid = cookie.load('ck_uuid');
 
-      this.props.dispatch(getUser(ck_activation, ck_email, ck_pw, ck_uuid, false));
+      //this.props.dispatch(getUser(ck_activation, ck_email, ck_pw, ck_uuid, false));
       console.log("Dispatcher done"+this.props.getUserState.loading);
     }
 
@@ -95,7 +94,7 @@ export default class App extends Component {
     render() {
       const styles = require('./App.scss');
       const { registerNewUserState, getUserState, activateNewUserState } = this.props;
-      const spinner = <span className={styles.loader}></span>;
+      const spinner = <div className={styles.loader}></div>;
       console.log("+++ getUserState.loading +++ : "+getUserState.loading);
       return (
         <div className={styles.app}>
