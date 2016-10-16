@@ -93,11 +93,10 @@ export default class App extends Component {
       const { registerNewUserState, getUserState, activateNewUserState } = this.props;
 
       return (
-        <Loader show={true} message={'loading'}>
         <div className={styles.app}>
           <Helmet {...config.app.head}/>
-          <div className="loader"></div>
           <div className="preload-images"></div>
+          <Loader show={true} backgroundStyle={{backgroundColor: 'white'}} hideContentOnLoad={true}>
           <Navbar fixedTop expanded={ this.state.navExpanded } onToggle={ this.onNavbarToggle }>
             <Navbar.Header>
               <Navbar.Brand>
@@ -133,6 +132,7 @@ export default class App extends Component {
               </Nav>
             </Navbar.Collapse>
           </Navbar>
+          </Loader>
 
           <div className={styles.appContent}>
             {this.props.children}
@@ -143,7 +143,6 @@ export default class App extends Component {
             Copyright { new Date().getFullYear() } | Swiss React Community | React, Redux, Flux, React Native | Swiss-react.ch
           </div>
         </div>
-        </Loader>
       );
     }
   }
