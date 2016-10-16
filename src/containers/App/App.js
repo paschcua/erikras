@@ -32,14 +32,17 @@ import cookie from 'react-cookie';
 @connect((store) => {
   return {
     registerNewUserState: store.registerNewUser.user,
+    getUserState: store.getUser.user,
   };
 })
 
 export default class App extends Component {
     state = {
-      userEmail: cookie.load('ck_email'),
+      //userEmail: cookie.load('ck_email'),
       navExpanded: false
     }
+
+    this.props.dispatch(getUser(cookie.load('ck_activation'), cookie.load('ck_email'), cookie.load('ck_pw'), cookie.load('ck_uuid')));
 
     static propTypes = {
       children: PropTypes.object.isRequired,
@@ -80,10 +83,10 @@ export default class App extends Component {
 
     render() {
       const styles = require('./App.scss');
-      const {userEmail} = this.state;
-      const { registerNewUserState } = this.props;
+      //const {userEmail} = this.state;
+      const { registerNewUserState, getUserState } = this.props;
 
-      var userIsRegistered = 0;
+      /*var userIsRegistered = 0;
       if(userEmail !== undefined){
         userIsRegistered = 1;
       } else{
@@ -91,8 +94,11 @@ export default class App extends Component {
       }
       if(registerNewUserState.email !== null){
         userIsRegistered = 1;
+      }*/
+      if(getUserState.activation !== null){
+        userIsRegistered = 1;
       }
-      
+
       console.log('userIsRegistered: ' + userIsRegistered + ' ,cookie.load(ck_email): ' + userEmail + ', registerNewUserState.email: '+registerNewUserState.email);
 
       return (
@@ -111,7 +117,7 @@ export default class App extends Component {
               </Navbar.Brand>
               <Navbar.Toggle/>
             </Navbar.Header>
-            { userIsRegistered === 1 ?
+            { getUserState.activation === true ?
             <Navbar.Collapse>
               <Nav navbar>
                   <LinkContainer to="/community">
@@ -129,7 +135,7 @@ export default class App extends Component {
               </Nav>
             </Navbar.Collapse>
             : null }
-            { userIsRegistered === 2 ?
+            { getUserState.activation !== true ?
             <Navbar.Collapse>
                 <Nav navbar>
                     <LinkContainer to="/community">
