@@ -42,8 +42,6 @@ export default class App extends Component {
       navExpanded: false
     }
 
-    this.props.dispatch(getUser(cookie.load('ck_activation'), cookie.load('ck_email'), cookie.load('ck_pw'), cookie.load('ck_uuid')));
-
     static propTypes = {
       children: PropTypes.object.isRequired,
       user: PropTypes.object,
@@ -57,6 +55,7 @@ export default class App extends Component {
 
     componentWillMount() {
       console.log("component componentDidMount ----------------");
+      this.props.dispatch(getUser(cookie.load('ck_activation'), cookie.load('ck_email'), cookie.load('ck_pw'), cookie.load('ck_uuid')));
     }
 
     componentWillReceiveProps(nextProps) {
@@ -83,7 +82,7 @@ export default class App extends Component {
 
     render() {
       const styles = require('./App.scss');
-      //const {userEmail} = this.state;
+      const {userEmail} = null;
       const { registerNewUserState, getUserState } = this.props;
 
       /*var userIsRegistered = 0;
@@ -94,10 +93,10 @@ export default class App extends Component {
       }
       if(registerNewUserState.email !== null){
         userIsRegistered = 1;
-      }*/
+      }
       if(getUserState.activation !== null){
         userIsRegistered = 1;
-      }
+      }*/
 
       console.log('userIsRegistered: ' + userIsRegistered + ' ,cookie.load(ck_email): ' + userEmail + ', registerNewUserState.email: '+registerNewUserState.email);
 
