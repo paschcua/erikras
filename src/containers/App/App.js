@@ -91,13 +91,12 @@ export default class App extends Component {
     render() {
       const styles = require('./App.scss');
       const { registerNewUserState, getUserState, activateNewUserState } = this.props;
-      const spinner = <span className={styles.app.loader}></span>;
 
       return (
         <div className={styles.app}>
           <Helmet {...config.app.head}/>
           <div className="preload-images"></div>
-          <Loader show={getUserState.loading} backgroundStyle={{backgroundColor: '#e7e7e7'}} hideContentOnLoad={true} message={spinner}>
+          <Loader show={getUserState.loading} backgroundStyle={{backgroundColor: 'grey'}} hideContentOnLoad={true} message={{<span className={styles.app.loader}></span>}}>
           <Navbar fixedTop expanded={ this.state.navExpanded } onToggle={ this.onNavbarToggle }>
             <Navbar.Header>
               <Navbar.Brand>
@@ -121,15 +120,21 @@ export default class App extends Component {
                   </LinkContainer>
                   :
                   <LinkContainer to="/registrieren0">
-                    <NavItem eventKey={3}>Mitmachen</NavItem>
+                    <NavItem eventKey={2}>Mitmachen</NavItem>
                   </LinkContainer>
                   }
                   <LinkContainer to="/kontakt">
-                    <NavItem eventKey={4}>Kontakt</NavItem>
+                    <NavItem eventKey={3}>Kontakt</NavItem>
                   </LinkContainer>
+                  { getUserState.activation === true || activateNewUserState.activatedUser === true ?
                   <LinkContainer to="/registrieren1">
-                    <NavItem eventKey={5}>Login</NavItem>
+                    <NavItem eventKey={4}>Logout</NavItem>
                   </LinkContainer>
+                  :
+                  <LinkContainer to="/registrieren1">
+                    <NavItem eventKey={4}>Login</NavItem>
+                  </LinkContainer>
+                  }
               </Nav>
             </Navbar.Collapse>
           </Navbar>
