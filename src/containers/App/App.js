@@ -91,12 +91,13 @@ export default class App extends Component {
     render() {
       const styles = require('./App.scss');
       const { registerNewUserState, getUserState, activateNewUserState } = this.props;
+      const loader = <span><img src="../Home/loader.gif" width="30" height="30" /></span>;
 
       return (
         <div className={styles.app}>
           <Helmet {...config.app.head}/>
           <div className="preload-images"></div>
-          <Loader show={getUserState.loading} backgroundStyle={{backgroundColor: 'grey'}} hideContentOnLoad={false} message={<span className={styles.app.loader}></span>}>
+          <Loader show={getUserState.loading} backgroundStyle={{backgroundColor: 'grey'}} hideContentOnLoad={false} message={loader}></span>}>
           <Navbar fixedTop expanded={ this.state.navExpanded } onToggle={ this.onNavbarToggle }>
             <Navbar.Header>
               <Navbar.Brand>
