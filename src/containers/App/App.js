@@ -44,7 +44,7 @@ export default class App extends Component {
     state = {
       navExpanded: false
     }
-    console.log("Starting: "+this.props.getUserState.loading);
+
 
     static propTypes = {
       children: PropTypes.object.isRequired,
@@ -56,6 +56,10 @@ export default class App extends Component {
     static contextTypes = {
       store: PropTypes.object.isRequired
     };
+
+    componentDidMount() {
+      console.log("Starting: "+this.props.getUserState.loading);
+    }
 
     componentWillMount() {
       const ck_activation = cookie.load('ck_activation');
