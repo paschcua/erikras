@@ -79,11 +79,11 @@ export default class App extends Component {
       this.setState({ navExpanded: false });
     }
 
-    onNavItemClickLogout(loginProps){
-      if(loginProps === 'logout'){
-        cookie.save('ck_userLoggedIn', false, { path: '/', expires: new Date(new Date().getTime() + (3600*3600*3600)) });
-        this.setState({ navExpanded: false });
-      }
+    onLogout(){
+      cookie.save('ck_userLoggedIn', false, { path: '/', expires: new Date(new Date().getTime() + (3600*3600*3600)) });
+      this.setState({ navExpanded: false });
+      /* Update UserState */
+      this.props.dispatch(getUser());
     }
 
     onNavbarToggle = () => {
@@ -132,13 +132,13 @@ export default class App extends Component {
                     <LinkContainer to="/kontakt">
                       <NavItem eventKey={3}>Kontakt</NavItem>
                     </LinkContainer>
-                    { /* getUserState.activation === true || activateNewUserState.activatedUser === true ? */ }
-                      <NavItem eventKey={4} onClick={ () => this.onNavItemClickLogin('logout') }>Logout</NavItem>
-                    { /* : */ }
+                    { getUserState.activation === true || activateNewUserState.activatedUser === true ?
+                      <NavItem eventKey={4} onClick={ () => this.onLogout() }>Logout</NavItem>
+                    :
                     <LinkContainer to="/login">
                       <NavItem eventKey={5} onClick={ this.onNavItemClick }>Login</NavItem>
                     </LinkContainer>
-
+                    }
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
