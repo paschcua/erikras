@@ -80,8 +80,10 @@ export default class App extends Component {
       }
     }
 
-    onNavItemClick = (loginProps) => {
+    onNavItemClick = () => {
       this.setState({ navExpanded: false });
+    }
+    onNavItemClickLogin = (loginProps) => {
       if(loginProps.length > 1){
         console.log("loginProps: "+loginProps);
       }
@@ -136,9 +138,9 @@ export default class App extends Component {
                       <NavItem eventKey={3}>Kontakt</NavItem>
                     </LinkContainer>
                     { getUserState.activation === true || activateNewUserState.activatedUser === true ?
-                      <NavItem eventKey={4} onClick={ this.onNavItemClick('logout') }>Logout</NavItem>
+                      <NavItem eventKey={4} onClick={ this.onNavItemClickLogin('logout') }>Logout</NavItem>
                     :
-                      <NavItem eventKey={4} onClick={ this.onNavItemClick('login') }>Login</NavItem>
+                      <NavItem eventKey={4} onClick={ this.onNavItemClickLogin('login') }>Login</NavItem>
                     }
                 </Nav>
               </Navbar.Collapse>
