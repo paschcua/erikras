@@ -102,7 +102,7 @@ export default class App extends Component {
         <div className={styles.app}>
           <Helmet {...config.app.head}/>
           <div className="preload-images"></div>
-          <Loader show={!getUserState.loading}>
+          <Loader show={!getUserState.loading} message={''} backgroundStyle={{backgroundColor: 'black'}}>
           <Navbar fixedTop expanded={ this.state.navExpanded } onToggle={ this.onNavbarToggle }>
             <Navbar.Header>
               <Navbar.Brand>
