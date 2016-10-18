@@ -99,7 +99,6 @@ export default class App extends Component {
       console.log("+++ getUserState.loading +++ : "+getUserState.loading);
 
       return (
-        <Loader show={getUserState.loading} message={''} backgroundStyle={{backgroundColor: 'black'}} hideContentOnLoad={true}>
         <div className={styles.app}>
           <Helmet {...config.app.head}/>
           <div className="preload-images"></div>
@@ -145,16 +144,17 @@ export default class App extends Component {
             </Navbar.Collapse>
           </Navbar>
 
+<         Loader show={getUserState.loading} message={''} backgroundStyle={{backgroundColor: 'black'}} hideContentOnLoad={true}>
           <div className={styles.appContent}>
             {this.props.children}
           </div>
           <InfoBar/>
+          </Loader>
 
           <div className="well text-center">
             Copyright { new Date().getFullYear() } | Swiss React Community | React, Redux, Flux, React Native | Swiss-react.ch
           </div>
         </div>
-        </Loader>
       );
     }
   }
