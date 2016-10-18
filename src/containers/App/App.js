@@ -56,10 +56,6 @@ export default class App extends Component {
       store: PropTypes.object.isRequired
     };
 
-    componentDidMount() {
-      console.log("Starting: "+this.props.getUserState.loading);
-    }
-
     componentWillMount() {
       const ck_activation = cookie.load('ck_activation');
       const ck_email = cookie.load('ck_email');
@@ -67,7 +63,6 @@ export default class App extends Component {
       const ck_uuid = cookie.load('ck_uuid');
 
       this.props.dispatch(getUser(ck_activation, ck_email, ck_pw, ck_uuid));
-      console.log("Dispatcher done"+this.props.getUserState.loading);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -84,11 +79,13 @@ export default class App extends Component {
       this.setState({ navExpanded: false });
     }
 
-    onNavItemClickLogin(loginProps){
-      if(loginProps.length > 1){
-        console.log("loginProps: "+loginProps);
+    onNavItemClickLogout(loginProps){
+      if(loginProps === 'logout'){
+        cookie.save('ck_userLoggedIn', false, { path: '/', expires: new Date(new Date().getTime() + (3600*3600*3600)) });
+        this.setState({ navExpanded: false });
       }
     }
+
     onNavbarToggle = () => {
       this.setState({ navExpanded: ! this.state.navExpanded });
     }
@@ -100,9 +97,6 @@ export default class App extends Component {
     render() {
       const styles = require('./App.scss');
       const { registerNewUserState, getUserState, activateNewUserState } = this.props;
-      const spinner = <div className={styles.loader}></div>;
-
-      console.log("+++ getUserState.loading +++ : "+getUserState.loading);
 
       return (
         <div className={styles.app}>
@@ -138,11 +132,13 @@ export default class App extends Component {
                     <LinkContainer to="/kontakt">
                       <NavItem eventKey={3}>Kontakt</NavItem>
                     </LinkContainer>
-                    { getUserState.activation === true || activateNewUserState.activatedUser === true ?
+                    { /* getUserState.activation === true || activateNewUserState.activatedUser === true ? */ }
                       <NavItem eventKey={4} onClick={ () => this.onNavItemClickLogin('logout') }>Logout</NavItem>
-                    :
-                      <NavItem eventKey={4} onClick={ () => this.onNavItemClickLogin('login') }>Login</NavItem>
-                    }
+                    { /* : */ }
+                    <LinkContainer to="/login">
+                      <NavItem eventKey={5} onClick={ this.onNavItemClick }>Login</NavItem>
+                    </LinkContainer>
+
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
