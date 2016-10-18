@@ -80,8 +80,11 @@ export default class App extends Component {
       }
     }
 
-    onNavItemClick = () => {
+    onNavItemClick = (loginProps) => {
       this.setState({ navExpanded: false });
+      if(loginProps.length > 1){
+        console.log("loginProps: "+loginProps);
+      }
     }
     onNavbarToggle = () => {
       this.setState({ navExpanded: ! this.state.navExpanded });
@@ -103,53 +106,49 @@ export default class App extends Component {
           <Helmet {...config.app.head}/>
           <div className="preload-images"></div>
           <Loader show={!getUserState.loading} message={''} hideContentOnLoad={true}>
-          <Navbar fixedTop expanded={ this.state.navExpanded } onToggle={ this.onNavbarToggle }>
-            <Navbar.Header>
-              <Navbar.Brand>
-                <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
-                  <div className={styles.brand}/>
-                  <span>
-                    {config.app.title}
-                  </span>
-                </IndexLink>
-              </Navbar.Brand>
-              <Navbar.Toggle/>
-            </Navbar.Header>
-            <Navbar.Collapse>
-              <Nav navbar>
-                  <LinkContainer to="/community">
-                    <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
-                  </LinkContainer>
-                  { getUserState.activation === true || activateNewUserState.activatedUser === true ?
-                  <LinkContainer to="/registrieren">
-                    <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mein Profil</NavItem>
-                  </LinkContainer>
-                  :
-                  <LinkContainer to="/registrieren0">
-                    <NavItem eventKey={2}>Mitmachen</NavItem>
-                  </LinkContainer>
-                  }
-                  <LinkContainer to="/kontakt">
-                    <NavItem eventKey={3}>Kontakt</NavItem>
-                  </LinkContainer>
-                  { getUserState.activation === true || activateNewUserState.activatedUser === true ?
-                  <LinkContainer to="/registrieren1">
-                    <NavItem eventKey={4}>Logout</NavItem>
-                  </LinkContainer>
-                  :
-                  <LinkContainer to="/registrieren1">
-                    <NavItem eventKey={4}>Login</NavItem>
-                  </LinkContainer>
-                  }
-              </Nav>
-            </Navbar.Collapse>
-          </Navbar>
+            <Navbar fixedTop expanded={ this.state.navExpanded } onToggle={ this.onNavbarToggle }>
+              <Navbar.Header>
+                <Navbar.Brand>
+                  <IndexLink to="/" activeStyle={{color: '#d52b1e'}}>
+                    <div className={styles.brand}/>
+                    <span>
+                      {config.app.title}
+                    </span>
+                  </IndexLink>
+                </Navbar.Brand>
+                <Navbar.Toggle/>
+              </Navbar.Header>
+              <Navbar.Collapse>
+                <Nav navbar>
+                    <LinkContainer to="/community">
+                      <NavItem eventKey={1} onClick={ this.onNavItemClick }>Community</NavItem>
+                    </LinkContainer>
+                    { getUserState.activation === true || activateNewUserState.activatedUser === true ?
+                    <LinkContainer to="/profil">
+                      <NavItem eventKey={2} onClick={ this.onNavItemClick }>Mein Profil</NavItem>
+                    </LinkContainer>
+                    :
+                    <LinkContainer to="/registrieren">
+                      <NavItem eventKey={2}>Mitmachen</NavItem>
+                    </LinkContainer>
+                    }
+                    <LinkContainer to="/kontakt">
+                      <NavItem eventKey={3}>Kontakt</NavItem>
+                    </LinkContainer>
+                    { getUserState.activation === true || activateNewUserState.activatedUser === true ?
+                      <NavItem eventKey={4} onClick={ this.onNavItemClick('logout') }>Logout</NavItem>
+                    :
+                      <NavItem eventKey={4} onClick={ this.onNavItemClick('login') }>Login</NavItem>
+                    }
+                </Nav>
+              </Navbar.Collapse>
+            </Navbar>
           </Loader>
           <div className={styles.appContent}>
             {this.props.children}
           </div>
           <Loader show={!getUserState.loading} message={''} hideContentOnLoad={true}>
-          <InfoBar/>
+            <InfoBar/>
           </Loader>
           <div className="well text-center">
             Copyright { new Date().getFullYear() } | Swiss React Community | React, Redux, Flux, React Native | Swiss-react.ch
