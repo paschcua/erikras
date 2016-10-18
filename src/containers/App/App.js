@@ -146,7 +146,7 @@ export default class App extends Component {
           <div className={styles.appContent}>
             {this.props.children}
           </div>
-          <Loader show={getUserState.loading} message={''} backgroundStyle={{backgroundColor: 'black'}} hideContentOnLoad={true}>
+          <Loader show={!getUserState.loading} message={''} backgroundStyle={{backgroundColor: 'black'}} hideContentOnLoad={true}>
           <InfoBar/>
           </Loader>
           <div className="well text-center">
