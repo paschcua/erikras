@@ -44,11 +44,12 @@ export default (store) => {
       { /* Home (main) route */ }
       <IndexRoute component={Home}/>
 
-      { /* Routes requiring login */ }
+      { /* Routes requiring login
       <Route onEnter={requireLogin}>
         <Route path="chat" component={Chat}/>
         <Route path="loginSuccess" component={LoginSuccess}/>
       </Route>
+      */ }
 
       { /* Routes */ }
       { /* <Route path="about" component={About}/> */ }
