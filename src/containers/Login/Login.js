@@ -64,6 +64,7 @@ export default class Login extends Component {
               <div dangerouslySetInnerHTML={{__html: formMsg}}></div>
             </Well>
             : null
+          }
           {formStatus === 1 ?
               <Well>
                 <h3>Fehler beim Login</h3>
